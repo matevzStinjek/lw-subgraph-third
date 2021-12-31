@@ -1,0 +1,54 @@
+specVersion: 0.0.4
+description: Lost Worlds - The Location Based NFT Platform
+repository: https://github.com/lost-worlds/subgraphs
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: LostLayerController
+    network: avalanche
+    source:
+      address: "0xb1157C8Ed9c38c5B53bC64561e7c60C3AC3784F2"
+      abi: LostLayer
+      startBlock: 7655134
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - LostLayer
+      abis:
+        - name: LostLayer
+          file: LostLayerController/abis/LostLayer.json
+      eventHandlers:
+        - event: LostLayerRegistered(bytes32,address)
+          handler: handleLostLayerRegistered
+        - event: LostLayerUnregistered(bytes32,address)
+          handler: handleLostLayerUnregistered
+      file: LostLayerController/LostLayerController.wasm
+templates:
+  - kind: ethereum/contract
+    name: LostLayer
+    network: avalanche
+    source:
+      abi: LostLayer
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: templates/LostLayer/LostLayer.wasm
+      entities:
+        - LostLayer
+        - LostWorld
+      abis:
+        - name: LostLayer
+          file: LostLayer/abis/LostLayer.json
+        - name: CurvedRandomLostWorld
+          file: LostLayer/abis/CurvedRandomLostWorld.json
+        - name: LostWorldLens
+          file: LostLayer/abis/LostWorldLens.json
+      eventHandlers:
+        - event: LostLayerRegistered(bytes32,address)
+          handler: handleLostLayerRegistered
+        - event: LostLayerUnregistered(bytes32,address)
+          handler: handleLostLayerUnregistered

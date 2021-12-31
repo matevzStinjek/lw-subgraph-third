@@ -1,0 +1,78 @@
+# type Location @entity {
+# 	project: Project;
+# 	erc721Address: Bytes!;
+# 	locationId: string;
+# 	locationName: string;
+# 	priceRanges: PriceRange[];
+# 	currentSupply: number;
+# 	totalSupply: number;
+# 	variationsTotal: Variation[];
+# 	variationsMinted: Variation[];
+# 	artist: string;
+# }
+
+# type PriceRange @entity {
+# 	id: ID!
+# 	threshold: BigInt!
+# 	price: BigInt!
+# }
+
+# type Variation @entity {
+# 	name: String
+# 	count: BigInt
+# 	image: String
+# }
+
+# type Project @entity {
+# 	locations: Location[] @derivedFrom(field: "locationId")
+# 	name: Bytes
+# }
+
+# # minted token
+# type Token @entity {
+# 	id: string;
+# 	name: string;
+# 	location: Location,
+# 	owner: string;
+# 	transactions: [{ from, to, price, timestamp }];
+# 	isListedOnMarket: boolean;
+# 	price: number;
+# }
+
+# type TokenTransaction @entity {
+# 	from: Bytes!
+# }
+
+# type Token @entity {
+# 	id: ID!
+# 	tokenID: BigInt!
+# 	name: String
+# }
+
+type LostLayer @entity {
+	id: ID!
+	address: Bytes!
+	key: Bytes!
+	name: String!
+	parent: LostLayer
+	lostLayers: [LostLayer!]! @derivedFrom(field: "parent")
+	lostWorlds: [LostWorld!]! @derivedFrom(field: "lostLayer")
+}
+
+type LostWorld @entity {
+	id: ID!
+	address: Bytes!
+	key: Bytes!
+	name: String!
+	lostLayer: LostLayer!
+
+	# metadata
+	artist: String!
+	location: String!
+	latStr: String!
+	lat: BigDecimal!
+	long: BigDecimal!
+	radius: BigInt!
+
+	# variations
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@pangolindex/subgraph",
+  "version": "1.2.1",
+  "repository": "https://github.com/pangolindex/subgraph",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "codegen": "graph codegen --output-dir src/types/",
+    "build": "graph build",
+    "create-local": "graph create lost-worlds/subgraphs --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy lost-worlds/subgraphs --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "full-send": "yarn codegen && yarn build && yarn create-local && yarn deploy-local",
+    "last-3": "yarn build && yarn create-local && yarn deploy-local",
+    "last-2": "yarn create-local && yarn deploy-local"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "0.25.1",
+    "@graphprotocol/graph-ts": "0.24.1",
+    "typescript": "^3.5.2"
+  }
+}
