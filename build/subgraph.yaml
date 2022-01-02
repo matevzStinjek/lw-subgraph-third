@@ -52,3 +52,21 @@ templates:
           handler: handleLostLayerRegistered
         - event: LostLayerUnregistered(bytes32,address)
           handler: handleLostLayerUnregistered
+  - kind: ethereum/contract
+    name: LostWorld
+    network: avalanche
+    source:
+      abi: CurvedRandomLostWorld
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: templates/LostWorld/LostWorld.wasm
+      entities:
+        - Token
+      abis:
+        - name: CurvedRandomLostWorld
+          file: LostWorld/abis/CurvedRandomLostWorld.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer

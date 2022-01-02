@@ -1,95 +1,3 @@
-# specVersion: 0.0.4
-# description: Lost Worlds - The Location Based NFT Platform
-# repository: https://github.com/pangolindex/subgraph
-# schema:
-#   file: ./schema.graphql
-# dataSources:
-#   - kind: ethereum/contract
-#     name: Factory
-#     network: avalanche
-#     source:
-#       address: '0xefa94DE7a4656D787667C749f7E1223D71E9FD88'
-#       abi: Factory
-#       startBlock: 56877
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.3
-#       language: wasm/assemblyscript
-#       file: ./src/mappings/factory.ts
-#       entities:
-#         - Pair
-#         - Token
-#       abis:
-#         - name: Factory
-#           file: ./abis/factory.json
-#         - name: ERC20
-#           file: ./abis/ERC20.json
-#         - name: ERC20SymbolBytes
-#           file: ./abis/ERC20SymbolBytes.json
-#         - name: ERC20NameBytes
-#           file: ./abis/ERC20NameBytes.json
-#       eventHandlers:
-#         - event: PairCreated(indexed address,indexed address,address,uint256)
-#           handler: handleNewPair
-# templates:
-#   - kind: ethereum/contract
-#     name: Pair
-#     network: avalanche
-#     source:
-#       abi: Pair
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.6
-#       language: wasm/assemblyscript
-#       file: ./src/mappings/core.ts
-#       entities:
-#         - Pair
-#         - Token
-#       abis:
-#         - name: Pair
-#           file: ./abis/pair.json
-#         - name: Factory
-#           file: ./abis/factory.json
-#       eventHandlers:
-#         - event: Mint(indexed address,uint256,uint256)
-#           handler: handleMint
-#         - event: Burn(indexed address,uint256,uint256,indexed address)
-#           handler: handleBurn
-#         - event: Swap(indexed address,uint256,uint256,uint256,uint256,indexed address)
-#           handler: handleSwap
-#         - event: Transfer(indexed address,indexed address,uint256)
-#           handler: handleTransfer
-#         - event: Sync(uint112,uint112)
-#           handler: handleSync
-
-# CURVED RANDOM LW MAINNET WORKING
-# specVersion: 0.0.3
-# description: Lost Worlds - The Location Based NFT Platform
-# repository: https://github.com/lost-worlds/subgraphs
-# schema:
-#   file: ./schema.graphql
-# dataSources:
-#   - kind: ethereum/contract
-#     name: CurvedRandomLostWorld
-#     network: avalanche
-#     source:
-#       address: '0xe803A0Ff746E16CBA81601b412747976C30ff744'
-#       abi: CurvedRandomLostWorld
-#       startBlock: 7676433
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.4
-#       language: wasm/assemblyscript
-#       entities:
-#         - Token
-#       abis:
-#         - name: CurvedRandomLostWorld
-#           file: ./abis/CurvedRandomLostWorld.json
-#       eventHandlers:
-#         - event: Transfer(indexed address,indexed address,indexed uint256)
-#           handler: handleTransfer
-#       file: ./src/mappings.ts
-
 specVersion: 0.0.4
 description: Lost Worlds - The Location Based NFT Platform
 repository: https://github.com/lost-worlds/subgraphs
@@ -118,6 +26,8 @@ dataSources:
         - event: LostLayerUnregistered(bytes32,address)
           handler: handleLostLayerUnregistered
       file: ./src/mappings/factory.ts
+  # - kind: ethereum/contract
+  #   name: LostWorldsMarketplace
 templates:
   - kind: ethereum/contract
     name: LostLayer
@@ -144,3 +54,29 @@ templates:
           handler: handleLostLayerRegistered
         - event: LostLayerUnregistered(bytes32,address)
           handler: handleLostLayerUnregistered
+  - kind: ethereum/contract
+    name: LostWorld
+    network: avalanche
+    source:
+      abi: CurvedRandomLostWorld
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/leaves.ts
+      entities:
+        # - LostLayer
+        # - LostWorld
+        - Token
+      abis:
+        - name: CurvedRandomLostWorld
+          file: ./abis/CurvedRandomLostWorld.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+
+
+# priceranges
+# variations
+# transfers + transactions
+# buy sell etc

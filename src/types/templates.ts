@@ -19,3 +19,17 @@ export class LostLayer extends DataSourceTemplate {
     );
   }
 }
+
+export class LostWorld extends DataSourceTemplate {
+  static create(address: Address): void {
+    DataSourceTemplate.create("LostWorld", [address.toHex()]);
+  }
+
+  static createWithContext(address: Address, context: DataSourceContext): void {
+    DataSourceTemplate.createWithContext(
+      "LostWorld",
+      [address.toHex()],
+      context
+    );
+  }
+}

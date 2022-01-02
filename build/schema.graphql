@@ -39,16 +39,6 @@
 # 	price: number;
 # }
 
-# type TokenTransaction @entity {
-# 	from: Bytes!
-# }
-
-# type Token @entity {
-# 	id: ID!
-# 	tokenID: BigInt!
-# 	name: String
-# }
-
 type LostLayer @entity {
 	id: ID!
 	address: Bytes!
@@ -69,10 +59,23 @@ type LostWorld @entity {
 	# metadata
 	artist: String!
 	location: String!
-	latStr: String!
 	lat: BigDecimal!
 	long: BigDecimal!
 	radius: BigInt!
 
 	# variations
+
+	# tokens
+	tokens: [Token!]! @derivedFrom(field: "lostWorld")
 }
+
+type Token @entity {
+	id: ID!
+	tokenID: BigInt!
+	# name: String!
+	lostWorld: LostWorld!
+}
+
+# type TokenTransaction @entity {
+# 	from: Bytes!
+# }

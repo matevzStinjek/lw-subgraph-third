@@ -121,7 +121,6 @@ export class LostWorld extends Entity {
     this.set("lostLayer", Value.fromString(""));
     this.set("artist", Value.fromString(""));
     this.set("location", Value.fromString(""));
-    this.set("latStr", Value.fromString(""));
     this.set("lat", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("long", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("radius", Value.fromBigInt(BigInt.zero()));
@@ -207,15 +206,6 @@ export class LostWorld extends Entity {
     this.set("location", Value.fromString(value));
   }
 
-  get latStr(): string {
-    let value = this.get("latStr");
-    return value!.toString();
-  }
-
-  set latStr(value: string) {
-    this.set("latStr", Value.fromString(value));
-  }
-
   get lat(): BigDecimal {
     let value = this.get("lat");
     return value!.toBigDecimal();
@@ -241,5 +231,68 @@ export class LostWorld extends Entity {
 
   set radius(value: BigInt) {
     this.set("radius", Value.fromBigInt(value));
+  }
+
+  get tokens(): Array<string> {
+    let value = this.get("tokens");
+    return value!.toStringArray();
+  }
+
+  set tokens(value: Array<string>) {
+    this.set("tokens", Value.fromStringArray(value));
+  }
+}
+
+export class Token extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("tokenID", Value.fromBigInt(BigInt.zero()));
+    this.set("lostWorld", Value.fromString(""));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Token entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        "Cannot save Token entity with non-string ID. " +
+          'Considering using .toHex() to convert the "id" to a string.'
+      );
+      store.set("Token", id.toString(), this);
+    }
+  }
+
+  static load(id: string): Token | null {
+    return changetype<Token | null>(store.get("Token", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get tokenID(): BigInt {
+    let value = this.get("tokenID");
+    return value!.toBigInt();
+  }
+
+  set tokenID(value: BigInt) {
+    this.set("tokenID", Value.fromBigInt(value));
+  }
+
+  get lostWorld(): string {
+    let value = this.get("lostWorld");
+    return value!.toString();
+  }
+
+  set lostWorld(value: string) {
+    this.set("lostWorld", Value.fromString(value));
   }
 }
