@@ -10,6 +10,7 @@ import {
     LostLayer,
     LostWorld,
     PriceRange,
+    Variation,
 } from "../types/schema";
 
 import {
@@ -89,6 +90,7 @@ function registerLostWorld (event: LostLayerRegisteredEvent): void {
     // Lens: metadata & variations
     let lens = LostWorldLensContract.bind(Address.fromString("0x55aBc3dEBFfD21180B23F6E9868232A1Ec1358D4"))
 
+    // metadata
     let metadataString = lens.metadata(event.params.address_);
     let metadataBytes = Bytes.fromUTF8(metadataString) as Bytes;
     let metadata = json.fromBytes(metadataBytes).toObject();
@@ -113,6 +115,41 @@ function registerLostWorld (event: LostLayerRegisteredEvent): void {
     if (radius) {
         lostWorld.radius = radius.toBigInt();
     }
+
+    // variations
+    let variationsString = lens.variations(event.params.address_);
+    let variationsBytes = Bytes.fromUTF8(variationsString) as Bytes;
+    let variations = json.fromBytes(variationsBytes).toArray();
+    for (let i = 0; i < variations.length; i++) {
+        let variationStruct = variations[i].toObject();
+        let data = variationStruct.get("data");
+        if (!data) {
+            continue;
+        }
+        let dataObj = data.toObject();
+        let variationId = id + "-" + i.toString();
+        let variation = new Variation(variationId);
+
+        let amount = variationStruct.get("amount");
+        if (amount) {
+            variation.count = amount.toBigInt();
+        }
+        let name = dataObj.get("name");
+        if (name) {
+            variation.name = name.toString();
+        }
+        let image = dataObj.get("image");
+        if (image) {
+            variation.image = image.toString();
+        }
+        let imageLink = dataObj.get("imageLink");
+        if (imageLink) {
+            variation.imageIPFS = imageLink.toString();
+        }
+        variation.lostWorld = id;
+        variation.save();
+    }
+
     lostWorld.save();
 
     LostWorldTemplate.create(event.params.address_);

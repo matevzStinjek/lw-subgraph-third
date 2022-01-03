@@ -11,12 +11,6 @@
 # 	artist: string;
 # }
 
-# type Variation @entity {
-# 	name: String
-# 	count: BigInt
-# 	image: String
-# }
-
 type LostLayer @entity {
 	id: ID!
 	address: Bytes!
@@ -46,7 +40,7 @@ type LostWorld @entity {
 	maxSupply: BigInt!
 
 	# variations
-	# variations: [Variation!]!
+	variations: [Variation!]! @derivedFrom(field: "lostWorld")
 
 	# price ranges
 	priceRanges: [PriceRange!]! @derivedFrom(field: "lostWorld")
@@ -82,5 +76,14 @@ type PriceRange @entity {
 	id: ID!
 	threshold: BigInt!
 	price: BigInt!
+	lostWorld: LostWorld!
+}
+
+type Variation @entity {
+	id: ID!
+	name: String!
+	count: BigInt!
+	image: String!
+	imageIPFS: String!
 	lostWorld: LostWorld!
 }

@@ -74,8 +74,5 @@ templates:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
 
-
-# priceranges
-# variations
 # transfers + transactions
 # buy sell etc
