@@ -11,7 +11,7 @@ import {
 } from "../types/LostLayerController/LostLayer"
 
 export function handleLostLayerRegisteredFactory (event: LostLayerRegisteredEvent): void {
-    let id = event.params.address_.toHexString();
+    let id = event.params.address_.toHexString().toLowerCase();
     let lostLayer = LostLayer.load(id);
     if (!lostLayer) {
         lostLayer = new LostLayer(id);

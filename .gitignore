@@ -67,3 +67,5 @@ typings/
 build
 
 src/types
+
+tests/.bin

@@ -1,4 +1,4 @@
-import { Address, BigInt, store } from "@graphprotocol/graph-ts";
+import { Address, BigInt } from "@graphprotocol/graph-ts";
 
 import {
     LostWorld,
@@ -15,7 +15,7 @@ export function handleTransfer (event: TransferEvent): void {
         return;
     }
 
-    let id = event.address.toHexString() + "-" + event.params.tokenId.toString()
+    let id = event.address.toHexString().toLowerCase() + "-" + event.params.tokenId.toString();
     let token = Token.load(id);
     if (!token) {    
       token = new Token(id);
@@ -25,9 +25,9 @@ export function handleTransfer (event: TransferEvent): void {
     token.lostWorld = event.address.toHexString();
     token.save();
 
-    // TODO #2: fix
-    let lostWorld = LostWorld.load(event.address.toHexString());
+    let lostWorld = LostWorld.load(event.address.toHexString().toLowerCase());
     if (lostWorld && event.params.from == Address.zero()) {
         lostWorld.totalSupply = lostWorld.totalSupply.plus(BigInt.fromI32(1));
+        lostWorld.save();
     }
 }

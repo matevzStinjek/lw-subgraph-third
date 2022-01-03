@@ -10,11 +10,15 @@
     "deploy-local": "graph deploy lost-worlds/subgraphs --ipfs http://localhost:5001 --node http://127.0.0.1:8020 --version-label v0.0.1",
     "full-send": "yarn codegen && yarn build && yarn create-local && yarn deploy-local",
     "last-3": "yarn build && yarn create-local && yarn deploy-local",
-    "last-2": "yarn create-local && yarn deploy-local"
+    "last-2": "yarn create-local && yarn deploy-local",
+    "test": "graph test"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "0.25.1",
     "@graphprotocol/graph-ts": "0.24.1",
     "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "matchstick-as": "0.2.2"
   }
 }

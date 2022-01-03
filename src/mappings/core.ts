@@ -41,9 +41,10 @@ export function handleLostLayerRegistered (event: LostLayerRegisteredEvent): voi
 }
 
 function registerLostLayer (event: LostLayerRegisteredEvent): void {
-    let lostLayer = LostLayer.load(event.params.id_.toHexString());
+    let id = event.params.address_.toHexString().toLowerCase();
+    let lostLayer = LostLayer.load(id);
     if (!lostLayer) {
-        lostLayer = new LostLayer(event.params.id_.toHexString());
+        lostLayer = new LostLayer(id);
     }
 
     lostLayer.address = event.params.address_;
@@ -56,7 +57,7 @@ function registerLostLayer (event: LostLayerRegisteredEvent): void {
 }
 
 function registerLostWorld (event: LostLayerRegisteredEvent): void {
-    let id = event.params.address_.toHexString()
+    let id = event.params.address_.toHexString().toLowerCase();
     let lostWorld = LostWorld.load(id);
     if (!lostWorld) {
         lostWorld = new LostWorld(id);
@@ -114,7 +115,7 @@ export function handleLostLayerUnregistered (event: LostLayerUnregisteredEvent):
 }
 
 function removeLostLayer (address: Address): void {
-    let lostLayer = LostLayer.load(address.toHexString());
+    let lostLayer = LostLayer.load(address.toHexString().toLowerCase());
     if (!lostLayer) {
         return;
     }
@@ -133,7 +134,7 @@ function removeLostLayer (address: Address): void {
 }
 
 function removeLostWorld (address: Address): void {
-    let lostWorld = LostWorld.load(address.toHexString());
+    let lostWorld = LostWorld.load(address.toHexString().toLowerCase());
     if (!lostWorld) {
         return;
     }
