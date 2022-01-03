@@ -15,6 +15,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
+      file: LostLayerController/LostLayerController.wasm
       entities:
         - LostLayer
       abis:
@@ -22,10 +23,9 @@ dataSources:
           file: LostLayerController/abis/LostLayer.json
       eventHandlers:
         - event: LostLayerRegistered(bytes32,address)
-          handler: handleLostLayerRegistered
+          handler: handleLostLayerRegisteredFactory
         - event: LostLayerUnregistered(bytes32,address)
           handler: handleLostLayerUnregistered
-      file: LostLayerController/LostLayerController.wasm
 templates:
   - kind: ethereum/contract
     name: LostLayer
@@ -36,10 +36,11 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: templates/LostLayer/LostLayer.wasm
+      file: LostLayerController/LostLayerController.wasm
       entities:
         - LostLayer
         - LostWorld
+        - Token
       abis:
         - name: LostLayer
           file: LostLayer/abis/LostLayer.json
@@ -61,7 +62,7 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: templates/LostWorld/LostWorld.wasm
+      file: LostLayerController/LostLayerController.wasm
       entities:
         - Token
       abis:

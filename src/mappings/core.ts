@@ -1,10 +1,7 @@
 import {
     Address,
     Bytes,
-    ByteArray,
     BigDecimal,
-    BigInt,
-    JSONValue,
     json,
     store,
 } from "@graphprotocol/graph-ts";
@@ -17,7 +14,7 @@ import {
 import {
     LostLayer as LostLayerTemplate,
     LostWorld as LostWorldTemplate,
-} from "../types/templates"
+} from "../types/templates";
 
 import {
     LostLayer as LostLayerContract,
@@ -25,17 +22,21 @@ import {
     LostLayerUnregistered as LostLayerUnregisteredEvent,
 } from "../types/templates/LostLayer/LostLayer";
 
+// import {
+//     CurvedRandomLostWorld as CurvedRandomLostWorldContract,
+// } from "../types/templates/LostWorld/CurvedRandomLostWorld"
+
 import {
     LostWorldLens as LostWorldLensContract,
-} from "../types/templates/LostLayer/LostWorldLens"
+} from "../types/templates/LostLayer/LostWorldLens";
 
 
 export function handleLostLayerRegistered (event: LostLayerRegisteredEvent): void {
     let isLostLayer = LostLayerContract.bind(event.params.address_).supportsInterface(Bytes.fromHexString("0x7c6b580e") as Bytes); // LostLayer | LostWorld
     if (isLostLayer) {
-        registerLostLayer(event)
+        registerLostLayer(event);
     } else {
-        registerLostWorld(event)
+        registerLostWorld(event);
     }
 }
 
@@ -65,6 +66,8 @@ function registerLostWorld (event: LostLayerRegisteredEvent): void {
     lostWorld.key = event.params.id_;
     lostWorld.name = event.params.id_.toString();
     lostWorld.lostLayer = event.address.toHexString();
+
+    // let contract = CurvedRandomLostWorldContract
 
     let lens = LostWorldLensContract.bind(Address.fromString("0x55aBc3dEBFfD21180B23F6E9868232A1Ec1358D4"))
 
@@ -110,17 +113,17 @@ export function handleLostLayerUnregistered (event: LostLayerUnregisteredEvent):
 function removeLostLayer (address: Address): void {
     let lostLayer = LostLayer.load(address.toHexString());
     if (!lostLayer) {
-        return
+        return;
     }
 
-    if (lostLayer.lostLayers.length > 0) {
+    if (lostLayer.lostLayers && lostLayer.lostLayers.length > 0) {
         lostLayer.lostLayers.forEach(address => {
-            removeLostLayer(Address.fromString(address))
+            removeLostLayer(Address.fromString(address));
         })
     }
-    if (lostLayer.lostWorlds.length > 0) {
+    if (lostLayer.lostWorlds && lostLayer.lostWorlds.length > 0) {
         lostLayer.lostWorlds.forEach(address => {
-            removeLostWorld(Address.fromString(address))
+            removeLostWorld(Address.fromString(address));
         })
     }
     store.remove("LostLayer", address.toHexString());
@@ -129,18 +132,14 @@ function removeLostLayer (address: Address): void {
 function removeLostWorld (address: Address): void {
     let lostWorld = LostWorld.load(address.toHexString());
     if (!lostWorld) {
-        return
+        return;
     }
 
-    // if (lostWorld.tokens.length > 0) {
+    // TODO: fix
+    // if (lostWorld.tokens && lostWorld.tokens.length > 0) {
     //     lostWorld.tokens.forEach(id => {
-    //         removeToken(lostWorld.address.toString(), id)
+    //         store.remove("Token", id)
     //     })
     // }
     store.remove("LostWorld", address.toHexString());
-}
-
-function removeToken (address: string, tokenId: string): void {
-    let id = address + "-" + tokenId;
-    store.remove("Token", id);
 }

@@ -15,6 +15,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
+      file: ./src/mappings/index.ts
       entities:
         - LostLayer
       abis:
@@ -22,10 +23,9 @@ dataSources:
           file: ./abis/LostLayer.json
       eventHandlers:
         - event: LostLayerRegistered(bytes32,address)
-          handler: handleLostLayerRegistered
+          handler: handleLostLayerRegisteredFactory
         - event: LostLayerUnregistered(bytes32,address)
           handler: handleLostLayerUnregistered
-      file: ./src/mappings/factory.ts
   # - kind: ethereum/contract
   #   name: LostWorldsMarketplace
 templates:
@@ -38,7 +38,7 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/core.ts
+      file: ./src/mappings/index.ts
       entities:
         - LostLayer
         - LostWorld
@@ -63,7 +63,7 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/leaves.ts
+      file: ./src/mappings/index.ts
       entities:
         # - LostLayer
         # - LostWorld

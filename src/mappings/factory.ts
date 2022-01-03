@@ -1,5 +1,3 @@
-import { store } from "@graphprotocol/graph-ts";
-
 import {
     LostLayer,
 } from "../types/schema"
@@ -10,10 +8,9 @@ import {
 
 import {
     LostLayerRegistered as LostLayerRegisteredEvent,
-    LostLayerUnregistered as LostLayerUnregisteredEvent,
 } from "../types/LostLayerController/LostLayer"
 
-export function handleLostLayerRegistered (event: LostLayerRegisteredEvent): void {
+export function handleLostLayerRegisteredFactory (event: LostLayerRegisteredEvent): void {
     let id = event.params.address_.toHexString();
     let lostLayer = LostLayer.load(id);
     if (!lostLayer) {
@@ -26,12 +23,4 @@ export function handleLostLayerRegistered (event: LostLayerRegisteredEvent): voi
     lostLayer.save();
 
     LostLayerTemplate.create(event.params.address_);
-}
-
-export function handleLostLayerUnregistered (event: LostLayerUnregisteredEvent): void { 
-    let lostLayer = LostLayer.load(event.params.id_.toHexString());
-    if (!lostLayer) {
-        return
-    }
-    store.remove('LostLayer', event.params.id_.toHexString());
 }
