@@ -63,3 +63,7 @@ typings/
 
 # VSCode
 .vscode
+
+build
+
+src/types
