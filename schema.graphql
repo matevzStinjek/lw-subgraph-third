@@ -76,8 +76,14 @@ type LostWorld @entity {
 type Token @entity {
 	id: ID!
 	tokenID: BigInt!
-	# name: String!
 	lostWorld: LostWorld!
+
+	# tokenURI
+	name: String!
+	minterLat: BigDecimal!
+	minterLong: BigDecimal!
+	image: String!
+	imageIPFS: String!
 }
 
 # type TokenTransaction @entity {

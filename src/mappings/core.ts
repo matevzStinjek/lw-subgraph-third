@@ -79,23 +79,23 @@ function registerLostWorld (event: LostLayerRegisteredEvent): void {
     let metadataBytes = Bytes.fromUTF8(metadataString) as Bytes;
     let metadata = json.fromBytes(metadataBytes).toObject();
 
-    const artist = metadata.get("artist");
+    let artist = metadata.get("artist");
     if (artist) {
         lostWorld.artist = artist.toString();
     }
-    const location = metadata.get("location");
+    let location = metadata.get("location");
     if (location) {
         lostWorld.location = location.toString();
     }
-    const lat = metadata.get("lat");
+    let lat = metadata.get("lat");
     if (lat) {;
         lostWorld.lat = BigDecimal.fromString(lat.toF64().toString());
     }
-    const long = metadata.get("long");
+    let long = metadata.get("long");
     if (long) {
         lostWorld.long = BigDecimal.fromString(long.toF64().toString());
     }
-    const radius = metadata.get("radius");
+    let radius = metadata.get("radius");
     if (radius) {
         lostWorld.radius = radius.toBigInt();
     }

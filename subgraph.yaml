@@ -65,7 +65,6 @@ templates:
       language: wasm/assemblyscript
       file: ./src/mappings/index.ts
       entities:
-        # - LostLayer
         - LostWorld
         - Token
       abis:

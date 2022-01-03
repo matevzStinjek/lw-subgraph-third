@@ -1,4 +1,4 @@
-import { Address, BigInt } from "@graphprotocol/graph-ts";
+import { Address, BigInt, BigDecimal, Bytes, log, json } from "@graphprotocol/graph-ts";
 
 import {
     LostWorld,
@@ -6,6 +6,7 @@ import {
 } from "../types/schema"
 
 import {
+    CurvedRandomLostWorld as CurvedRandomLostWorldContract,
     Transfer as TransferEvent,
 } from "../types/templates/LostWorld/CurvedRandomLostWorld"
 
@@ -23,6 +24,33 @@ export function handleTransfer (event: TransferEvent): void {
 
     token.tokenID = event.params.tokenId;
     token.lostWorld = event.address.toHexString();
+
+    let contract = CurvedRandomLostWorldContract.bind(event.address);
+
+    let tokenURIString = contract.tokenURI(event.params.tokenId).slice(22);
+    let tokenURIBytes = Bytes.fromUTF8(tokenURIString) as Bytes;
+    let tokenURI = json.fromBytes(tokenURIBytes).toObject();
+
+    let name = tokenURI.get("name");
+    if (name) {
+        token.name = name.toString();
+    }
+    let minterLat = tokenURI.get("minterLat");
+    if (minterLat) {
+        token.minterLat = BigDecimal.fromString(minterLat.toF64().toString());
+    }
+    let minterLong = tokenURI.get("minterLat");
+    if (minterLong) {
+        token.minterLat = BigDecimal.fromString(minterLong.toF64().toString());
+    }
+    let image = tokenURI.get("image");
+    if (image) {
+        token.image = image.toString();
+    }
+    let imageLink = tokenURI.get("imageLink");
+    if (imageLink) {
+        token.imageIPFS = imageLink.toString();
+    }
     token.save();
 
     let lostWorld = LostWorld.load(event.address.toHexString().toLowerCase());

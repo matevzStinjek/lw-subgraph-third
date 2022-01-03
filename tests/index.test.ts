@@ -11,7 +11,7 @@ let LOST_WORLD = "LostWorld";
 let TOKEN = "Token";
 
 let LOST_LAYER_ADDRESS = "0x4317f40883b8539e730e94d272d233c76961e752";
-let LOST_WORLD_ADDRESS = "0xe803A0Ff746E16CBA81601b412747976C30ff744";
+let LOST_WORLD_ADDRESS = "0xe803a0ff746e16cba81601b412747976c30ff744";
 let ADDRESS_ZERO = Address.zero().toHexString();
 let USER_1 = "0xa9b685d326adcb2b7883dbf6bb424f92215c2ffe"
 
@@ -40,16 +40,10 @@ test("handleTransfer", () => {
   token.tokenID = BigInt.fromI32(1);
   token.lostWorld = LOST_WORLD_ADDRESS;
   token.save();
-  
+
   // Asset seeded token saved correctly
   assert.fieldEquals(TOKEN, token.id, "tokenID", token.tokenID.toString());
   assert.fieldEquals(TOKEN, token.id, "lostWorld", LOST_WORLD_ADDRESS);
-
-  logStore();
-
-  log.success(
-    (Address.fromString(LOST_WORLD_ADDRESS) as Address).toHexString(), []
-  );
   
   // Create new Transfer(0x0, 0xa9b, 2) event
   let tokenID = BigInt.fromI32(2);
@@ -61,7 +55,6 @@ test("handleTransfer", () => {
   let id = newTransferEvent.address.toHexString() + "-" + newTransferEvent.params.tokenId.toString();
   assert.fieldEquals(TOKEN, id, "tokenID", newTransferEvent.params.tokenId.toString());
   assert.fieldEquals(TOKEN, id, "lostWorld", newTransferEvent.address.toHexString());
-
 
   // Assert totalSupply was incremented
   assert.fieldEquals(LOST_WORLD, LOST_WORLD_ADDRESS, "totalSupply", "1");
@@ -77,9 +70,6 @@ function createNewTransferEvent (
 ): Transfer {
   let fromAddress = Address.fromString(from) as Address;
   let toAddress = Address.fromString(to) as Address;
-
-  log.debug("address1 {} ", [(Address.fromString(address) as Address).toHex()]);
-  log.debug("address2 {} ", [(Address.fromString(address) as Address).toHexString()]);
 
   let mockEvent = newMockEvent();
   let newTransferEvent = new Transfer(
