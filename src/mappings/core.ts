@@ -53,6 +53,7 @@ function registerLostLayer (event: LostLayerRegisteredEvent): void {
     lostLayer.key = event.params.id_;
     lostLayer.name = event.params.id_.toString();
     lostLayer.parent = event.address.toHexString();
+    lostLayer.createdTimestamp = event.block.timestamp.toI32();
     lostLayer.save();
 
     LostLayerTemplate.create(event.params.address_);
@@ -74,6 +75,7 @@ function registerLostWorld (event: LostLayerRegisteredEvent): void {
 
     lostWorld.totalSupply = contract.totalSupply();
     lostWorld.maxSupply = contract.maxSupply();
+    lostWorld.createdTimestamp = event.block.timestamp.toI32();
 
     // Price ranges
     let priceRanges = contract.priceRanges();

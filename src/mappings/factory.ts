@@ -20,6 +20,7 @@ export function handleLostLayerRegisteredFactory (event: LostLayerRegisteredEven
     lostLayer.address = event.params.address_;
     lostLayer.key = event.params.id_;
     lostLayer.name = event.params.id_.toString();
+    lostLayer.createdTimestamp = event.block.timestamp.toI32();
     lostLayer.save();
 
     LostLayerTemplate.create(event.params.address_);

@@ -17,6 +17,9 @@ type LostLayer @entity {
 	key: Bytes!
 	name: String!
 	parent: LostLayer
+	createdTimestamp: Int!
+
+	# children
 	lostLayers: [LostLayer!]! @derivedFrom(field: "parent")
 	lostWorlds: [LostWorld!]! @derivedFrom(field: "lostLayer")
 }
@@ -39,6 +42,9 @@ type LostWorld @entity {
 	totalSupply: BigInt!
 	maxSupply: BigInt!
 
+	# timestamp
+	createdTimestamp: Int!
+
 	# variations
 	variations: [Variation!]! @derivedFrom(field: "lostWorld")
 
@@ -60,6 +66,9 @@ type Token @entity {
 	minterLong: BigDecimal!
 	image: String!
 	imageIPFS: String!
+
+	minter: Bytes!
+	createdTimestamp: Int!
 
 	# mutables
 	owner: Bytes!
