@@ -72,7 +72,8 @@ type Token @entity {
 
 	# mutables
 	owner: Bytes!
-	# transactions: [{ from, to, price, timestamp }];
+	updatedTimestamp: Int!
+	# transactions: [TokenTransaction!]! @derivedFrom(field: "token");
 	# isListedOnMarket: boolean;
 	# price: number;
 }
