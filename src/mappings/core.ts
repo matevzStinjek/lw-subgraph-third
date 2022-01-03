@@ -9,6 +9,7 @@ import {
 import {
     LostLayer,
     LostWorld,
+    PriceRange,
 } from "../types/schema";
 
 import {
@@ -73,6 +74,19 @@ function registerLostWorld (event: LostLayerRegisteredEvent): void {
     lostWorld.totalSupply = contract.totalSupply();
     lostWorld.maxSupply = contract.maxSupply();
 
+    // Price ranges
+    let priceRanges = contract.priceRanges();
+    for (let i = 0; i < priceRanges.length; i++) {
+        let priceRangeStruct = priceRanges[i];
+        let id = lostWorld.id + "-" + i.toString();
+        let priceRange = new PriceRange(id);
+        priceRange.threshold = priceRangeStruct.upperLimit;
+        priceRange.price = priceRangeStruct.value;
+        priceRange.lostWorld = event.params.address_.toHexString();
+        priceRange.save();
+    }
+
+    // Lens: metadata & variations
     let lens = LostWorldLensContract.bind(Address.fromString("0x55aBc3dEBFfD21180B23F6E9868232A1Ec1358D4"))
 
     let metadataString = lens.metadata(event.params.address_);
@@ -142,7 +156,10 @@ function removeLostWorld (address: Address): void {
     // TODO #1: fix
     // if (lostWorld.tokens && lostWorld.tokens.length > 0) {
     //     lostWorld.tokens.forEach(id => {
-    //         store.remove("Token", id)
+    //         let token = Token.load(id);
+    //         if (token) {
+    //             store.remove("Token", token.id);
+    //         }
     //     })
     // }
     store.remove("LostWorld", address.toHexString());

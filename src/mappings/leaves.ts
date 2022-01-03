@@ -24,6 +24,7 @@ export function handleTransfer (event: TransferEvent): void {
 
     token.tokenID = event.params.tokenId;
     token.lostWorld = event.address.toHexString();
+    token.owner = event.params.to;
 
     let contract = CurvedRandomLostWorldContract.bind(event.address);
 

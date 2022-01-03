@@ -11,32 +11,10 @@
 # 	artist: string;
 # }
 
-# type PriceRange @entity {
-# 	id: ID!
-# 	threshold: BigInt!
-# 	price: BigInt!
-# }
-
 # type Variation @entity {
 # 	name: String
 # 	count: BigInt
 # 	image: String
-# }
-
-# type Project @entity {
-# 	locations: Location[] @derivedFrom(field: "locationId")
-# 	name: Bytes
-# }
-
-# # minted token
-# type Token @entity {
-# 	id: string;
-# 	name: string;
-# 	location: Location,
-# 	owner: string;
-# 	transactions: [{ from, to, price, timestamp }];
-# 	isListedOnMarket: boolean;
-# 	price: number;
 # }
 
 type LostLayer @entity {
@@ -68,6 +46,10 @@ type LostWorld @entity {
 	maxSupply: BigInt!
 
 	# variations
+	# variations: [Variation!]!
+
+	# price ranges
+	priceRanges: [PriceRange!]! @derivedFrom(field: "lostWorld")
 
 	# tokens
 	tokens: [Token!]! @derivedFrom(field: "lostWorld")
@@ -84,8 +66,21 @@ type Token @entity {
 	minterLong: BigDecimal!
 	image: String!
 	imageIPFS: String!
+
+	# mutables
+	owner: Bytes!
+	# transactions: [{ from, to, price, timestamp }];
+	# isListedOnMarket: boolean;
+	# price: number;
 }
 
 # type TokenTransaction @entity {
 # 	from: Bytes!
 # }
+
+type PriceRange @entity {
+	id: ID!
+	threshold: BigInt!
+	price: BigInt!
+	lostWorld: LostWorld!
+}
