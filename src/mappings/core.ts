@@ -22,9 +22,9 @@ import {
     LostLayerUnregistered as LostLayerUnregisteredEvent,
 } from "../types/templates/LostLayer/LostLayer";
 
-// import {
-//     CurvedRandomLostWorld as CurvedRandomLostWorldContract,
-// } from "../types/templates/LostWorld/CurvedRandomLostWorld"
+import {
+    CurvedRandomLostWorld as CurvedRandomLostWorldContract,
+} from "../types/templates/LostWorld/CurvedRandomLostWorld"
 
 import {
     LostWorldLens as LostWorldLensContract,
@@ -67,7 +67,10 @@ function registerLostWorld (event: LostLayerRegisteredEvent): void {
     lostWorld.name = event.params.id_.toString();
     lostWorld.lostLayer = event.address.toHexString();
 
-    // let contract = CurvedRandomLostWorldContract
+    let contract = CurvedRandomLostWorldContract.bind(event.params.address_);
+
+    lostWorld.totalSupply = contract.totalSupply();
+    lostWorld.maxSupply = contract.maxSupply();
 
     let lens = LostWorldLensContract.bind(Address.fromString("0x55aBc3dEBFfD21180B23F6E9868232A1Ec1358D4"))
 
@@ -135,7 +138,7 @@ function removeLostWorld (address: Address): void {
         return;
     }
 
-    // TODO: fix
+    // TODO #1: fix
     // if (lostWorld.tokens && lostWorld.tokens.length > 0) {
     //     lostWorld.tokens.forEach(id => {
     //         store.remove("Token", id)
