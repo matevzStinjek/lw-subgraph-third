@@ -3,6 +3,7 @@ import { Address, BigInt, BigDecimal, Bytes, log, json } from "@graphprotocol/gr
 import {
     LostWorld,
     Token,
+    TokenTransaction,
 } from "../types/schema"
 
 import {
@@ -60,6 +61,15 @@ export function handleTransfer (event: TransferEvent): void {
 
     token.save();
 
+    // add transaction
+    let tokenTransaction = new TokenTransaction(event.transaction.hash.toHexString());
+    tokenTransaction.from = event.params.from;
+    tokenTransaction.to = event.params.to;
+    tokenTransaction.token = id;
+    tokenTransaction.timestamp = event.block.timestamp.toI32();
+    tokenTransaction.save();
+
+    // increment lostWorlds totalSupply
     let lostWorld = LostWorld.load(event.address.toHexString());
     if (lostWorld && event.params.from == Address.zero()) {
         lostWorld.totalSupply = lostWorld.totalSupply.plus(BigInt.fromI32(1));

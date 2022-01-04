@@ -18,7 +18,6 @@ export function handleOrderAdded (event: OrderAddedEvent): void {
     }
     let order = new Order(event.params.orderId.toString());
     order.token = event.params.token.toHexString().toLowerCase() + "-" + event.params.tokenId.toString();
-    log.info("matevz:: {}", [order.token]);
     let token = Token.load(order.token);
     if (token) {
         order.tokenName = token.name;

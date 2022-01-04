@@ -15,6 +15,7 @@ type LostWorld @entity {
 	id: ID!
 	address: Bytes!
 	key: Bytes!
+	parsedKey: String!
 	name: String!
 	lostLayer: LostLayer!
 
@@ -60,11 +61,18 @@ type Token @entity {
 	# mutables
 	owner: Bytes!
 	updatedTimestamp: Int!
-	# transactions: [TokenTransaction!]! @derivedFrom(field: "token")
+	transactions: [TokenTransaction!]! @derivedFrom(field: "token")
 	orders: [Order!]! @derivedFrom(field: "token")
 	activeOrder: Order
 	hasActiveOrder: Boolean!
 }
+
+type TokenTransaction @entity {
+	id: ID!
+	from: Bytes!
+	to: Bytes!
+	token: Token!
+	timestamp: Int!
 }
 
 type Order @entity {
@@ -91,6 +99,7 @@ type Variation @entity {
 	id: ID!
 	name: String!
 	count: BigInt!
+	# minted (totalSupply/maxSupply)
 	image: String!
 	imageIPFS: String!
 	lostWorld: LostWorld!

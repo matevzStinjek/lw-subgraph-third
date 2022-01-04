@@ -42,7 +42,6 @@ dataSources:
       entities:
         - Token
         - Order
-        # - TokenTransaction
       abis:
         - name: LostWorldsMarketplace
           file: ./abis/LostWorldsMarketplace.json
@@ -70,6 +69,8 @@ templates:
       entities:
         - LostLayer
         - LostWorld
+        - PriceRange
+        - Variation
       abis:
         - name: LostLayer
           file: ./abis/LostLayer.json
@@ -82,6 +83,7 @@ templates:
           handler: handleLostLayerRegistered
         - event: LostLayerUnregistered(bytes32,address)
           handler: handleLostLayerUnregistered
+
   - kind: ethereum/contract
     name: LostWorld
     network: avalanche
@@ -95,6 +97,7 @@ templates:
       entities:
         - LostWorld
         - Token
+        - TokenTransaction
       abis:
         - name: CurvedRandomLostWorld
           file: ./abis/CurvedRandomLostWorld.json

@@ -68,7 +68,7 @@ function registerLostWorld (event: LostLayerRegisteredEvent): void {
 
     lostWorld.address = event.params.address_;
     lostWorld.key = event.params.id_;
-    lostWorld.name = event.params.id_.toString();
+    lostWorld.parsedKey = event.params.id_.toString();
     lostWorld.lostLayer = event.address.toHexString();
 
     let contract = CurvedRandomLostWorldContract.bind(event.params.address_);
@@ -76,6 +76,7 @@ function registerLostWorld (event: LostLayerRegisteredEvent): void {
     lostWorld.totalSupply = contract.totalSupply();
     lostWorld.maxSupply = contract.maxSupply();
     lostWorld.createdTimestamp = event.block.timestamp.toI32();
+    lostWorld.name = contract.name();
 
     // Price ranges
     let priceRanges = contract.priceRanges();
