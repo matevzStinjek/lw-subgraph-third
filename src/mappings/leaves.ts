@@ -25,6 +25,7 @@ export function handleTransfer (event: TransferEvent): void {
         token.lostWorld = event.address.toHexString();
         token.minter = event.params.to;
         token.createdTimestamp = event.block.timestamp.toI32();
+        token.hasActiveOrder = false;
 
         let contract = CurvedRandomLostWorldContract.bind(event.address);  
         let tokenURIString = contract.tokenURI(event.params.tokenId).slice(22);

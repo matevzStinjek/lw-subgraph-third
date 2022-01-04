@@ -1,16 +1,3 @@
-# type Location @entity {
-# 	project: Project;
-# 	erc721Address: Bytes!;
-# 	locationId: string;
-# 	locationName: string;
-# 	priceRanges: PriceRange[];
-# 	currentSupply: number;
-# 	totalSupply: number;
-# 	variationsTotal: Variation[];
-# 	variationsMinted: Variation[];
-# 	artist: string;
-# }
-
 type LostLayer @entity {
 	id: ID!
 	address: Bytes!
@@ -73,14 +60,25 @@ type Token @entity {
 	# mutables
 	owner: Bytes!
 	updatedTimestamp: Int!
-	# transactions: [TokenTransaction!]! @derivedFrom(field: "token");
-	# isListedOnMarket: boolean;
-	# price: number;
+	# transactions: [TokenTransaction!]! @derivedFrom(field: "token")
+	orders: [Order!]! @derivedFrom(field: "token")
+	activeOrder: Order
+	hasActiveOrder: Boolean!
+}
 }
 
-# type TokenTransaction @entity {
-# 	from: Bytes!
-# }
+type Order @entity {
+	id: ID! # orderId
+	token: Token!
+	tokenName: String!
+	lostWorld: LostWorld!
+	price: BigInt!
+	seller: Bytes!
+	isOpen: Boolean!
+	isExecuted: Boolean!
+	createdTimestamp: Int!
+	updatedTimestamp: Int!
+}
 
 type PriceRange @entity {
 	id: ID!

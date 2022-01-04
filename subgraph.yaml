@@ -26,8 +26,36 @@ dataSources:
           handler: handleLostLayerRegisteredFactory
         - event: LostLayerUnregistered(bytes32,address)
           handler: handleLostLayerUnregistered
-  # - kind: ethereum/contract
-  #   name: LostWorldsMarketplace
+
+  - kind: ethereum/contract
+    name: LostWorldsMarketplace
+    network: avalanche
+    source:
+      address: '0x23D6f7b67866b59Cc0366282A50E0e12EB751ede'
+      abi: LostWorldsMarketplace
+      startBlock: 7655102
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/index.ts
+      entities:
+        - Token
+        - Order
+        # - TokenTransaction
+      abis:
+        - name: LostWorldsMarketplace
+          file: ./abis/LostWorldsMarketplace.json
+        - name: CurvedRandomLostWorld
+          file: ./abis/CurvedRandomLostWorld.json
+      eventHandlers:
+        - event: OrdedAdded(uint256,uint256,uint256,address,address)
+          handler: handleOrderAdded
+        - event: OrderExecuted(uint256,address)
+          handler: handleOrderExecuted
+        - event: OrderRemoved(uint256)
+          handler: handleOrderRemoved
+
 templates:
   - kind: ethereum/contract
     name: LostLayer

@@ -192,7 +192,7 @@ function removeLostWorld (address: Address): void {
         return;
     }
 
-    // TODO #1: fix
+    // TODO #1: fix token deletion
     // if (lostWorld.tokens && lostWorld.tokens.length > 0) {
     //     lostWorld.tokens.forEach(id => {
     //         let token = Token.load(id);
