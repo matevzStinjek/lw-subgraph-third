@@ -33,13 +33,8 @@ type LostWorld @entity {
 	# timestamp
 	createdTimestamp: Int!
 
-	# variations
 	variations: [Variation!]! @derivedFrom(field: "lostWorld")
-
-	# price ranges
 	priceRanges: [PriceRange!]! @derivedFrom(field: "lostWorld")
-
-	# tokens
 	tokens: [Token!]! @derivedFrom(field: "lostWorld")
 }
 
@@ -47,6 +42,8 @@ type Token @entity {
 	id: ID!
 	tokenID: BigInt!
 	lostWorld: LostWorld!
+	minter: Bytes!
+	createdTimestamp: Int!
 
 	# tokenURI
 	name: String!
@@ -54,9 +51,6 @@ type Token @entity {
 	minterLong: BigDecimal!
 	image: String!
 	imageIPFS: String!
-
-	minter: Bytes!
-	createdTimestamp: Int!
 
 	# mutables
 	owner: Bytes!
@@ -80,10 +74,16 @@ type Order @entity {
 	token: Token!
 	tokenName: String!
 	lostWorld: LostWorld!
+
+	# variables
 	price: BigInt!
 	seller: Bytes!
+
+	# flags
 	isOpen: Boolean!
 	isExecuted: Boolean!
+
+	# timestamps
 	createdTimestamp: Int!
 	updatedTimestamp: Int!
 }

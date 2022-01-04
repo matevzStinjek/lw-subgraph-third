@@ -1,11 +1,4 @@
-import {
-    Address,
-    Bytes,
-    BigInt,
-    BigDecimal,
-    json,
-    store,
-} from "@graphprotocol/graph-ts";
+import { Address, Bytes, BigInt, BigDecimal, json, store } from "@graphprotocol/graph-ts";
 
 import {
     LostLayer,

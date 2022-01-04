@@ -1,4 +1,4 @@
-import { Address, BigInt, BigDecimal, Bytes, log, json } from "@graphprotocol/graph-ts";
+import { Address, BigInt, BigDecimal, Bytes, json } from "@graphprotocol/graph-ts";
 
 import {
     LostWorld,
@@ -81,5 +81,4 @@ export function handleTransfer (event: TransferEvent): void {
         lostWorld.totalSupply = lostWorld.totalSupply.plus(BigInt.fromI32(1));
         lostWorld.save();
     }
-
 }

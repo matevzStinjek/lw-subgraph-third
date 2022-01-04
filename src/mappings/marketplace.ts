@@ -9,8 +9,6 @@ import {
     OrderRemoved as OrderRemovedEvent,
 } from "../types/LostWorldsMarketplace/LostWorldsMarketplace";
 
-import { log } from "@graphprotocol/graph-ts";
-
 export function handleOrderAdded (event: OrderAddedEvent): void {
     // TODO #1: fix token deletion
     if (event.params.token.toHexString() == "0x695f4015d80d6e1ceae875373fed8573483525bb") {
