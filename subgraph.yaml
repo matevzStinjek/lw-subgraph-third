@@ -98,6 +98,7 @@ templates:
         - LostWorld
         - Token
         - TokenTransaction
+        - Variation
       abis:
         - name: CurvedRandomLostWorld
           file: ./abis/CurvedRandomLostWorld.json

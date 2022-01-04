@@ -1,6 +1,7 @@
 import {
     Address,
     Bytes,
+    BigInt,
     BigDecimal,
     json,
     store,
@@ -130,16 +131,18 @@ function registerLostWorld (event: LostLayerRegisteredEvent): void {
             continue;
         }
         let dataObj = data.toObject();
-        let variationId = id + "-" + i.toString();
+        let name = dataObj.get("name");
+        if (!name) {
+            continue;
+        }
+        let variationId = id + "-" + name.toString();
         let variation = new Variation(variationId);
+        variation.name = name.toString();
+        variation.totalSupply = BigInt.zero();
 
         let amount = variationStruct.get("amount");
         if (amount) {
-            variation.count = amount.toBigInt();
-        }
-        let name = dataObj.get("name");
-        if (name) {
-            variation.name = name.toString();
+            variation.maxSupply = amount.toBigInt();
         }
         let image = dataObj.get("image");
         if (image) {

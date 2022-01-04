@@ -4,6 +4,7 @@ import {
     LostWorld,
     Token,
     TokenTransaction,
+    Variation,
 } from "../types/schema"
 
 import {
@@ -71,8 +72,14 @@ export function handleTransfer (event: TransferEvent): void {
 
     // increment lostWorlds totalSupply
     let lostWorld = LostWorld.load(event.address.toHexString());
-    if (lostWorld && event.params.from == Address.zero()) {
+    let variationId = event.address.toHexString() + "-" + token.name;
+    let variation = Variation.load(variationId);
+    if (lostWorld && variation && event.params.from == Address.zero()) {
+        variation.totalSupply = variation.totalSupply.plus(BigInt.fromI32(1));
+        variation.save();
+
         lostWorld.totalSupply = lostWorld.totalSupply.plus(BigInt.fromI32(1));
         lostWorld.save();
     }
+
 }

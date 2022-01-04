@@ -98,8 +98,8 @@ type PriceRange @entity {
 type Variation @entity {
 	id: ID!
 	name: String!
-	count: BigInt!
-	# minted (totalSupply/maxSupply)
+	totalSupply: BigInt!
+	maxSupply: BigInt!
 	image: String!
 	imageIPFS: String!
 	lostWorld: LostWorld!
