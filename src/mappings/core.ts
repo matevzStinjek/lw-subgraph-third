@@ -28,6 +28,10 @@ import {
 
 
 export function handleLostLayerRegistered (event: LostLayerRegisteredEvent): void {
+    // TODO #1: fix token deletion
+    if (event.params.address_.toHexString() == "0x695f4015d80d6e1ceae875373fed8573483525bb") {
+        return;
+    }
     let isLostLayer = LostLayerContract.bind(event.params.address_).supportsInterface(Bytes.fromHexString("0x7c6b580e") as Bytes); // LostLayer | LostWorld
     if (isLostLayer) {
         registerLostLayer(event);
@@ -46,8 +50,11 @@ function registerLostLayer (event: LostLayerRegisteredEvent): void {
     lostLayer.address = event.params.address_;
     lostLayer.key = event.params.id_;
     lostLayer.name = event.params.id_.toString();
-    lostLayer.parent = event.address.toHexString();
     lostLayer.createdTimestamp = event.block.timestamp.toI32();
+    let parent = LostLayer.load(event.address.toHexString());
+    if (parent) {
+        lostLayer.parent = event.address.toHexString();
+    }
     lostLayer.save();
 
     LostLayerTemplate.create(event.params.address_);

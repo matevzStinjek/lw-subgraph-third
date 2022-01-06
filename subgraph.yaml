@@ -23,7 +23,7 @@ dataSources:
           file: ./abis/LostLayer.json
       eventHandlers:
         - event: LostLayerRegistered(bytes32,address)
-          handler: handleLostLayerRegisteredFactory
+          handler: handleLostLayerRegistered
         - event: LostLayerUnregistered(bytes32,address)
           handler: handleLostLayerUnregistered
 

@@ -56,9 +56,9 @@ export function handleTransfer (event: TransferEvent): void {
         }
     }
 
-    // update owner
     token.owner = event.params.to;
     token.updatedTimestamp = event.block.timestamp.toI32();
+    token.variation = event.address.toHexString() + "-" + token.name;
 
     token.save();
 
@@ -72,8 +72,7 @@ export function handleTransfer (event: TransferEvent): void {
 
     // increment lostWorlds totalSupply
     let lostWorld = LostWorld.load(event.address.toHexString());
-    let variationId = event.address.toHexString() + "-" + token.name;
-    let variation = Variation.load(variationId);
+    let variation = Variation.load(token.variation);
     if (lostWorld && variation && event.params.from == Address.zero()) {
         variation.totalSupply = variation.totalSupply.plus(BigInt.fromI32(1));
         variation.save();
