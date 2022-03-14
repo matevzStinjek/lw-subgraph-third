@@ -5,106 +5,152 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: LostLayerController
-    network: avalanche
+    name: AlphaRandomCurvedLostWorldFactory
+    network: fuji
     source:
-      address: '0xb1157C8Ed9c38c5B53bC64561e7c60C3AC3784F2'
-      abi: LostLayer
-      startBlock: 7655134
+      address: '0xD47f5267866EC1Be792846b912D251c2289d65Ee'
+      abi: AlphaRandomCurvedLostWorldFactory
+      startBlock: 7149333
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/index.ts
+      file: ./src/mappings/fuji.ts
       entities:
-        - LostLayer
+        - LostWorld
       abis:
-        - name: LostLayer
-          file: ./abis/LostLayer.json
+        - name: AlphaRandomCurvedLostWorldFactory
+          file: ./abis/AlphaRandomCurvedLostWorldFactory.json
       eventHandlers:
-        - event: LostLayerRegistered(bytes32,address)
-          handler: handleLostLayerRegistered
-        - event: LostLayerUnregistered(bytes32,address)
-          handler: handleLostLayerUnregistered
-
+        - event: ProxyDeployed(address,bytes)
+          handler: handleAlphaRandomCurvedLostWorldRegistered
+  - kind: ethereum/contract
+    name: RandomFlatLostWorldFactory
+    network: fuji
+    source:
+      address: '0x9E4140bfA2193528961D0409Aa1416201Cfe790d'
+      abi: RandomFlatLostWorldFactory
+      startBlock: 7056708
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/fuji.ts
+      entities:
+        - LostWorld
+      abis:
+        - name: RandomFlatLostWorldFactory
+          file: ./abis/RandomFlatLostWorldFactory.json
+      eventHandlers:
+        - event: ProxyDeployed(address)
+          handler: handleRandomFlatLostWorlRegistered
+  - kind: ethereum/contract
+    name: AlphaLostWorldsMarketplaceV1
+    network: fuji
+    source:
+      address: '0x266Ad0ad5DD118138C5BFdb15AD768cdCFF5e53b'
+      abi: AlphaLostWorldsMarketplaceV1
+      startBlock: 7186948
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/marketplace.ts
+      entities:
+        - Token
+        - Order
+      abis:
+        - name: AlphaLostWorldsMarketplaceV1
+          file: ./abis/AlphaLostWorldsMarketplaceV1.json
+      eventHandlers:
+        - event: OrdedAdded(uint256,uint256,uint256,address,address)
+          handler: handleAlphaLostWorldsMarketplaceV1OrderAdded
+        - event: OrderExecuted(uint256,address)
+          handler: handleAlphaLostWorldsMarketplaceV1OrderExecuted
+        - event: OrderRemoved(uint256)
+          handler: handleAlphaLostWorldsMarketplaceV1OrderRemoved
   - kind: ethereum/contract
     name: LostWorldsMarketplace
-    network: avalanche
+    network: fuji
     source:
-      address: '0x23D6f7b67866b59Cc0366282A50E0e12EB751ede'
+      address: '0xFf26fB50fBaE9a066d33ADA42AA7ff936Cb4B781'
       abi: LostWorldsMarketplace
-      startBlock: 7655102
+      startBlock: 7187153
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/index.ts
+      file: ./src/mappings/marketplace.ts
       entities:
         - Token
         - Order
       abis:
         - name: LostWorldsMarketplace
           file: ./abis/LostWorldsMarketplace.json
-        - name: CurvedRandomLostWorld
-          file: ./abis/CurvedRandomLostWorld.json
       eventHandlers:
         - event: OrdedAdded(uint256,uint256,uint256,address,address)
-          handler: handleOrderAdded
+          handler: handleLostWorldsMarketplaceOrderAdded
         - event: OrderExecuted(uint256,address)
-          handler: handleOrderExecuted
+          handler: handleLostWorldsMarketplaceOrderExecuted
         - event: OrderRemoved(uint256)
-          handler: handleOrderRemoved
+          handler: handleLostWorldsMarketplaceOrderRemoved
 
 templates:
   - kind: ethereum/contract
-    name: LostLayer
-    network: avalanche
+    name: AlphaRandomCurvedLostWorldV2
+    network: fuji
     source:
-      abi: LostLayer
+      abi: AlphaRandomCurvedLostWorldV2
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/index.ts
+      file: ./src/mappings/fuji.ts
       entities:
-        - LostLayer
         - LostWorld
-        - PriceRange
         - Variation
-      abis:
-        - name: LostLayer
-          file: ./abis/LostLayer.json
-        - name: CurvedRandomLostWorld
-          file: ./abis/CurvedRandomLostWorld.json
-        - name: LostWorldLens
-          file: ./abis/LostWorldLens.json
-      eventHandlers:
-        - event: LostLayerRegistered(bytes32,address)
-          handler: handleLostLayerRegistered
-        - event: LostLayerUnregistered(bytes32,address)
-          handler: handleLostLayerUnregistered
-
-  - kind: ethereum/contract
-    name: LostWorld
-    network: avalanche
-    source:
-      abi: CurvedRandomLostWorld
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/index.ts
-      entities:
-        - LostWorld
+        - Project
         - Token
         - TokenTransaction
-        - Variation
       abis:
-        - name: CurvedRandomLostWorld
-          file: ./abis/CurvedRandomLostWorld.json
+        - name: AlphaRandomCurvedLostWorldV2
+          file: ./abis/AlphaRandomCurvedLostWorldV2.json
+        - name: ArtistLocationMetadataInterpreter
+          file: ./abis/ArtistLocationMetadataInterpreter.json
+        - name: ImageImageLinkNameImageInformationInterpreter
+          file: ./abis/ImageImageLinkNameImageInformationInterpreter.json
+        - name: NameIssuerAdvancedVariationInterpreter
+          file: ./abis/NameIssuerAdvancedVariationInterpreter.json
       eventHandlers:
+        - event: AlphaRandomCurvedLostWorldV2Initialized(string,(string,string,bytes,bytes,bytes,bytes,string,address,address,uint16,address),(address,address,address,address,address,address,address,address),(uint16,bytes)[],(uint256,uint256)[],address,(uint256,uint256)[],address)
+          handler: handleAlphaRandomCurvedLostWorldV2Initialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
-
-# transfers + transactions
-# buy sell etc
+          handler: handleAlphaRandomCurvedLostWorldV2Transfer
+  - kind: ethereum/contract
+    name: RandomFlatLostWorld
+    network: fuji
+    source:
+      abi: RandomFlatLostWorld
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/fuji.ts
+      entities:
+        - LostWorld
+        - Variation
+        - Project
+        - Token
+        - TokenTransaction
+      abis:
+        - name: RandomFlatLostWorld
+          file: ./abis/RandomFlatLostWorld.json
+        - name: ArtistLocationMetadataInterpreter
+          file: ./abis/ArtistLocationMetadataInterpreter.json
+        - name: NameIssuerAdvancedVariationInterpreter
+          file: ./abis/NameIssuerAdvancedVariationInterpreter.json
+      eventHandlers:
+        - event: RandomFlatLostWorldInitialized(string,(string,string,string,bytes,address,address,address,uint16),(address,address,address,address,address),(uint16,bytes)[],uint256,address)
+          handler: handleRandomFlatLostWorldBaseInitialized
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleRandomFlatLostWorldBaseTransfer

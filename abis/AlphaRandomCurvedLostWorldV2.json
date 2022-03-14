@@ -3,68 +3,11 @@
         "anonymous": false,
         "inputs": [
             {
-                "indexed": true,
-                "internalType": "address",
-                "name": "owner",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "approved",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "Approval",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "owner",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "operator",
-                "type": "address"
-            },
-            {
                 "indexed": false,
-                "internalType": "bool",
-                "name": "approved",
-                "type": "bool"
-            }
-        ],
-        "name": "ApprovalForAll",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": false,
-                "internalType": "address",
-                "name": "register",
-                "type": "address"
-            }
-        ],
-        "name": "ExecutedCompletionStruct",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
+                "internalType": "string",
+                "name": "context_",
+                "type": "string"
+            },
             {
                 "components": [
                     {
@@ -209,11 +152,91 @@
                 ],
                 "indexed": false,
                 "internalType": "struct QuantityRange[]",
-                "name": "dividendLevels",
+                "name": "dividendLevels_",
                 "type": "tuple[]"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "royaltyToken_",
+                "type": "address"
+            },
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "upperLimit",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "value",
+                        "type": "uint256"
+                    }
+                ],
+                "indexed": false,
+                "internalType": "struct QuantityRange[]",
+                "name": "priceRanges_",
+                "type": "tuple[]"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "randomNumberGenerator_",
+                "type": "address"
             }
         ],
-        "name": "Initialized",
+        "name": "AlphaRandomCurvedLostWorldV2Initialized",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "approved",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "Approval",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "operator",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "bool",
+                "name": "approved",
+                "type": "bool"
+            }
+        ],
+        "name": "ApprovalForAll",
         "type": "event"
     },
     {
@@ -240,31 +263,6 @@
             }
         ],
         "name": "NewPriceRangeIndex",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": false,
-                "internalType": "address",
-                "name": "register",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "address",
-                "name": "completionChecker",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "address",
-                "name": "completionExecutor",
-                "type": "address"
-            }
-        ],
-        "name": "RegisteredCompletionStruct",
         "type": "event"
     },
     {
@@ -368,19 +366,6 @@
         "type": "event"
     },
     {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": false,
-                "internalType": "address",
-                "name": "register",
-                "type": "address"
-            }
-        ],
-        "name": "UnregisteredCompletionStruct",
-        "type": "event"
-    },
-    {
         "inputs": [],
         "name": "DEFAULT_ADMIN_ROLE",
         "outputs": [
@@ -444,138 +429,125 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "bitMappings",
-        "outputs": [
-            {
-                "internalType": "uint256[]",
-                "name": "",
-                "type": "uint256[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
-                "internalType": "address",
-                "name": "address_",
-                "type": "address"
+                "internalType": "string",
+                "name": "context_",
+                "type": "string"
             },
-            {
-                "internalType": "bytes",
-                "name": "data_",
-                "type": "bytes"
-            }
-        ],
-        "name": "checkCompletionForAddress",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "completionStructs",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "completionChecker",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "completionExecutor",
-                "type": "address"
-            },
-            {
-                "internalType": "bytes",
-                "name": "preExecuteStep",
-                "type": "bytes"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "contextInterpreter",
-        "outputs": [
-            {
-                "internalType": "contract ISingleByteHandler",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "dividendHandler",
-        "outputs": [
-            {
-                "internalType": "contract IDividendHandler",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "dividendLevels",
-        "outputs": [
             {
                 "components": [
                     {
-                        "internalType": "uint256",
-                        "name": "upperLimit",
-                        "type": "uint256"
+                        "internalType": "string",
+                        "name": "name_",
+                        "type": "string"
                     },
                     {
-                        "internalType": "uint256",
-                        "name": "value",
-                        "type": "uint256"
+                        "internalType": "string",
+                        "name": "symbol_",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bytes",
+                        "name": "imageLinkInformation_",
+                        "type": "bytes"
+                    },
+                    {
+                        "internalType": "bytes",
+                        "name": "metadata_",
+                        "type": "bytes"
+                    },
+                    {
+                        "internalType": "bytes",
+                        "name": "royaltyDeterminerInformation_",
+                        "type": "bytes"
+                    },
+                    {
+                        "internalType": "bytes",
+                        "name": "signatureData_",
+                        "type": "bytes"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "royaltyTokenImageURI_",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "admin_",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "wallet_",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint16",
+                        "name": "royaltyBeeps_",
+                        "type": "uint16"
+                    },
+                    {
+                        "internalType": "contract ISignatureProxyBeaconFactory",
+                        "name": "tokenFactory_",
+                        "type": "address"
                     }
                 ],
-                "internalType": "struct QuantityRange[]",
-                "name": "",
-                "type": "tuple[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "bytes",
-                "name": "checkData",
-                "type": "bytes"
+                "internalType": "struct InitializationParams",
+                "name": "initializationParams_",
+                "type": "tuple"
             },
             {
-                "internalType": "bytes",
-                "name": "completionData",
-                "type": "bytes"
+                "components": [
+                    {
+                        "internalType": "contract IRoyaltyDeterminer",
+                        "name": "royaltyDeterminer",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "contract ISingleByteHandler",
+                        "name": "variationInterpreter",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "contract ISingleByteHandler",
+                        "name": "contextInterpreter",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "contract ISingleByteHandler",
+                        "name": "metadataInterpreter",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "contract ITwoBytesHandler",
+                        "name": "imageInformationInterpreter",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "contract ISignatureVerifier",
+                        "name": "signatureVerifier",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "contract IDividendHandler",
+                        "name": "dividendHandler",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "contract IVariationSelector",
+                        "name": "variationSelector",
+                        "type": "address"
+                    }
+                ],
+                "internalType": "struct AddressHolder",
+                "name": "addressHolder_",
+                "type": "tuple"
             }
         ],
-        "name": "executeCompletion",
+        "name": "emitInitializationEvent",
         "outputs": [],
-        "stateMutability": "payable",
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -721,33 +693,12 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "imageInformationInterpreter",
-        "outputs": [
-            {
-                "internalType": "contract ITwoBytesHandler",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "imageLinkInformation",
-        "outputs": [
-            {
-                "internalType": "bytes",
-                "name": "",
-                "type": "bytes"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [
+            {
+                "internalType": "string",
+                "name": "context_",
+                "type": "string"
+            },
             {
                 "components": [
                     {
@@ -957,45 +908,6 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "maxSupply",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "metadata",
-        "outputs": [
-            {
-                "internalType": "bytes",
-                "name": "",
-                "type": "bytes"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "metadataInterpreter",
-        "outputs": [
-            {
-                "internalType": "contract ISingleByteHandler",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "components": [
@@ -1073,74 +985,6 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "priceRanges",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "uint256",
-                        "name": "upperLimit",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "value",
-                        "type": "uint256"
-                    }
-                ],
-                "internalType": "struct QuantityRange[]",
-                "name": "",
-                "type": "tuple[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "randomNumberGenerator",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "address",
-                        "name": "completionChecker",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "address",
-                        "name": "completionExecutor",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "bytes",
-                        "name": "preExecuteStep",
-                        "type": "bytes"
-                    }
-                ],
-                "internalType": "struct CompletionStruct",
-                "name": "completionStruct",
-                "type": "tuple"
-            }
-        ],
-        "name": "registerCompletionStruct",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "internalType": "bytes32",
@@ -1177,45 +1021,6 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "royaltyBeeps",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "royaltyDeterminer",
-        "outputs": [
-            {
-                "internalType": "contract IRoyaltyDeterminer",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "royaltyDeterminerInformation",
-        "outputs": [
-            {
-                "internalType": "bytes",
-                "name": "",
-                "type": "bytes"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "internalType": "uint256",
@@ -1239,19 +1044,6 @@
                 "internalType": "uint256",
                 "name": "",
                 "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "royaltyToken",
-        "outputs": [
-            {
-                "internalType": "contract IERC721EnumerableMintable",
-                "name": "",
-                "type": "address"
             }
         ],
         "stateMutability": "view",
@@ -1327,19 +1119,6 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "signatureVerifier",
-        "outputs": [
-            {
-                "internalType": "contract ISignatureVerifier",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "internalType": "bytes4",
@@ -1393,25 +1172,6 @@
     {
         "inputs": [
             {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "tokenMintContext",
-        "outputs": [
-            {
-                "internalType": "bytes",
-                "name": "",
-                "type": "bytes"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
                 "internalType": "address",
                 "name": "owner",
                 "type": "address"
@@ -1454,19 +1214,6 @@
     },
     {
         "inputs": [],
-        "name": "tokensLeftInRange",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
         "name": "totalSupply",
         "outputs": [
             {
@@ -1500,80 +1247,5 @@
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "unregisterCompletionStruct",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "variationInterpreter",
-        "outputs": [
-            {
-                "internalType": "contract ISingleByteHandler",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "variationSelector",
-        "outputs": [
-            {
-                "internalType": "contract IVariationSelector",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "variations",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "uint16",
-                        "name": "amount",
-                        "type": "uint16"
-                    },
-                    {
-                        "internalType": "bytes",
-                        "name": "data",
-                        "type": "bytes"
-                    }
-                ],
-                "internalType": "struct Variation[]",
-                "name": "",
-                "type": "tuple[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "wallet",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "stateMutability": "payable",
-        "type": "receive"
     }
 ]
