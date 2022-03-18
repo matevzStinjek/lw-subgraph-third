@@ -1,0 +1,20 @@
+{
+  "name": "tools",
+  "version": "1.0.0",
+  "main": "node/main.js",
+  "license": "MIT",
+  "scripts" : {
+    "watch" : "tsc -w",
+    "start" : "node dist/main.js"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "handlebars": "^4.7.7",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "handlebars-async-helpers": "^1.0.2",
+    "js-yaml": "^4.1.0"
+  }
+}
