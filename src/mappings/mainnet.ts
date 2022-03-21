@@ -7,40 +7,20 @@ import { LostWorld, Project, Variation, PriceRange, Token, TokenTransaction } fr
 
 // dataSources
 import {
-    ProxyDeployed as RandomFlatLostWorlRegisteredEvent,
-} from "../types/RandomFlatLostWorldFactory/RandomFlatLostWorldFactory";
-
-import {
     ProxyDeployed as AlphaRandomCurvedLostWorldRegisteredEvent,
 } from "../types/AlphaRandomCurvedLostWorldFactory/AlphaRandomCurvedLostWorldFactory";
-
-import {
-    ProxyDeployed as FlatSingleLostWorldRegisteredEvent,
-} from "../types/FlatSingleLostWorldFactory/FlatSingleLostWorldFactory";
 
 // templates
 import { 
     AlphaRandomCurvedLostWorldV2 as AlphaRandomCurvedLostWorldV2Template,
-    RandomFlatLostWorld as RandomFlatLostWorldTemplate,
-    FlatSingleLostWorld as FlatSingleLostWorldTemplate,
 } from "../types/templates";
 
 import {
     AlphaRandomCurvedLostWorldV2Initialized as AlphaRandomCurvedLostWorldV2InitializedEvent,
-    AlphaRandomCurvedLostWorldV2 as AlphaRandomCurvedLostWorldV2Contract,
-} from "../types/templates/AlphaRandomCurvedLostWorldV2/AlphaRandomCurvedLostWorldV2";
-
-import {
-    RandomFlatLostWorldInitialized as RandomFlatLostWorldInitializedEvent,
     Transfer as TransferEvent,
     Context as ContextEvent,
-    RandomFlatLostWorld as RandomFlatLostWorldContract,
-} from "../types/templates/RandomFlatLostWorld/RandomFlatLostWorld";
-
-import {
-    FlatSingleLostWorldInitialized as FlatSingleLostWorldInitializedEvent,
-    FlatSingleLostWorld as FlatSingleLostWorldContract,
-} from "../types/templates/FlatSingleLostWorld/FlatSingleLostWorld";
+    AlphaRandomCurvedLostWorldV2 as AlphaRandomCurvedLostWorldV2Contract,
+} from "../types/templates/AlphaRandomCurvedLostWorldV2/AlphaRandomCurvedLostWorldV2";
 
 // interpreters
 import { ArtistLocationMetadataInterpreter as MetadataInterpreterContract } from "../types/templates/RandomFlatLostWorld/ArtistLocationMetadataInterpreter";
@@ -59,24 +39,6 @@ export function handleAlphaRandomCurvedLostWorldRegistered (event: AlphaRandomCu
     lostWorld.save();
 
     AlphaRandomCurvedLostWorldV2Template.create(event.params.proxyAddress);
-}
-
-export function handleRandomFlatLostWorldRegistered (event: RandomFlatLostWorlRegisteredEvent): void {
-    let id = event.params.proxyAddress.toHexString().toLowerCase();
-    let lostWorld = new LostWorld(id);
-    lostWorld.type = "RandomFlatLostWorld";
-    lostWorld.save();
-
-    RandomFlatLostWorldTemplate.create(event.params.proxyAddress);
-}
-
-export function handleFlatSingleLostWorldRegistered (event: FlatSingleLostWorldRegisteredEvent): void {
-    let id = event.params.proxyAddress.toHexString().toLowerCase();
-    let lostWorld = new LostWorld(id);
-    lostWorld.type = "FlatSingleLostWorld";
-    lostWorld.save();
-
-    FlatSingleLostWorldTemplate.create(event.params.proxyAddress);
 }
 
 export function handleAlphaRandomCurvedLostWorldV2Initialized (event: AlphaRandomCurvedLostWorldV2InitializedEvent): void {
@@ -172,156 +134,8 @@ export function handleAlphaRandomCurvedLostWorldV2Initialized (event: AlphaRando
     lostWorld.save();
 }
 
-export function handleRandomFlatLostWorldInitialized (event: RandomFlatLostWorldInitializedEvent): void {
-    let id = event.address.toHexString().toLowerCase();
-    let lostWorld = LostWorld.load(id);
-    if (!lostWorld) {
-        return;
-    }
-
-    let contract = RandomFlatLostWorldContract.bind(event.address);
-
-    lostWorld.totalSupply = BigInt.zero();
-    lostWorld.createdTimestamp = event.block.timestamp.toI32();
-    lostWorld.name = contract.name();
-
-    // Price
-    lostWorld.price = event.params.price_;
-
-    // metadata
-    let metadataStr = `{${event.params.initializationParams_.metadata_}}`;
-    let metadata = json.fromString(metadataStr).toObject();
-
-    let project = metadata.get("project");
-    if (project) {
-        createProjectIfNotExist(project.toString(), event);
-        lostWorld.project = project.toString();
-    }
-    let location = metadata.get("location");
-    if (location) {
-        lostWorld.location = location.toString();
-    }
-    let lat = metadata.get("lat");
-    if (lat) {
-        lostWorld.lat = BigDecimal.fromString(lat.toF64().toString());
-    }
-    let long = metadata.get("long");
-    if (long) {
-        lostWorld.long = BigDecimal.fromString(long.toF64().toString());
-    }
-    let radius = metadata.get("radius");
-    if (radius) {
-        lostWorld.radius = radius.toBigInt();
-    }
-
-    // variations
-    let maxSupply = 0;
-    for (let i = 0; i < event.params.variations_.length; i++) {
-        let variationStruct = event.params.variations_[i];
-
-        let dataStr = `{${variationStruct.data}}`;
-
-        let data = json.fromString(dataStr).toObject();
-        if (!data) {
-            continue;
-        }
-        let name = data.get("name");
-        if (!name) {
-            continue;
-        }
-
-        let variationId = id + "-" + name.toString();
-        let variation = new Variation(variationId);
-
-        variation.name = name.toString();
-        variation.totalSupply = BigInt.zero();
-        maxSupply += variationStruct.amount;
-        variation.maxSupply = BigInt.fromI32(variationStruct.amount);
-        variation.image = event.params.initializationParams_.imageURI_ + i.toString();
-        let issuer = data.get("issuer");
-        if (issuer) {
-            variation.issuer = issuer.toString();
-        }
-        variation.lostWorld = id;
-        variation.save();
-    }
-    lostWorld.maxSupply = BigInt.fromI32(maxSupply);
-    lostWorld.save();
-}
-
-export function handleFlatSingleLostWorldInitialized (event: FlatSingleLostWorldInitializedEvent): void {
-    let id = event.address.toHexString().toLowerCase();
-    let lostWorld = LostWorld.load(id);
-    if (!lostWorld) {
-        return;
-    }
-
-    let contract = FlatSingleLostWorldContract.bind(event.address);
-
-    lostWorld.totalSupply = BigInt.zero();
-    lostWorld.maxSupply = event.params.maxSupply_;
-    lostWorld.createdTimestamp = event.block.timestamp.toI32();
-    lostWorld.name = contract.name();
-
-    // Price
-    lostWorld.price = event.params.price_;
-
-    // metadata
-    let metadataStr = `{${event.params.initializationParams_.metadata_}}`;
-    let metadata = json.fromString(metadataStr).toObject();
-
-    let project = metadata.get("project");
-    if (project) {
-        createProjectIfNotExist(project.toString(), event);
-        lostWorld.project = project.toString();
-    }
-    let location = metadata.get("location");
-    if (location) {
-        lostWorld.location = location.toString();
-    }
-    let lat = metadata.get("lat");
-    if (lat) {
-        lostWorld.lat = BigDecimal.fromString(lat.toF64().toString());
-    }
-    let long = metadata.get("long");
-    if (long) {
-        lostWorld.long = BigDecimal.fromString(long.toF64().toString());
-    }
-    let radius = metadata.get("radius");
-    if (radius) {
-        lostWorld.radius = radius.toBigInt();
-    }
-
-    let variationName = metadata.get("name");
-    let variationIssuer = metadata.get("issuer");
-    if (variationName && variationIssuer) {
-        let variationId = "0-" + variationName.toString();
-        let variation = new Variation(variationId);
-        variation.totalSupply = BigInt.zero();
-        variation.maxSupply = event.params.maxSupply_;
-        variation.issuer = variationIssuer.toString();
-        variation.lostWorld = id;
-        variation.image = event.params.initializationParams_.imageURI_;
-        log.info('matevz - {}', [variation.image]);
-        variation.save();
-    }
-    lostWorld.save();
-}
-
 export function handleAlphaRandomCurvedLostWorldV2Transfer (event: TransferEvent): void {
     let contract = AlphaRandomCurvedLostWorldV2Contract.bind(event.address);  
-    let tokenURIString = contract.tokenURI(event.params.tokenId);
-    handleTransfer(event, tokenURIString);
-}
-
-export function handleRandomFlatLostWorldTransfer (event: TransferEvent): void {
-    let contract = RandomFlatLostWorldContract.bind(event.address);  
-    let tokenURIString = contract.tokenURI(event.params.tokenId);
-    handleTransfer(event, tokenURIString);
-}
-
-export function handleFlatSingleLostWorldTransfer (event: TransferEvent): void {
-    let contract = FlatSingleLostWorldContract.bind(event.address);  
     let tokenURIString = contract.tokenURI(event.params.tokenId);
     handleTransfer(event, tokenURIString);
 }

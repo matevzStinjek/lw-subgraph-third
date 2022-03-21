@@ -125,42 +125,18 @@
             },
             {
                 "indexed": false,
-                "internalType": "contract IVariationSelector",
-                "name": "variationSelector_",
-                "type": "address"
-            },
-            {
-                "components": [
-                    {
-                        "internalType": "uint16",
-                        "name": "amount",
-                        "type": "uint16"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "data",
-                        "type": "string"
-                    }
-                ],
-                "indexed": false,
-                "internalType": "struct Variation[]",
-                "name": "variations_",
-                "type": "tuple[]"
+                "internalType": "uint256",
+                "name": "maxSupply_",
+                "type": "uint256"
             },
             {
                 "indexed": false,
                 "internalType": "uint256",
                 "name": "price_",
                 "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "address",
-                "name": "randomNumberGenerator_",
-                "type": "address"
             }
         ],
-        "name": "RandomFlatLostWorldInitialized",
+        "name": "FlatSingleLostWorldInitialized",
         "type": "event"
     },
     {
@@ -498,36 +474,14 @@
                 "type": "tuple"
             },
             {
-                "internalType": "contract IVariationSelector",
-                "name": "variationSelector_",
-                "type": "address"
-            },
-            {
-                "components": [
-                    {
-                        "internalType": "uint16",
-                        "name": "amount",
-                        "type": "uint16"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "data",
-                        "type": "string"
-                    }
-                ],
-                "internalType": "struct Variation[]",
-                "name": "variations_",
-                "type": "tuple[]"
+                "internalType": "uint256",
+                "name": "maxSupply_",
+                "type": "uint256"
             },
             {
                 "internalType": "uint256",
                 "name": "price_",
                 "type": "uint256"
-            },
-            {
-                "internalType": "address",
-                "name": "randomNumberGenerator_",
-                "type": "address"
             }
         ],
         "name": "initialize",

@@ -23,24 +23,6 @@ dataSources:
         - event: ProxyDeployed(address,bytes)
           handler: handleAlphaRandomCurvedLostWorldRegistered
   - kind: ethereum/contract
-    name: RandomFlatLostWorldFactory
-    network: {{network}}
-    source:
-      {{{sourceRandomFlatLostWorldFactory}}}
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
-      entities:
-        - LostWorld
-      abis:
-        - name: RandomFlatLostWorldFactory
-          file: ./abis/RandomFlatLostWorldFactory.json
-      eventHandlers:
-        - event: ProxyDeployed(address)
-          handler: handleRandomFlatLostWorldRegistered
-  - kind: ethereum/contract
     name: AlphaLostWorldsMarketplaceV1
     network: {{network}}
     source:
@@ -63,29 +45,6 @@ dataSources:
           handler: handleAlphaLostWorldsMarketplaceV1OrderExecuted
         - event: OrderRemoved(uint256)
           handler: handleAlphaLostWorldsMarketplaceV1OrderRemoved
-  - kind: ethereum/contract
-    name: LostWorldsMarketplace
-    network: {{network}}
-    source:
-      {{{sourceLostWorldsMarketplace}}}
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/marketplace.ts
-      entities:
-        - Token
-        - Order
-      abis:
-        - name: LostWorldsMarketplace
-          file: ./abis/LostWorldsMarketplace.json
-      eventHandlers:
-        - event: OrdedAdded(uint256,uint256,uint256,address,address)
-          handler: handleLostWorldsMarketplaceOrderAdded
-        - event: OrderExecuted(uint256,address)
-          handler: handleLostWorldsMarketplaceOrderExecuted
-        - event: OrderRemoved(uint256)
-          handler: handleLostWorldsMarketplaceOrderRemoved
 
 templates:
   - kind: ethereum/contract
@@ -118,35 +77,5 @@ templates:
           handler: handleAlphaRandomCurvedLostWorldV2Initialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleAlphaRandomCurvedLostWorldV2Transfer
-        - event: Context(string)
-          handler: handleContext
-  - kind: ethereum/contract
-    name: RandomFlatLostWorld
-    network: {{network}}
-    source:
-      abi: RandomFlatLostWorld
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
-      entities:
-        - LostWorld
-        - Variation
-        - Project
-        - Token
-        - TokenTransaction
-      abis:
-        - name: RandomFlatLostWorld
-          file: ./abis/RandomFlatLostWorld.json
-        - name: ArtistLocationMetadataInterpreter
-          file: ./abis/ArtistLocationMetadataInterpreter.json
-        - name: NameIssuerAdvancedVariationInterpreter
-          file: ./abis/NameIssuerAdvancedVariationInterpreter.json
-      eventHandlers:
-        - event: RandomFlatLostWorldInitialized((string,string,string,string,address,address,address,address,address,address,uint16),(uint16,string)[],uint256,address)
-          handler: handleRandomFlatLostWorldInitialized
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleRandomFlatLostWorldTransfer
         - event: Context(string)
           handler: handleContext

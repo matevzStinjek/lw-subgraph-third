@@ -4,12 +4,12 @@ import fs from "fs";
 import { getContract } from "./helpers";
 
 const createSourceString = (contractName: string) => {
-  const { address, startBlock } = getContract(contractName);
+  const { address, blockNumber } = getContract(contractName);
   const key = `source${contractName}`;
-  const value = `
-      address: '${address}'
+  const value = 
+      `address: '${address}'
       abi: ${contractName}
-      startBlock: ${startBlock}`;
+      startBlock: ${blockNumber}`;
   return [key, value];
 };
 

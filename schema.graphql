@@ -16,10 +16,13 @@ type LostWorld @entity {
 
     # general
     name: String
-    project: Project
     totalSupply: BigInt
     maxSupply: BigInt
     createdTimestamp: Int
+
+    # context
+    project: Project
+    # detatched: Boolean
 
     # metadata
     location: String
