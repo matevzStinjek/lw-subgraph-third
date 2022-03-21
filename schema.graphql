@@ -33,6 +33,7 @@ type LostWorld @entity {
     variations: [Variation!]! @derivedFrom(field: "lostWorld")
 
     tokens: [Token!]! @derivedFrom(field: "lostWorld")
+    orders: [Order!]! @derivedFrom(field: "lostWorld")
 }
 
 type Token @entity {
@@ -98,6 +99,7 @@ type PriceRange @entity {
 
 type Variation @entity {
     id: ID!
+    internalId: BigInt!
     name: String!
     totalSupply: BigInt!
     maxSupply: BigInt!

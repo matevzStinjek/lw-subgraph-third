@@ -152,7 +152,7 @@ export function handleAlphaRandomCurvedLostWorldV2Initialized (event: AlphaRando
 
         let variationId = id + "-" + name.toString();
         let variation = new Variation(variationId);
-
+        variation.internalId = BigInt.fromI32(i);
         variation.name = name.toString();
         variation.totalSupply = BigInt.zero();
         maxSupply += variationStruct.amount;
@@ -232,7 +232,7 @@ export function handleRandomFlatLostWorldInitialized (event: RandomFlatLostWorld
 
         let variationId = id + "-" + name.toString();
         let variation = new Variation(variationId);
-
+        variation.internalId = BigInt.fromI32(i);
         variation.name = name.toString();
         variation.totalSupply = BigInt.zero();
         maxSupply += variationStruct.amount;
@@ -295,14 +295,15 @@ export function handleFlatSingleLostWorldInitialized (event: FlatSingleLostWorld
     let variationName = metadata.get("name");
     let variationIssuer = metadata.get("issuer");
     if (variationName && variationIssuer) {
-        let variationId = "0-" + variationName.toString();
+        let variationId = id + "-" + variationName.toString();
         let variation = new Variation(variationId);
+        variation.internalId = BigInt.zero();
+        variation.name = variationName.toString();
         variation.totalSupply = BigInt.zero();
         variation.maxSupply = event.params.maxSupply_;
         variation.issuer = variationIssuer.toString();
-        variation.lostWorld = id;
         variation.image = event.params.initializationParams_.imageURI_;
-        log.info('matevz - {}', [variation.image]);
+        variation.lostWorld = id;
         variation.save();
     }
     lostWorld.save();
