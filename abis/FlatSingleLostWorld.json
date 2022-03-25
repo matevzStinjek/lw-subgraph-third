@@ -514,19 +514,6 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "isFullyMinted",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "components": [

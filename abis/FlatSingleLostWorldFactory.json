@@ -37,7 +37,7 @@
             {
                 "indexed": false,
                 "internalType": "address",
-                "name": "implementation",
+                "name": "beacon",
                 "type": "address"
             }
         ],
