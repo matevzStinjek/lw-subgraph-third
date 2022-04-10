@@ -91,7 +91,7 @@ export function handleAlphaRandomCurvedLostWorldV2Initialized (event: AlphaRando
     lostWorld.totalSupply = BigInt.zero();
     lostWorld.createdTimestamp = event.block.timestamp.toI32();
     lostWorld.name = contract.name();
-    lostWorld.detatched = false;
+    lostWorld.detached = false;
 
     // Price ranges
     let priceRanges = event.params.priceRanges_;
@@ -185,7 +185,7 @@ export function handleRandomFlatLostWorldInitialized (event: RandomFlatLostWorld
     lostWorld.totalSupply = BigInt.zero();
     lostWorld.createdTimestamp = event.block.timestamp.toI32();
     lostWorld.name = contract.name();
-    lostWorld.detatched = false;
+    lostWorld.detached = false;
 
     // Price
     lostWorld.price = event.params.price_;
@@ -264,7 +264,7 @@ export function handleFlatSingleLostWorldInitialized (event: FlatSingleLostWorld
     lostWorld.maxSupply = event.params.maxSupply_;
     lostWorld.createdTimestamp = event.block.timestamp.toI32();
     lostWorld.name = contract.name();
-    lostWorld.detatched = false;
+    lostWorld.detached = false;
 
     // Price
     lostWorld.price = event.params.price_;
@@ -408,9 +408,9 @@ export function handleContext (event: ContextEvent): void {
         createProjectIfNotExist(project.toString(), event);
         lostWorld.project = project.toString();
     }
-    let detatched = context.get("detatched");
-    if (detatched) {
-        lostWorld.detatched = detatched.toBool();
+    let detached = context.get("detached");
+    if (detached) {
+        lostWorld.detached = detached.toBool();
     }
     lostWorld.save();
 }
