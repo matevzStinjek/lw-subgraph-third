@@ -36,56 +36,6 @@
         "inputs": [
             {
                 "indexed": false,
-                "internalType": "address",
-                "name": "token",
-                "type": "address"
-            }
-        ],
-        "name": "ExecutedCompletionForToken",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "orderId",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "price",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "address",
-                "name": "token",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "address",
-                "name": "seller",
-                "type": "address"
-            }
-        ],
-        "name": "OrdedAdded",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": false,
                 "internalType": "uint256",
                 "name": "orderId",
                 "type": "uint256"
@@ -216,19 +166,6 @@
     },
     {
         "inputs": [],
-        "name": "COMPLETION_REGISTER_ROLE",
-        "outputs": [
-            {
-                "internalType": "bytes32",
-                "name": "",
-                "type": "bytes32"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
         "name": "DEFAULT_ADMIN_ROLE",
         "outputs": [
             {
@@ -238,42 +175,6 @@
             }
         ],
         "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "TOKEN_REGISTER_ROLE",
-        "outputs": [
-            {
-                "internalType": "bytes32",
-                "name": "",
-                "type": "bytes32"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "token",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "price",
-                "type": "uint256"
-            }
-        ],
-        "name": "addToMarket",
-        "outputs": [],
-        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -332,45 +233,6 @@
             }
         ],
         "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "token",
-                "type": "address"
-            }
-        ],
-        "name": "executeCompletionForToken",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getDeposit",
-        "outputs": [
-            {
-                "internalType": "uint64",
-                "name": "result",
-                "type": "uint64"
-            }
-        ],
-        "stateMutability": "pure",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getReflectToOwners",
-        "outputs": [
-            {
-                "internalType": "uint64",
-                "name": "result",
-                "type": "uint64"
-            }
-        ],
-        "stateMutability": "pure",
         "type": "function"
     },
     {
@@ -561,7 +423,7 @@
                         "type": "bool"
                     }
                 ],
-                "internalType": "struct AlphaLostWorldsMarketplaceContractV1Storage.Order[]",
+                "internalType": "struct AlphaLostWorldsMarketplaceV2Storage.Order[]",
                 "name": "",
                 "type": "tuple[]"
             }
@@ -571,80 +433,15 @@
     },
     {
         "inputs": [],
-        "name": "protocolFeeBeeps",
+        "name": "proxiableUUID",
         "outputs": [
             {
-                "internalType": "uint256",
+                "internalType": "bytes32",
                 "name": "",
-                "type": "uint256"
+                "type": "bytes32"
             }
         ],
         "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "contract ICompleter",
-                "name": "completer",
-                "type": "address"
-            },
-            {
-                "components": [
-                    {
-                        "internalType": "address",
-                        "name": "completionChecker",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "address",
-                        "name": "completionExecutor",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "bytes",
-                        "name": "preExecuteStep",
-                        "type": "bytes"
-                    }
-                ],
-                "internalType": "struct CompletionStruct",
-                "name": "completionStruct",
-                "type": "tuple"
-            }
-        ],
-        "name": "registerNewCompleter",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "address",
-                        "name": "token",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint16",
-                        "name": "dividendBeeps",
-                        "type": "uint16"
-                    },
-                    {
-                        "internalType": "uint64",
-                        "name": "reflectionFuncPointer",
-                        "type": "uint64"
-                    }
-                ],
-                "internalType": "struct AlphaLostWorldsMarketplaceContractV1Storage.TradeableToken",
-                "name": "tradeableToken",
-                "type": "tuple"
-            }
-        ],
-        "name": "registerTradeableToken",
-        "outputs": [],
-        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -719,35 +516,6 @@
         "inputs": [
             {
                 "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "tradeableTokens",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "token",
-                "type": "address"
-            },
-            {
-                "internalType": "uint16",
-                "name": "dividendBeeps",
-                "type": "uint16"
-            },
-            {
-                "internalType": "uint64",
-                "name": "reflectionFuncPointer",
-                "type": "uint64"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
                 "name": "newImplementation",
                 "type": "address"
             }
@@ -773,19 +541,6 @@
         "name": "upgradeToAndCall",
         "outputs": [],
         "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "wallet",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
         "type": "function"
     },
     {

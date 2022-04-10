@@ -4,6 +4,7 @@ repository: https://github.com/lost-worlds/subgraphs
 schema:
   file: ./schema.graphql
 dataSources:
+  # FACTORIES
   - kind: ethereum/contract
     name: AlphaRandomCurvedLostWorldFactory
     network: avalanche
@@ -64,6 +65,8 @@ dataSources:
       eventHandlers:
         - event: ProxyDeployed(address)
           handler: handleFlatSingleLostWorldRegistered
+
+  # MARKETPLACES
   - kind: ethereum/contract
     name: AlphaLostWorldsMarketplaceV1
     network: avalanche
@@ -116,6 +119,7 @@ dataSources:
           handler: handleLostWorldsMarketplaceOrderRemoved
 
 templates:
+  # LOST WORLDS
   - kind: ethereum/contract
     name: AlphaRandomCurvedLostWorldV2
     network: avalanche
