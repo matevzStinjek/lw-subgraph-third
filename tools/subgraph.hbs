@@ -41,6 +41,24 @@ dataSources:
         - event: ProxyDeployed(address)
           handler: handleRandomFlatLostWorldRegistered
   - kind: ethereum/contract
+    name: FlatSingleLostWorldFactory
+    network: {{network}}
+    source:
+      {{{sourceFlatSingleLostWorldFactory}}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/fuji.ts
+      entities:
+        - LostWorld
+      abis:
+        - name: FlatSingleLostWorldFactory
+          file: ./abis/FlatSingleLostWorldFactory.json
+      eventHandlers:
+        - event: ProxyDeployed(address)
+          handler: handleFlatSingleLostWorldRegistered
+  - kind: ethereum/contract
     name: AlphaLostWorldsMarketplaceV1
     network: {{network}}
     source:
@@ -144,9 +162,39 @@ templates:
         - name: NameIssuerAdvancedVariationInterpreter
           file: ./abis/NameIssuerAdvancedVariationInterpreter.json
       eventHandlers:
-        - event: RandomFlatLostWorldInitialized((string,string,string,string,address,address,address,address,address,address,uint16),(uint16,string)[],uint256,address)
+        - event: RandomFlatLostWorldInitialized((string,string,string,string,address,address,address,address,address,uint16),address,(uint16,string)[],uint256,address)
           handler: handleRandomFlatLostWorldInitialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleRandomFlatLostWorldTransfer
+        - event: Context(string)
+          handler: handleContext
+  - kind: ethereum/contract
+    name: FlatSingleLostWorld
+    network: {{network}}
+    source:
+      abi: FlatSingleLostWorld
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/fuji.ts
+      entities:
+        - LostWorld
+        - Variation
+        - Project
+        - Token
+        - TokenTransaction
+      abis:
+        - name: FlatSingleLostWorld
+          file: ./abis/FlatSingleLostWorld.json
+        - name: ArtistLocationMetadataInterpreter
+          file: ./abis/ArtistLocationMetadataInterpreter.json
+        - name: NameIssuerAdvancedVariationInterpreter
+          file: ./abis/NameIssuerAdvancedVariationInterpreter.json
+      eventHandlers:
+        - event: FlatSingleLostWorldInitialized((string,string,string,string,address,address,address,address,address,uint16),uint256,uint256)
+          handler: handleFlatSingleLostWorldInitialized
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleFlatSingleLostWorldTransfer
         - event: Context(string)
           handler: handleContext
