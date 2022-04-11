@@ -274,3 +274,5 @@ templates:
       eventHandlers:
         - event: LostAchievementInitialized(string,string,address,address,string,string,address)
           handler: handleLostAchievementInitialized
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleBadgeClaimed

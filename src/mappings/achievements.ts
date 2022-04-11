@@ -1,5 +1,6 @@
 // library
 import { ethereum, json, log, Address, BigDecimal, BigInt, Bytes, ByteArray } from "@graphprotocol/graph-ts";
+import { decode } from "as-base64";
 
 // schema
 import { Achievement, Badge } from "../types/schema";
@@ -20,6 +21,7 @@ import {
 
 import {
     LostAchievementInitialized as LostAchievementInitializedEvent,
+    LostAchievement as LostAchievementContract,
     Transfer as BadgeClaimedEvent,
 } from "../types/templates/LostAchievement/LostAchievement"
 
@@ -69,8 +71,16 @@ export function handleBadgeClaimed (event: BadgeClaimedEvent): void {
 
     badge.achievement = event.address.toHexString();
     badge.owner = event.params.to;
+
+    let contract = LostAchievementContract.bind(event.address);
+    let tokenURIString = contract.tokenURI(event.params.tokenId);
+    tokenURIString = tokenURIString.slice("data:application/json;base64,".length);
+    tokenURIString = Bytes.fromUint8Array(decode(tokenURIString)).toString();
+    log.info('mmm - {}', [tokenURIString]);
+    // tokenId
     // name
     // desc
+    // achievedAt
     // image
     badge.save();
 }
