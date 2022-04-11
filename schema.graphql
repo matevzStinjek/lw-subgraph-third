@@ -108,3 +108,21 @@ type Variation @entity {
     lostWorld: LostWorld!
     orders: [Order!]! @derivedFrom(field: "variation")
 }
+
+type Achievement @entity {
+    id: ID!
+    name: String
+    description: String
+    image: String
+    stakeCondition: BigInt
+    lostReward: BigInt
+}
+
+type Badge @entity {
+    id: ID!
+    achievement: Achievement
+    owner: Bytes
+    name: String
+    description: String
+    image: String
+}
