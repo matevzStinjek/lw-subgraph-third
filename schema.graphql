@@ -36,6 +36,16 @@ type LostWorld @entity {
     orders: [Order!]! @derivedFrom(field: "lostWorld")
 }
 
+# type User @entity {
+#     id: ID!
+#     tokens
+#     sellOrders
+#     boughtOrders
+#     fromTransactions
+#     toTransactions
+#     totalClaimed
+# }
+
 type Token @entity {
     id: ID!
     tokenID: BigInt!
