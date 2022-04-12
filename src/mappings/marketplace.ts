@@ -10,7 +10,7 @@ import {
 
 
 export function handleAlphaLostWorldsMarketplaceV1OrderAdded (event: OrderAddedEvent): void {
-    handleOrderAdded(event, "AlphaLostWorldsMarketplaceV1", "V1");
+    handleOrderAdded(event, "AlphaLostWorldsMarketplace", "V1");
 }
 
 export function handleLostWorldsMarketplaceOrderAdded (event: OrderAddedEvent): void {

@@ -55,7 +55,7 @@ export function handleAlphaRandomCurvedLostWorldRegistered (event: AlphaRandomCu
 
     let id = event.params.proxyAddress.toHexString().toLowerCase();
     let lostWorld = new LostWorld(id);
-    lostWorld.type = "AlphaRandomCurvedLostWorldV2";
+    lostWorld.type = "AlphaRandomCurvedLostWorld";
     lostWorld.save();
 
     AlphaRandomCurvedLostWorldV2Template.create(event.params.proxyAddress);
