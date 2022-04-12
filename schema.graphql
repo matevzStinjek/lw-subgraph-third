@@ -122,9 +122,11 @@ type Achievement @entity {
 
 type Badge @entity {
     id: ID!
-    achievement: Achievement
-    owner: Bytes
-    name: String
-    description: String
-    image: String
+    achievement: Achievement!
+    tokenID: BigInt!
+    owner: Bytes!
+    name: String!
+    description: String!
+    achievedAt: Int!
+    image: String!
 }

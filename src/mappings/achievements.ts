@@ -71,16 +71,31 @@ export function handleBadgeClaimed (event: BadgeClaimedEvent): void {
 
     badge.achievement = event.address.toHexString();
     badge.owner = event.params.to;
+    badge.tokenID = event.params.tokenId;
 
     let contract = LostAchievementContract.bind(event.address);
     let tokenURIString = contract.tokenURI(event.params.tokenId);
     tokenURIString = tokenURIString.slice("data:application/json;base64,".length);
     tokenURIString = Bytes.fromUint8Array(decode(tokenURIString)).toString();
-    log.info('mmm - {}', [tokenURIString]);
-    // tokenId
-    // name
-    // desc
-    // achievedAt
-    // image
+
+    let tokenURIBytes = Bytes.fromUTF8(tokenURIString) as Bytes;
+    let tokenURI = json.fromBytes(tokenURIBytes).toObject();
+
+    let name = tokenURI.get("name");
+    if (name) {
+        badge.name = name.toString();
+    }
+    let description = tokenURI.get("description");
+    if (description) {
+        badge.description = description.toString();
+    }
+    let achievedAt = tokenURI.get("achievedAt");
+    if (achievedAt) {
+        badge.achievedAt = achievedAt.toBigInt().toI32();
+    }
+    let image = tokenURI.get("image");
+    if (image) {
+        badge.image = image.toString();
+    }
     badge.save();
 }
