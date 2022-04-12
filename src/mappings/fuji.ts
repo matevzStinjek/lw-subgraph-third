@@ -313,24 +313,18 @@ export function handleFlatSingleLostWorldInitialized (event: FlatSingleLostWorld
 }
 
 export function handleAlphaRandomCurvedLostWorldV2Transfer (event: TransferEvent): void {
-    let contract = AlphaRandomCurvedLostWorldV2Contract.bind(event.address);  
-    let tokenURIString = contract.tokenURI(event.params.tokenId);
-    handleTransfer(event, tokenURIString);
+    handleTransfer(event, "AlphaRandomCurvedLostWorldV2Contract");
 }
 
 export function handleRandomFlatLostWorldTransfer (event: TransferEvent): void {
-    let contract = RandomFlatLostWorldContract.bind(event.address);  
-    let tokenURIString = contract.tokenURI(event.params.tokenId);
-    handleTransfer(event, tokenURIString);
+    handleTransfer(event, "RandomFlatLostWorldContract");
 }
 
 export function handleFlatSingleLostWorldTransfer (event: TransferEvent): void {
-    let contract = FlatSingleLostWorldContract.bind(event.address);  
-    let tokenURIString = contract.tokenURI(event.params.tokenId);
-    handleTransfer(event, tokenURIString);
+    handleTransfer(event, "FlatSingleLostWorldContract");
 }
 
-function handleTransfer (event: TransferEvent, tokenURIString: string): void {
+function handleTransfer (event: TransferEvent, contractType: string): void {
     let id = event.address.toHexString().toLowerCase() + "-" + event.params.tokenId.toString();
     let token = Token.load(id);
     if (!token) {    
@@ -342,6 +336,17 @@ function handleTransfer (event: TransferEvent, tokenURIString: string): void {
         token.createdTimestamp = event.block.timestamp.toI32();
         token.hasActiveOrder = false;
 
+        let tokenURIString: string;
+        if (contractType == "AlphaRandomCurvedLostWorldV2Contract") {
+            let contract = AlphaRandomCurvedLostWorldV2Contract.bind(event.address);  
+            tokenURIString = contract.tokenURI(event.params.tokenId);
+        } else if (contractType == "RandomFlatLostWorldContract") {
+            let contract = RandomFlatLostWorldContract.bind(event.address);  
+            tokenURIString = contract.tokenURI(event.params.tokenId);
+        } else if (contractType == "FlatSingleLostWorldContract") {
+            let contract = FlatSingleLostWorldContract.bind(event.address);  
+            tokenURIString = contract.tokenURI(event.params.tokenId);
+        }
         if (tokenURIString.startsWith("data:application/json;base64,")) {
             tokenURIString = tokenURIString.slice("data:application/json;base64,".length);
             tokenURIString = Bytes.fromUint8Array(decode(tokenURIString)).toString();
