@@ -380,6 +380,8 @@ function handleTransfer (event: TransferEvent, tokenURIString: string): void {
     tokenTransaction.to = event.params.to;
     tokenTransaction.timestamp = event.block.timestamp.toI32();
     tokenTransaction.token = id;
+    tokenTransaction.variation = token.variation;
+    tokenTransaction.lostWorld = token.lostWorld;
     tokenTransaction.save();
 
     // increment lostWorlds totalSupply

@@ -64,6 +64,8 @@ type TokenTransaction @entity {
     from: Bytes!
     to: Bytes!
     token: Token!
+    variation: Variation!
+    lostWorld: LostWorld!
     timestamp: Int!
 }
 
