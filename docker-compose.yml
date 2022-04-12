@@ -18,8 +18,8 @@ services:
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
       # Change next line if you want to connect to a different JSON-RPC endpoint
-      ethereum: 'avalanche:https://api.avax.network/ext/bc/C/rpc'
-      # ethereum: 'fuji:https://api.avax-test.network/ext/bc/C/rpc'
+      # ethereum: 'avalanche:https://api.avax.network/ext/bc/C/rpc'
+      ethereum: 'fuji:https://api.avax-test.network/ext/bc/C/rpc'
       GRAPH_LOG: info
   ipfs:
     image: ipfs/go-ipfs:v0.4.23
