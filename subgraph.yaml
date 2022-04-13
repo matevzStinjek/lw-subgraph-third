@@ -255,6 +255,8 @@ templates:
           handler: handleFlatSingleLostWorldTransfer
         - event: Context(string)
           handler: handleContext
+        - event: ModifiedImageURI(string)
+          handler: handleModifiedImageURI
   # ACHIEVEMENTS
   - kind: ethereum/contract
     name: LostAchievement

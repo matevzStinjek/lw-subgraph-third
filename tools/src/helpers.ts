@@ -7,7 +7,7 @@ export const readJson = (path: string) =>
 export const id = {
   localhost: 43111,
   fuji: 43113,
-  mainnet: 43114,
+  avalanche: 43114,
 };
 
 export const network = process.env.NETWORK as string;
