@@ -420,19 +420,19 @@ export function handleContext (event: ContextEvent): void {
     lostWorld.save();
 }
 
-export function handleModifiedImageURI (event: ModifiedImageURIEvent): void {
-    let id = event.address.toHexString().toLowerCase();
-    let lostWorld = LostWorld.load(id);
-    if (!lostWorld) {
-        return;
-    }
-    let variation = Variation.load(lostWorld.variations[0]);
-    if (!variation){
-        return;
-    }
-    variation.image = event.params.imageURI_;
-    variation.save();
-}
+// export function handleModifiedImageURI (event: ModifiedImageURIEvent): void {
+//     let id = event.address.toHexString().toLowerCase();
+//     let lostWorld = LostWorld.load(id);
+//     if (!lostWorld) {
+//         return;
+//     }
+//     let variation = Variation.load(lostWorld.variations[0]);
+//     if (!variation){
+//         return;
+//     }
+//     variation.image = event.params.imageURI_;
+//     variation.save();
+// }
 
 function createProjectIfNotExist (id: string, event: ethereum.Event): string {
     let project = Project.load(id);

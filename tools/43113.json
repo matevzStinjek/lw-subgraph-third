@@ -9088,6 +9088,19 @@
                     "anonymous": false,
                     "inputs": [
                         {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "imageURI_",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "ModifiedImageURI",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
                             "indexed": true,
                             "internalType": "bytes32",
                             "name": "role",
