@@ -7,11 +7,11 @@ dataSources:
   # FACTORIES
   - kind: ethereum/contract
     name: AlphaRandomCurvedLostWorldFactory
-    network: avalanche
+    network: fuji
     source:
-      address: '0xfD81c8A69A749B4E0C34Afc6f29900B77Dd928f6'
+      address: '0x9B37206DF28d9955036dbE4c476EE7EB4D69c9f3'
       abi: AlphaRandomCurvedLostWorldFactory
-      startBlock: 7655134
+      startBlock: 7567824
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -27,11 +27,11 @@ dataSources:
           handler: handleAlphaRandomCurvedLostWorldRegistered
   - kind: ethereum/contract
     name: RandomFlatLostWorldFactory
-    network: avalanche
+    network: fuji
     source:
-      address: '0x17161D0624B21CFAc1204B370F12092E695bF0E4'
+      address: '0x67fE1394b2b55B712fF2d2b60dcb43d2dfdbC0a5'
       abi: RandomFlatLostWorldFactory
-      startBlock: 12430889
+      startBlock: 7367824
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -47,11 +47,11 @@ dataSources:
           handler: handleRandomFlatLostWorldRegistered
   - kind: ethereum/contract
     name: FlatSingleLostWorldFactory
-    network: avalanche
+    network: fuji
     source:
-      address: '0x279B07702f6384f137DD7c06e825F4170526a3ac'
+      address: '0x3e3011c5e3eAD0e828253dE34417dd6Ba94f1f85'
       abi: FlatSingleLostWorldFactory
-      startBlock: 12430902
+      startBlock: 8454116
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -68,11 +68,11 @@ dataSources:
   # MARKETPLACES
   - kind: ethereum/contract
     name: AlphaLostWorldsMarketplaceV1
-    network: avalanche
+    network: fuji
     source:
-      address: '0x23D6f7b67866b59Cc0366282A50E0e12EB751ede'
+      address: '0x838Bfc605F0D7aeA8603705A526c0618c5468d11'
       abi: AlphaLostWorldsMarketplaceV1
-      startBlock: 7733706
+      startBlock: 7567099
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -93,11 +93,11 @@ dataSources:
           handler: handleAlphaLostWorldsMarketplaceV1OrderRemoved
   - kind: ethereum/contract
     name: LostWorldsMarketplace
-    network: avalanche
+    network: fuji
     source:
-      address: '0xD5836B14A44b60209c6C20023d721858047a9E7E'
+      address: '0x1dB0933D50671F3A7453C7ad27076F0846c26aAf'
       abi: LostWorldsMarketplace
-      startBlock: 12393750
+      startBlock: 7567159
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -119,11 +119,11 @@ dataSources:
   # ACHIEVEMENTS
   - kind: ethereum/contract
     name: LostAchievementFactoryClone
-    network: avalanche
+    network: fuji
     source:
-      address: '0xB1AF0f655D3aA4d4d35F4B34D4C11Dd4f8d6c84d'
+      address: '0xAc3D38ccB7DeC35eBAd96637F4DB2AA85369fA91'
       abi: LostAchievementFactoryClone
-      startBlock: 13324688
+      startBlock: 8454640
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -140,11 +140,11 @@ dataSources:
           handler: handleNewAchievementClone
   - kind: ethereum/contract
     name: LostAchievementChef
-    network: avalanche
+    network: fuji
     source:
-      address: '0x590634D50d98264bF2b6db743fabD093A9077b79'
+      address: '0xf7b49C0C24941d8905aA881487c3AE3273943F73'
       abi: LostAchievementChef
-      startBlock: 13324724
+      startBlock: 8454169
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -165,7 +165,7 @@ templates:
   # LOST WORLDS
   - kind: ethereum/contract
     name: AlphaRandomCurvedLostWorldV2
-    network: avalanche
+    network: fuji
     source:
       abi: AlphaRandomCurvedLostWorldV2
     mapping:
@@ -197,7 +197,7 @@ templates:
           handler: handleContext
   - kind: ethereum/contract
     name: RandomFlatLostWorld
-    network: avalanche
+    network: fuji
     source:
       abi: RandomFlatLostWorld
     mapping:
@@ -227,7 +227,7 @@ templates:
           handler: handleContext
   - kind: ethereum/contract
     name: FlatSingleLostWorld
-    network: avalanche
+    network: fuji
     source:
       abi: FlatSingleLostWorld
     mapping:
@@ -258,7 +258,7 @@ templates:
   # ACHIEVEMENTS
   - kind: ethereum/contract
     name: LostAchievement
-    network: avalanche
+    network: fuji
     source:
       abi: LostAchievement
     mapping:
