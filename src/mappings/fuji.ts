@@ -40,7 +40,6 @@ import {
 import {
     FlatSingleLostWorldInitialized as FlatSingleLostWorldInitializedEvent,
     FlatSingleLostWorld as FlatSingleLostWorldContract,
-    ModifiedImageURI as ModifiedImageURIEvent,
 } from "../types/templates/FlatSingleLostWorld/FlatSingleLostWorld";
 
 // interpreters
@@ -197,7 +196,8 @@ export function handleRandomFlatLostWorldInitialized (event: RandomFlatLostWorld
 
     let project = metadata.get("project");
     if (project) {
-        lostWorld.project = createProjectIfNotExist(project.toString(), event);
+        createProjectIfNotExist(project.toString(), event);
+        lostWorld.project = project.toString();
     }
     let location = metadata.get("location");
     if (location) {
@@ -275,7 +275,8 @@ export function handleFlatSingleLostWorldInitialized (event: FlatSingleLostWorld
 
     let project = metadata.get("project");
     if (project) {
-        lostWorld.project = createProjectIfNotExist(project.toString(), event);
+        createProjectIfNotExist(project.toString(), event);
+        lostWorld.project = project.toString();
     }
     let location = metadata.get("location");
     if (location) {
@@ -411,7 +412,8 @@ export function handleContext (event: ContextEvent): void {
 
     let project = context.get("project");
     if (project) {
-        lostWorld.project = createProjectIfNotExist(project.toString(), event);
+        createProjectIfNotExist(project.toString(), event);
+        lostWorld.project = project.toString();
     }
     let detached = context.get("detached");
     if (detached) {
@@ -420,26 +422,11 @@ export function handleContext (event: ContextEvent): void {
     lostWorld.save();
 }
 
-// export function handleModifiedImageURI (event: ModifiedImageURIEvent): void {
-//     let id = event.address.toHexString().toLowerCase();
-//     let lostWorld = LostWorld.load(id);
-//     if (!lostWorld) {
-//         return;
-//     }
-//     let variation = Variation.load(lostWorld.variations[0]);
-//     if (!variation){
-//         return;
-//     }
-//     variation.image = event.params.imageURI_;
-//     variation.save();
-// }
-
-function createProjectIfNotExist (id: string, event: ethereum.Event): string {
+function createProjectIfNotExist (id: string, event: ethereum.Event): void {
     let project = Project.load(id);
     if (!project) {
         project = new Project(id);
         project.createdTimestamp = event.block.timestamp.toI32();
         project.save();
     }
-    return id;
 }
