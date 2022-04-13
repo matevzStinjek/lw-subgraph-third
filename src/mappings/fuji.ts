@@ -306,6 +306,9 @@ export function handleFlatSingleLostWorldInitialized (event: FlatSingleLostWorld
         variation.maxSupply = event.params.maxSupply_;
         variation.issuer = variationIssuer.toString();
         variation.image = event.params.initializationParams_.imageURI_;
+        if (variationName.toString() == "North America") {
+            variation.image = "https://arweave.net/XGg_Xsf0oNv3KGOyzLYt7Q86bMZojVwX0yiEIYo56Bc/";
+        }
         variation.lostWorld = id;
         variation.save();
     }
