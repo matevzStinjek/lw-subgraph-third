@@ -40,6 +40,7 @@ import {
 import {
     FlatSingleLostWorldInitialized as FlatSingleLostWorldInitializedEvent,
     FlatSingleLostWorld as FlatSingleLostWorldContract,
+    ModifiedImageURI as ModifiedImageURIEvent,
 } from "../types/templates/FlatSingleLostWorld/FlatSingleLostWorld";
 
 // interpreters
@@ -423,6 +424,20 @@ export function handleContext (event: ContextEvent): void {
         lostWorld.detached = detached.toBool();
     }
     lostWorld.save();
+}
+
+export function handleModifiedImageURI (event: ModifiedImageURIEvent): void {
+    let id = event.address.toHexString().toLowerCase();
+    let lostWorld = LostWorld.load(id);
+    if (!lostWorld) {
+        return;
+    }
+    let variation = Variation.load(lostWorld.variations[0]);
+    if (!variation) {
+        return;
+    }
+    variation.image = event.params.imageURI_;
+    variation.save();
 }
 
 function createProjectIfNotExist (id: string, event: ethereum.Event): void {
