@@ -46,7 +46,7 @@ import {
 // interpreters
 import { ArtistLocationMetadataInterpreter as MetadataInterpreterContract } from "../types/templates/RandomFlatLostWorld/ArtistLocationMetadataInterpreter";
 import { NameIssuerAdvancedVariationInterpreter as VariationInterpreterContract } from "../types/templates/RandomFlatLostWorld/NameIssuerAdvancedVariationInterpreter";
-import { ImageImageLinkNameImageInformationInterpreter as ImageInterpreterContract } from "../types/templates/AlphaRandomCurvedLostWorldV1/ImageImageLinkNameImageInformationInterpreter"
+import { ImageImageLinkNameImageInformationInterpreter as ImageInterpreterContract } from "../types/templates/AlphaRandomCurvedLostWorldV2/ImageImageLinkNameImageInformationInterpreter"
 
 export function handleAlphaRandomCurvedLostWorldRegistered (event: AlphaRandomCurvedLostWorldRegisteredEvent): void {
     // Ignore Genesis
