@@ -107,5 +107,6 @@ export function handleBadgeClaimed (event: BadgeClaimedEvent): void {
     tokenTransaction.timestamp = event.block.timestamp.toI32();
     tokenTransaction.token = id;
     tokenTransaction.achievement = badge.achievement;
+    tokenTransaction.contract = event.address;
     tokenTransaction.save();
 }

@@ -391,6 +391,7 @@ function handleTransfer (event: TransferEvent, contractType: string): void {
     tokenTransaction.token = id;
     tokenTransaction.variation = token.variation;
     tokenTransaction.lostWorld = token.lostWorld;
+    tokenTransaction.contract = event.address;
     tokenTransaction.save();
 
     // increment lostWorlds totalSupply
