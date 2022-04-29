@@ -1,7 +1,7 @@
 {
   "name": "lost-worlds-subgraph",
   "version": "0.0.1",
-  "repository": "https://github.com/pangolindex/subgraph",
+  "repository": "https://github.com/lost-worlds/lost-worlds",
   "license": "GPL-3.0-or-later",
   "scripts": {
     "codegen": "graph codegen --output-dir src/types/",

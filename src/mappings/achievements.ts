@@ -3,7 +3,7 @@ import { ethereum, json, log, Address, BigDecimal, BigInt, Bytes, ByteArray } fr
 import { decode } from "as-base64";
 
 // schema
-import { Achievement, Badge } from "../types/schema";
+import { Achievement, Badge, TokenTransaction } from "../types/schema";
 
 // dataSources
 import {
@@ -98,4 +98,14 @@ export function handleBadgeClaimed (event: BadgeClaimedEvent): void {
         badge.image = image.toString();
     }
     badge.save();
+
+    // add transaction
+    let transactionId = event.transaction.hash.toHexString() + "-" + event.params.tokenId.toString();
+    let tokenTransaction = new TokenTransaction(transactionId);
+    tokenTransaction.from = event.params.from;
+    tokenTransaction.to = event.params.to;
+    tokenTransaction.timestamp = event.block.timestamp.toI32();
+    tokenTransaction.token = id;
+    tokenTransaction.achievement = badge.achievement;
+    tokenTransaction.save();
 }
