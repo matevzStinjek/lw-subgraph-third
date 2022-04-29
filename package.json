@@ -11,7 +11,8 @@
     "full-send": "yarn codegen && yarn build && yarn create-local && yarn deploy-local",
     "last-3": "yarn build && yarn create-local && yarn deploy-local",
     "last-2": "yarn create-local && yarn deploy-local",
-    "test": "graph test"
+    "test": "graph test",
+    "deploy": "graph deploy --product hosted-service"
   },
   "dependencies": {
     "as-base64": "0.2.0",

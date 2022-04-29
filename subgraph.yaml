@@ -16,7 +16,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
       abis:
@@ -36,7 +36,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
       abis:
@@ -56,7 +56,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
       abis:
@@ -172,7 +172,7 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
         - Variation
@@ -204,7 +204,7 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
         - Variation
@@ -234,7 +234,7 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
         - Variation
