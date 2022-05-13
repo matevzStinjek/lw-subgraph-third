@@ -150,10 +150,10 @@ dataSources:
 templates:
   # LOST WORLDS
   - kind: ethereum/contract
-    name: AlphaRandomCurvedLostWorldV2
+    name: AlphaRandomCurvedLostWorld
     network: {{network}}
     source:
-      abi: AlphaRandomCurvedLostWorldV2
+      abi: AlphaRandomCurvedLostWorld
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -166,8 +166,8 @@ templates:
         - Token
         - TokenTransaction
       abis:
-        - name: AlphaRandomCurvedLostWorldV2
-          file: ./abis/AlphaRandomCurvedLostWorldV2.json
+        - name: AlphaRandomCurvedLostWorld
+          file: ./abis/AlphaRandomCurvedLostWorld.json
         - name: ArtistLocationMetadataInterpreter
           file: ./abis/ArtistLocationMetadataInterpreter.json
         - name: ImageImageLinkNameImageInformationInterpreter

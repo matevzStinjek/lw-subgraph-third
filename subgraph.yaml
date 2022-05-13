@@ -9,9 +9,9 @@ dataSources:
     name: AlphaRandomCurvedLostWorldFactory
     network: fuji
     source:
-      address: '0x9B37206DF28d9955036dbE4c476EE7EB4D69c9f3'
+      address: '0xADCDE106Dc000B48d4B00623C646B26be4E62A88'
       abi: AlphaRandomCurvedLostWorldFactory
-      startBlock: 7567824
+      startBlock: 9078872
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -29,9 +29,9 @@ dataSources:
     name: RandomFlatLostWorldFactory
     network: fuji
     source:
-      address: '0x67fE1394b2b55B712fF2d2b60dcb43d2dfdbC0a5'
+      address: '0x4D326B7D47a077A2C8068a0202Cce3bAe0408279'
       abi: RandomFlatLostWorldFactory
-      startBlock: 7367824
+      startBlock: 9604177
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -49,9 +49,9 @@ dataSources:
     name: FlatSingleLostWorldFactory
     network: fuji
     source:
-      address: '0x3e3011c5e3eAD0e828253dE34417dd6Ba94f1f85'
+      address: '0xa6068B0D82642A3c55Ad481371847541CEeED47d'
       abi: FlatSingleLostWorldFactory
-      startBlock: 8454116
+      startBlock: 9078961
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -70,9 +70,9 @@ dataSources:
     name: AlphaLostWorldsMarketplaceV1
     network: fuji
     source:
-      address: '0x838Bfc605F0D7aeA8603705A526c0618c5468d11'
+      address: '0x367454ee0F5Fe41D34D27019138bfE8250Ec7F09'
       abi: AlphaLostWorldsMarketplaceV1
-      startBlock: 7567099
+      startBlock: 9078837
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -95,9 +95,9 @@ dataSources:
     name: LostWorldsMarketplace
     network: fuji
     source:
-      address: '0x1dB0933D50671F3A7453C7ad27076F0846c26aAf'
+      address: '0x1D6D5a5F31fD211CcA5c4fB2be634f29e225596f'
       abi: LostWorldsMarketplace
-      startBlock: 7567159
+      startBlock: 9078932
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -121,9 +121,9 @@ dataSources:
     name: LostAchievementFactoryClone
     network: fuji
     source:
-      address: '0xAc3D38ccB7DeC35eBAd96637F4DB2AA85369fA91'
+      address: '0x8Bd4188D26d6d2b0Fc1CD7D0db01A4bc95eF277D'
       abi: LostAchievementFactoryClone
-      startBlock: 8454640
+      startBlock: 9079059
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -142,9 +142,9 @@ dataSources:
     name: LostAchievementChef
     network: fuji
     source:
-      address: '0xf7b49C0C24941d8905aA881487c3AE3273943F73'
+      address: '0x6a7bb1a027CE6D15D824FB91b00944BdCd0f34BD'
       abi: LostAchievementChef
-      startBlock: 8454169
+      startBlock: 9079052
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -164,10 +164,10 @@ dataSources:
 templates:
   # LOST WORLDS
   - kind: ethereum/contract
-    name: AlphaRandomCurvedLostWorldV2
+    name: AlphaRandomCurvedLostWorld
     network: fuji
     source:
-      abi: AlphaRandomCurvedLostWorldV2
+      abi: AlphaRandomCurvedLostWorld
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -180,8 +180,8 @@ templates:
         - Token
         - TokenTransaction
       abis:
-        - name: AlphaRandomCurvedLostWorldV2
-          file: ./abis/AlphaRandomCurvedLostWorldV2.json
+        - name: AlphaRandomCurvedLostWorld
+          file: ./abis/AlphaRandomCurvedLostWorld.json
         - name: ArtistLocationMetadataInterpreter
           file: ./abis/ArtistLocationMetadataInterpreter.json
         - name: ImageImageLinkNameImageInformationInterpreter
