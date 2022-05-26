@@ -113,13 +113,13 @@ type PriceRange @entity {
 
 type Variation @entity {
     id: ID!
-    internalId: BigInt!
-    name: String!
-    totalSupply: BigInt!
-    maxSupply: BigInt!
-    issuer: String!
-    image: String!
-    lostWorld: LostWorld!
+    internalId: BigInt
+    name: String
+    totalSupply: BigInt
+    maxSupply: BigInt
+    issuer: String
+    image: String
+    lostWorld: LostWorld
     orders: [Order!]! @derivedFrom(field: "variation")
 }
 

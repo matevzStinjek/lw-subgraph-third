@@ -153,7 +153,7 @@ export function handleAlphaRandomCurvedLostWorldV2Initialized (event: AlphaRando
         }
 
         let variationId = id + "-" + name.toString();
-        let variation = new Variation(variationId);
+        let variation = createVariationIfNotExist(variationId);
         variation.internalId = BigInt.fromI32(i);
         variation.name = name.toString();
         variation.totalSupply = BigInt.zero();
@@ -234,7 +234,7 @@ export function handleRandomFlatLostWorldInitialized (event: RandomFlatLostWorld
         }
 
         let variationId = id + "-" + name.toString();
-        let variation = new Variation(variationId);
+        let variation = createVariationIfNotExist(variationId);
         variation.internalId = BigInt.fromI32(i);
         variation.name = name.toString();
         variation.totalSupply = BigInt.zero();
@@ -300,7 +300,7 @@ export function handleFlatSingleLostWorldInitialized (event: FlatSingleLostWorld
     let variationIssuer = metadata.get("issuer");
     if (variationName && variationIssuer) {
         let variationId = id + "-" + variationName.toString();
-        let variation = new Variation(variationId);
+        let variation = createVariationIfNotExist(variationId);
         variation.internalId = BigInt.zero();
         variation.name = variationName.toString();
         variation.totalSupply = BigInt.zero();
@@ -396,8 +396,8 @@ function handleTransfer (event: TransferEvent, contractType: string): void {
 
     // increment lostWorlds totalSupply
     let lostWorld = LostWorld.load(event.address.toHexString().toLowerCase());
-    let variation = Variation.load(token.variation);
-    if (lostWorld && variation && event.params.from == Address.zero()) {
+    let variation = createVariationIfNotExist(token.variation);
+    if (lostWorld && event.params.from == Address.zero()) {
         variation.totalSupply = variation.totalSupply.plus(BigInt.fromI32(1));
         variation.save();
         
@@ -433,10 +433,7 @@ export function handleModifiedImageURI (event: ModifiedImageURIEvent): void {
     if (!lostWorld) {
         return;
     }
-    let variation = Variation.load(lostWorld.variations[0]);
-    if (!variation) {
-        return;
-    }
+    let variation = createVariationIfNotExist(lostWorld.variations[0]);
     variation.image = event.params.imageURI_;
     variation.save();
 }
@@ -448,4 +445,12 @@ function createProjectIfNotExist (id: string, event: ethereum.Event): void {
         project.createdTimestamp = event.block.timestamp.toI32();
         project.save();
     }
+}
+
+function createVariationIfNotExist (id: string): Variation {
+    let variation = Variation.load(id);
+    if (!variation) {
+        variation = new Variation(id);
+    }
+    return variation;
 }
