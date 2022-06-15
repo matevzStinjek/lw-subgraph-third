@@ -74,8 +74,10 @@ type TokenTransaction @entity {
     from: Bytes!
     to: Bytes!
     token: Token!
-    variation: Variation!
-    lostWorld: LostWorld!
+    variation: Variation
+    lostWorld: LostWorld
+    achievement: Achievement
+    contract: Bytes!
     timestamp: Int!
 }
 
@@ -111,13 +113,13 @@ type PriceRange @entity {
 
 type Variation @entity {
     id: ID!
-    internalId: BigInt!
-    name: String!
-    totalSupply: BigInt!
-    maxSupply: BigInt!
-    issuer: String!
-    image: String!
-    lostWorld: LostWorld!
+    internalId: BigInt
+    name: String
+    totalSupply: BigInt
+    maxSupply: BigInt
+    issuer: String
+    image: String
+    lostWorld: LostWorld
     orders: [Order!]! @derivedFrom(field: "variation")
 }
 
@@ -128,6 +130,7 @@ type Achievement @entity {
     image: String
     stakeCondition: BigInt
     lostReward: BigInt
+    badges: [Badge!]! @derivedFrom(field: "achievement")
 }
 
 type Badge @entity {

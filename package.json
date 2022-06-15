@@ -1,7 +1,7 @@
 {
   "name": "lost-worlds-subgraph",
   "version": "0.0.1",
-  "repository": "https://github.com/pangolindex/subgraph",
+  "repository": "https://github.com/lost-worlds/lost-worlds",
   "license": "GPL-3.0-or-later",
   "scripts": {
     "codegen": "graph codegen --output-dir src/types/",
@@ -11,15 +11,17 @@
     "full-send": "yarn codegen && yarn build && yarn create-local && yarn deploy-local",
     "last-3": "yarn build && yarn create-local && yarn deploy-local",
     "last-2": "yarn create-local && yarn deploy-local",
-    "test": "graph test"
+    "test": "graph test",
+    "deploy": "graph deploy --product hosted-service"
+  },
+  "dependencies": {
+    "as-base64": "0.2.0",
+    "matchstick-as": "0.2.2"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "0.25.1",
     "@graphprotocol/graph-ts": "0.24.1",
-    "as-base64": "0.2.0",
+    "graph": "0.2.0",
     "typescript": "^3.5.2"
-  },
-  "dependencies": {
-    "matchstick-as": "0.2.2"
   }
 }

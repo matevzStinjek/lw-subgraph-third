@@ -14,7 +14,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
       abis:
@@ -32,7 +32,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
       abis:
@@ -50,7 +50,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
       abis:
@@ -150,15 +150,15 @@ dataSources:
 templates:
   # LOST WORLDS
   - kind: ethereum/contract
-    name: AlphaRandomCurvedLostWorldV2
+    name: AlphaRandomCurvedLostWorld
     network: {{network}}
     source:
-      abi: AlphaRandomCurvedLostWorldV2
+      abi: AlphaRandomCurvedLostWorld
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
         - Variation
@@ -166,8 +166,8 @@ templates:
         - Token
         - TokenTransaction
       abis:
-        - name: AlphaRandomCurvedLostWorldV2
-          file: ./abis/AlphaRandomCurvedLostWorldV2.json
+        - name: AlphaRandomCurvedLostWorld
+          file: ./abis/AlphaRandomCurvedLostWorld.json
         - name: ArtistLocationMetadataInterpreter
           file: ./abis/ArtistLocationMetadataInterpreter.json
         - name: ImageImageLinkNameImageInformationInterpreter
@@ -190,7 +190,7 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
         - Variation
@@ -220,7 +220,7 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/fuji.ts
+      file: ./src/mappings/main.ts
       entities:
         - LostWorld
         - Variation

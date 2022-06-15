@@ -20,15 +20,15 @@ import {
 
 // templates
 import { 
-    AlphaRandomCurvedLostWorldV2 as AlphaRandomCurvedLostWorldV2Template,
+    AlphaRandomCurvedLostWorld as AlphaRandomCurvedLostWorldTemplate,
     RandomFlatLostWorld as RandomFlatLostWorldTemplate,
     FlatSingleLostWorld as FlatSingleLostWorldTemplate,
 } from "../types/templates";
 
 import {
     AlphaRandomCurvedLostWorldV2Initialized as AlphaRandomCurvedLostWorldV2InitializedEvent,
-    AlphaRandomCurvedLostWorldV2 as AlphaRandomCurvedLostWorldV2Contract,
-} from "../types/templates/AlphaRandomCurvedLostWorldV2/AlphaRandomCurvedLostWorldV2";
+    AlphaRandomCurvedLostWorld as AlphaRandomCurvedLostWorldContract,
+} from "../types/templates/AlphaRandomCurvedLostWorld/AlphaRandomCurvedLostWorld";
 
 import {
     RandomFlatLostWorldInitialized as RandomFlatLostWorldInitializedEvent,
@@ -46,7 +46,7 @@ import {
 // interpreters
 import { ArtistLocationMetadataInterpreter as MetadataInterpreterContract } from "../types/templates/RandomFlatLostWorld/ArtistLocationMetadataInterpreter";
 import { NameIssuerAdvancedVariationInterpreter as VariationInterpreterContract } from "../types/templates/RandomFlatLostWorld/NameIssuerAdvancedVariationInterpreter";
-import { ImageImageLinkNameImageInformationInterpreter as ImageInterpreterContract } from "../types/templates/AlphaRandomCurvedLostWorldV2/ImageImageLinkNameImageInformationInterpreter"
+import { ImageImageLinkNameImageInformationInterpreter as ImageInterpreterContract } from "../types/templates/AlphaRandomCurvedLostWorld/ImageImageLinkNameImageInformationInterpreter";
 
 export function handleAlphaRandomCurvedLostWorldRegistered (event: AlphaRandomCurvedLostWorldRegisteredEvent): void {
     // Ignore Genesis
@@ -59,7 +59,7 @@ export function handleAlphaRandomCurvedLostWorldRegistered (event: AlphaRandomCu
     lostWorld.type = "AlphaRandomCurvedLostWorld";
     lostWorld.save();
 
-    AlphaRandomCurvedLostWorldV2Template.create(event.params.proxyAddress);
+    AlphaRandomCurvedLostWorldTemplate.create(event.params.proxyAddress);
 }
 
 export function handleRandomFlatLostWorldRegistered (event: RandomFlatLostWorlRegisteredEvent): void {
@@ -87,7 +87,7 @@ export function handleAlphaRandomCurvedLostWorldV2Initialized (event: AlphaRando
         return;
     }
 
-    let contract = AlphaRandomCurvedLostWorldV2Contract.bind(event.address);
+    let contract = AlphaRandomCurvedLostWorldContract.bind(event.address);
 
     lostWorld.totalSupply = BigInt.zero();
     lostWorld.createdTimestamp = event.block.timestamp.toI32();
@@ -153,7 +153,7 @@ export function handleAlphaRandomCurvedLostWorldV2Initialized (event: AlphaRando
         }
 
         let variationId = id + "-" + name.toString();
-        let variation = new Variation(variationId);
+        let variation = createVariationIfNotExist(variationId);
         variation.internalId = BigInt.fromI32(i);
         variation.name = name.toString();
         variation.totalSupply = BigInt.zero();
@@ -234,7 +234,7 @@ export function handleRandomFlatLostWorldInitialized (event: RandomFlatLostWorld
         }
 
         let variationId = id + "-" + name.toString();
-        let variation = new Variation(variationId);
+        let variation = createVariationIfNotExist(variationId);
         variation.internalId = BigInt.fromI32(i);
         variation.name = name.toString();
         variation.totalSupply = BigInt.zero();
@@ -300,7 +300,7 @@ export function handleFlatSingleLostWorldInitialized (event: FlatSingleLostWorld
     let variationIssuer = metadata.get("issuer");
     if (variationName && variationIssuer) {
         let variationId = id + "-" + variationName.toString();
-        let variation = new Variation(variationId);
+        let variation = createVariationIfNotExist(variationId);
         variation.internalId = BigInt.zero();
         variation.name = variationName.toString();
         variation.totalSupply = BigInt.zero();
@@ -317,7 +317,7 @@ export function handleFlatSingleLostWorldInitialized (event: FlatSingleLostWorld
 }
 
 export function handleAlphaRandomCurvedLostWorldV2Transfer (event: TransferEvent): void {
-    handleTransfer(event, "AlphaRandomCurvedLostWorldV2Contract");
+    handleTransfer(event, "AlphaRandomCurvedLostWorldContract");
 }
 
 export function handleRandomFlatLostWorldTransfer (event: TransferEvent): void {
@@ -341,8 +341,8 @@ function handleTransfer (event: TransferEvent, contractType: string): void {
         token.hasActiveOrder = false;
 
         let tokenURIString: string;
-        if (contractType == "AlphaRandomCurvedLostWorldV2Contract") {
-            let contract = AlphaRandomCurvedLostWorldV2Contract.bind(event.address);  
+        if (contractType == "AlphaRandomCurvedLostWorldContract") {
+            let contract = AlphaRandomCurvedLostWorldContract.bind(event.address);  
             tokenURIString = contract.tokenURI(event.params.tokenId);
         } else if (contractType == "RandomFlatLostWorldContract") {
             let contract = RandomFlatLostWorldContract.bind(event.address);  
@@ -391,12 +391,13 @@ function handleTransfer (event: TransferEvent, contractType: string): void {
     tokenTransaction.token = id;
     tokenTransaction.variation = token.variation;
     tokenTransaction.lostWorld = token.lostWorld;
+    tokenTransaction.contract = event.address;
     tokenTransaction.save();
 
     // increment lostWorlds totalSupply
-    let lostWorld = LostWorld.load(event.address.toHexString());
-    let variation = Variation.load(token.variation);
-    if (lostWorld && variation && event.params.from == Address.zero()) {
+    let lostWorld = LostWorld.load(event.address.toHexString().toLowerCase());
+    let variation = createVariationIfNotExist(token.variation);
+    if (lostWorld && event.params.from == Address.zero()) {
         variation.totalSupply = variation.totalSupply.plus(BigInt.fromI32(1));
         variation.save();
         
@@ -432,10 +433,7 @@ export function handleModifiedImageURI (event: ModifiedImageURIEvent): void {
     if (!lostWorld) {
         return;
     }
-    let variation = Variation.load(lostWorld.variations[0]);
-    if (!variation) {
-        return;
-    }
+    let variation = createVariationIfNotExist(lostWorld.variations[0]);
     variation.image = event.params.imageURI_;
     variation.save();
 }
@@ -447,4 +445,12 @@ function createProjectIfNotExist (id: string, event: ethereum.Event): void {
         project.createdTimestamp = event.block.timestamp.toI32();
         project.save();
     }
+}
+
+function createVariationIfNotExist (id: string): Variation {
+    let variation = Variation.load(id);
+    if (!variation) {
+        variation = new Variation(id);
+    }
+    return variation;
 }
