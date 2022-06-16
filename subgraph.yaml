@@ -29,9 +29,9 @@ dataSources:
     name: RandomFlatLostWorldFactory
     network: fuji
     source:
-      address: '0x4D326B7D47a077A2C8068a0202Cce3bAe0408279'
+      address: '0x1f1faC71D12FD5bef829A02fE92051eE0E12b1D5'
       abi: RandomFlatLostWorldFactory
-      startBlock: 9604177
+      startBlock: 9650466
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -121,9 +121,9 @@ dataSources:
     name: LostAchievementFactoryClone
     network: fuji
     source:
-      address: '0x8Bd4188D26d6d2b0Fc1CD7D0db01A4bc95eF277D'
+      address: '0xfA8015D50eeCDAcbC3315Dd6033C9C550DEe638E'
       abi: LostAchievementFactoryClone
-      startBlock: 9079059
+      startBlock: 9621199
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -142,9 +142,9 @@ dataSources:
     name: LostAchievementChef
     network: fuji
     source:
-      address: '0x6a7bb1a027CE6D15D824FB91b00944BdCd0f34BD'
+      address: '0x14D5030dCf743dc93e5b1f7E4a716b8164adc291'
       abi: LostAchievementChef
-      startBlock: 9079052
+      startBlock: 9621193
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
