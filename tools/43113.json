@@ -9945,12 +9945,12 @@
                     "inputs": [
                         {
                             "indexed": false,
-                            "internalType": "string",
-                            "name": "imageURI_",
-                            "type": "string"
+                            "internalType": "uint8",
+                            "name": "version",
+                            "type": "uint8"
                         }
                     ],
-                    "name": "ModifiedImageURI",
+                    "name": "Initialized",
                     "type": "event"
                 },
                 {
@@ -10114,19 +10114,6 @@
                         }
                     ],
                     "stateMutability": "view",
-                    "type": "function"
-                },
-                {
-                    "inputs": [
-                        {
-                            "internalType": "uint256",
-                            "name": "tokenId",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "burn",
-                    "outputs": [],
-                    "stateMutability": "nonpayable",
                     "type": "function"
                 },
                 {
@@ -10383,19 +10370,6 @@
                     "name": "mint",
                     "outputs": [],
                     "stateMutability": "payable",
-                    "type": "function"
-                },
-                {
-                    "inputs": [
-                        {
-                            "internalType": "string",
-                            "name": "imageURI_",
-                            "type": "string"
-                        }
-                    ],
-                    "name": "modifyImageURI",
-                    "outputs": [],
-                    "stateMutability": "nonpayable",
                     "type": "function"
                 },
                 {
@@ -10695,7 +10669,7 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 9604017
+            "blockNumber": 9604176
         },
         "FlatSingleLostWorldFactory": {
             "address": "0xa6068B0D82642A3c55Ad481371847541CEeED47d",
@@ -16162,6 +16136,19 @@
                     "inputs": [
                         {
                             "indexed": false,
+                            "internalType": "uint8",
+                            "name": "version",
+                            "type": "uint8"
+                        }
+                    ],
+                    "name": "Initialized",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
                             "internalType": "string",
                             "name": "name_",
                             "type": "string"
@@ -16678,10 +16665,10 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 9079059
+            "blockNumber": 9621199
         },
         "LostAchievementChef": {
-            "address": "0x6a7bb1a027CE6D15D824FB91b00944BdCd0f34BD",
+            "address": "0x14D5030dCf743dc93e5b1f7E4a716b8164adc291",
             "abi": [
                 {
                     "anonymous": false,
@@ -16713,6 +16700,19 @@
                         }
                     ],
                     "name": "BeaconUpgraded",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "internalType": "uint8",
+                            "name": "version",
+                            "type": "uint8"
+                        }
+                    ],
+                    "name": "Initialized",
                     "type": "event"
                 },
                 {
@@ -17090,10 +17090,10 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 9079052
+            "blockNumber": 9621193
         },
         "LostAchievementFactoryClone": {
-            "address": "0x8Bd4188D26d6d2b0Fc1CD7D0db01A4bc95eF277D",
+            "address": "0xfA8015D50eeCDAcbC3315Dd6033C9C550DEe638E",
             "abi": [
                 {
                     "anonymous": false,
@@ -17125,6 +17125,19 @@
                         }
                     ],
                     "name": "BeaconUpgraded",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "internalType": "uint8",
+                            "name": "version",
+                            "type": "uint8"
+                        }
+                    ],
+                    "name": "Initialized",
                     "type": "event"
                 },
                 {
@@ -17339,7 +17352,7 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 9079059
+            "blockNumber": 9621199
         },
         "LostLayer": {
             "address": "0xB9aB47a0032D8e19941Ac2d42ffd6b00527ee363",
@@ -24877,7 +24890,7 @@
             "blockNumber": 9078992
         },
         "RandomFlatLostWorld": {
-            "address": "0xa4d74E75e4fE55b8cd241dE1754Aa3bB4232B1AF",
+            "address": "0x35c0aF3FeE6C671159D3aFD5970525A861E65e7B",
             "abi": [
                 {
                     "anonymous": false,
@@ -24940,6 +24953,19 @@
                         }
                     ],
                     "name": "Context",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "internalType": "uint8",
+                            "name": "version",
+                            "type": "uint8"
+                        }
+                    ],
+                    "name": "Initialized",
                     "type": "event"
                 },
                 {
@@ -25781,10 +25807,10 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 9078981
+            "blockNumber": 9650594
         },
         "RandomFlatLostWorldFactory": {
-            "address": "0x4D326B7D47a077A2C8068a0202Cce3bAe0408279",
+            "address": "0x1f1faC71D12FD5bef829A02fE92051eE0E12b1D5",
             "abi": [
                 {
                     "anonymous": false,
@@ -26164,10 +26190,10 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 9604177
+            "blockNumber": 9650466
         },
         "RandomFlatLostWorldV1": {
-            "address": "0xE4B785aa986c93E29192e8030ffcB03b253A4C5b",
+            "address": "0x222B2231C3A5ABBcbfFC4E1d433A0d412186FEEa",
             "abi": [
                 {
                     "anonymous": false,
@@ -26230,6 +26256,19 @@
                         }
                     ],
                     "name": "Context",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "internalType": "uint8",
+                            "name": "version",
+                            "type": "uint8"
+                        }
+                    ],
+                    "name": "Initialized",
                     "type": "event"
                 },
                 {
@@ -27071,10 +27110,10 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 9078946
+            "blockNumber": 9650465
         },
         "RandomFlatLostWorldV2": {
-            "address": "0xa4d74E75e4fE55b8cd241dE1754Aa3bB4232B1AF",
+            "address": "0x35c0aF3FeE6C671159D3aFD5970525A861E65e7B",
             "abi": [
                 {
                     "anonymous": false,
@@ -27137,6 +27176,19 @@
                         }
                     ],
                     "name": "Context",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "internalType": "uint8",
+                            "name": "version",
+                            "type": "uint8"
+                        }
+                    ],
+                    "name": "Initialized",
                     "type": "event"
                 },
                 {
@@ -27978,7 +28030,7 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 9078981
+            "blockNumber": 9650594
         },
         "RandomNumberGenerator": {
             "address": "0x56c65966b82E1e705155737Dc657bfAce8b2B154",
