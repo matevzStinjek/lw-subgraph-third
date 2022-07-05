@@ -1,102 +1,47 @@
-type Project @entity {
-    id: ID!
-    createdTimestamp: Int!
-    lostWorlds: [LostWorld!]! @derivedFrom(field: "project")
-}
-
-type LostWorld @entity {
-    id: ID!
-    type: String!
-
-    # FlatRandomLostWorld
-    price: BigInt
-
-    # CurvedRandomLostWorld
-    priceRanges: [PriceRange!]! @derivedFrom(field: "lostWorld")
-
-    # general
-    name: String
-    totalSupply: BigInt
-    maxSupply: BigInt
-    createdTimestamp: Int
-
-    # context
-    project: Project
-    detached: Boolean
-
-    # metadata
-    location: String
-    lat: BigDecimal
-    long: BigDecimal
-    radius: BigInt
-
-    variations: [Variation!]! @derivedFrom(field: "lostWorld")
-
-    tokens: [Token!]! @derivedFrom(field: "lostWorld")
-    orders: [Order!]! @derivedFrom(field: "lostWorld")
-}
-
-# type User @entity {
-#     id: ID!
-#     tokens
-#     sellOrders
-#     boughtOrders
-#     fromTransactions
-#     toTransactions
-#     totalClaimed
-# }
-
 type Token @entity {
-    id: ID!
-    tokenID: BigInt!
-    lostWorld: LostWorld!
-    variation: Variation!
-    minter: Bytes!
+    id:               ID!
+    tokenID:          BigInt!
+    lostWorld:        Bytes!
+    minter:           User!
     createdTimestamp: Int!
 
     # tokenURI
-    name: String!
-    minterLat: BigDecimal!
-    minterLong: BigDecimal!
+    name:  String!
     image: String!
 
     # mutables
-    owner: Bytes!
+    owner:            User!
+    activeOrder:      Order
+    hasActiveOrder:   Boolean!
     updatedTimestamp: Int!
+
     transactions: [TokenTransaction!]! @derivedFrom(field: "token")
-    orders: [Order!]! @derivedFrom(field: "token")
-    activeOrder: Order
-    hasActiveOrder: Boolean!
+    orders:       [Order!]!            @derivedFrom(field: "token")
 }
 
 type TokenTransaction @entity {
-    id: ID!
-    from: Bytes!
-    to: Bytes!
-    token: Token!
-    variation: Variation
-    lostWorld: LostWorld
-    achievement: Achievement
-    contract: Bytes!
+    id:        ID!
+    from:      User!
+    to:        User!
+    token:     Token!
+    contract:  Bytes!
     timestamp: Int!
 }
 
 type Order @entity {
-    id: ID! # prefix + orderId
-    orderId: BigInt!
+    id:          ID! # prefix + orderId
+    orderId:     BigInt!
     marketplace: String!
 
-    token: Token!
-    variation: Variation!
-    lostWorld: LostWorld!
+    token:     Token!
 
     # variables
-    price: BigInt!
-    seller: Bytes!
-    buyer: Bytes
+    price:  BigInt!
+    seller: User!
+    buyer:  User
 
     # flags
-    isOpen: Boolean!
+    isOpen:     Boolean!
     isExecuted: Boolean!
 
     # timestamps
@@ -104,42 +49,21 @@ type Order @entity {
     updatedTimestamp: Int!
 }
 
-type PriceRange @entity {
-    id: ID!
-    threshold: BigInt!
-    price: BigInt!
-    lostWorld: LostWorld!
-}
-
-type Variation @entity {
-    id: ID!
-    internalId: BigInt
-    name: String
-    totalSupply: BigInt
-    maxSupply: BigInt
-    issuer: String
-    image: String
-    lostWorld: LostWorld
-    orders: [Order!]! @derivedFrom(field: "variation")
-}
-
-type Achievement @entity {
-    id: ID!
-    name: String
-    description: String
-    image: String
-    stakeCondition: BigInt
-    lostReward: BigInt
-    badges: [Badge!]! @derivedFrom(field: "achievement")
-}
-
 type Badge @entity {
-    id: ID!
-    achievement: Achievement!
-    tokenID: BigInt!
-    owner: Bytes!
-    name: String!
-    description: String!
-    achievedAt: Int!
-    image: String!
+    id:          ID!
+    tokenID:     BigInt!
+    achievement: Bytes!
+    owner:       User!
+    achievedAt:  Int!
+}
+
+type User @entity {
+    id:               ID!
+    owner:            [Token!]!            @derivedFrom(field: "owner")
+    minter:           [Token!]!            @derivedFrom(field: "minter")
+    fromTransactions: [TokenTransaction!]! @derivedFrom(field: "from")
+    toTransactions:   [TokenTransaction!]! @derivedFrom(field: "to")
+    sellOrders:       [Order!]!            @derivedFrom(field: "seller")
+    boughtOrders:     [Order!]!            @derivedFrom(field: "buyer")
+    badges:           [Badge!]!            @derivedFrom(field: "owner")
 }

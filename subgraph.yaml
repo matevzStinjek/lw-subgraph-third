@@ -7,18 +7,18 @@ dataSources:
   # FACTORIES
   - kind: ethereum/contract
     name: AlphaRandomCurvedLostWorldFactory
-    network: avalanche
+    network: fuji
     source:
-      address: '0xfD81c8A69A749B4E0C34Afc6f29900B77Dd928f6'
+      address: '0x187B745ACA9E73054220f1E44Db140DAd558D9A4'
       abi: AlphaRandomCurvedLostWorldFactory
-      startBlock: 7655134
+      startBlock: 10899027
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
+        - Token
       abis:
         - name: AlphaRandomCurvedLostWorldFactory
           file: ./abis/AlphaRandomCurvedLostWorldFactory.json
@@ -27,18 +27,18 @@ dataSources:
           handler: handleAlphaRandomCurvedLostWorldRegistered
   - kind: ethereum/contract
     name: RandomFlatLostWorldFactory
-    network: avalanche
+    network: fuji
     source:
-      address: '0x17161D0624B21CFAc1204B370F12092E695bF0E4'
+      address: '0xAE5FEd0ea4F820aFa3171bD476A1B76aBfD1e834'
       abi: RandomFlatLostWorldFactory
-      startBlock: 12430889
+      startBlock: 10899977
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
+        - Token
       abis:
         - name: RandomFlatLostWorldFactory
           file: ./abis/RandomFlatLostWorldFactory.json
@@ -47,18 +47,18 @@ dataSources:
           handler: handleRandomFlatLostWorldRegistered
   - kind: ethereum/contract
     name: FlatSingleLostWorldFactory
-    network: avalanche
+    network: fuji
     source:
-      address: '0x279B07702f6384f137DD7c06e825F4170526a3ac'
+      address: '0x8C214Dc7D5a0fb490D3e00336df175b0e54B658F'
       abi: FlatSingleLostWorldFactory
-      startBlock: 12430902
+      startBlock: 10899990
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
+        - Token
       abis:
         - name: FlatSingleLostWorldFactory
           file: ./abis/FlatSingleLostWorldFactory.json
@@ -68,11 +68,11 @@ dataSources:
   # MARKETPLACES
   - kind: ethereum/contract
     name: AlphaLostWorldsMarketplaceV1
-    network: avalanche
+    network: fuji
     source:
-      address: '0x23D6f7b67866b59Cc0366282A50E0e12EB751ede'
+      address: '0x2485baC1B3130017A559c17fFd8873d6530D311b'
       abi: AlphaLostWorldsMarketplaceV1
-      startBlock: 7733706
+      startBlock: 10899001
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -93,11 +93,11 @@ dataSources:
           handler: handleAlphaLostWorldsMarketplaceV1OrderRemoved
   - kind: ethereum/contract
     name: LostWorldsMarketplace
-    network: avalanche
+    network: fuji
     source:
-      address: '0xD5836B14A44b60209c6C20023d721858047a9E7E'
+      address: '0xFa780e207bB34C2c70F18Ec1e4CA192DcEAAf3ea'
       abi: LostWorldsMarketplace
-      startBlock: 12393750
+      startBlock: 10899963
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -119,18 +119,17 @@ dataSources:
   # ACHIEVEMENTS
   - kind: ethereum/contract
     name: LostAchievementFactoryClone
-    network: avalanche
+    network: fuji
     source:
-      address: '0xB1AF0f655D3aA4d4d35F4B34D4C11Dd4f8d6c84d'
+      address: '0x7c1888A2af6391004EBD98877BF22403b9017BFE'
       abi: LostAchievementFactoryClone
-      startBlock: 13324688
+      startBlock: 10900180
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/achievements.ts
       entities:
-        - Token
         - Order
       abis:
         - name: LostAchievementFactoryClone
@@ -140,11 +139,11 @@ dataSources:
           handler: handleNewAchievementClone
   - kind: ethereum/contract
     name: LostAchievementChef
-    network: avalanche
+    network: fuji
     source:
-      address: '0x590634D50d98264bF2b6db743fabD093A9077b79'
+      address: '0xfd32302eE5Cfb3Cb9bC9C09a735146cDE0f23283'
       abi: LostAchievementChef
-      startBlock: 13324724
+      startBlock: 10900173
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -152,7 +151,6 @@ dataSources:
       file: ./src/mappings/achievements.ts
       entities:
         - Token
-        - Order
       abis:
         - name: LostAchievementChef
           file: ./abis/LostAchievementChef.json
@@ -165,7 +163,7 @@ templates:
   # LOST WORLDS
   - kind: ethereum/contract
     name: AlphaRandomCurvedLostWorld
-    network: avalanche
+    network: fuji
     source:
       abi: AlphaRandomCurvedLostWorld
     mapping:
@@ -174,9 +172,6 @@ templates:
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
-        - Variation
-        - Project
         - Token
         - TokenTransaction
       abis:
@@ -189,15 +184,11 @@ templates:
         - name: NameIssuerAdvancedVariationInterpreter
           file: ./abis/NameIssuerAdvancedVariationInterpreter.json
       eventHandlers:
-        - event: AlphaRandomCurvedLostWorldV2Initialized((string,string,bytes,bytes,bytes,bytes,string,address,address,uint16,address),(address,address,address,address,address,address,address,address),(uint16,bytes)[],(uint256,uint256)[],address,(uint256,uint256)[],address)
-          handler: handleAlphaRandomCurvedLostWorldV2Initialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleAlphaRandomCurvedLostWorldV2Transfer
-        - event: Context(string)
-          handler: handleContext
   - kind: ethereum/contract
     name: RandomFlatLostWorld
-    network: avalanche
+    network: fuji
     source:
       abi: RandomFlatLostWorld
     mapping:
@@ -206,9 +197,6 @@ templates:
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
-        - Variation
-        - Project
         - Token
         - TokenTransaction
       abis:
@@ -219,15 +207,11 @@ templates:
         - name: NameIssuerAdvancedVariationInterpreter
           file: ./abis/NameIssuerAdvancedVariationInterpreter.json
       eventHandlers:
-        - event: RandomFlatLostWorldInitialized((string,string,string,string,address,address,address,address,address,uint16),address,(uint16,string)[],uint256,address)
-          handler: handleRandomFlatLostWorldInitialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleRandomFlatLostWorldTransfer
-        - event: Context(string)
-          handler: handleContext
   - kind: ethereum/contract
     name: FlatSingleLostWorld
-    network: avalanche
+    network: fuji
     source:
       abi: FlatSingleLostWorld
     mapping:
@@ -236,9 +220,6 @@ templates:
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
-        - Variation
-        - Project
         - Token
         - TokenTransaction
       abis:
@@ -249,18 +230,12 @@ templates:
         - name: NameIssuerAdvancedVariationInterpreter
           file: ./abis/NameIssuerAdvancedVariationInterpreter.json
       eventHandlers:
-        - event: FlatSingleLostWorldInitialized((string,string,string,string,address,address,address,address,address,uint16),uint256,uint256)
-          handler: handleFlatSingleLostWorldInitialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleFlatSingleLostWorldTransfer
-        - event: Context(string)
-          handler: handleContext
-        # - event: ModifiedImageURI(string)
-        #   handler: handleModifiedImageURI
   # ACHIEVEMENTS
   - kind: ethereum/contract
     name: LostAchievement
-    network: avalanche
+    network: fuji
     source:
       abi: LostAchievement
     mapping:
@@ -269,12 +244,10 @@ templates:
       language: wasm/assemblyscript
       file: ./src/mappings/achievements.ts
       entities:
-        - Achievement
+        - Badge
       abis:
         - name: LostAchievement
           file: ./abis/LostAchievement.json
       eventHandlers:
-        - event: LostAchievementInitialized(string,string,address,address,string,string,address)
-          handler: handleLostAchievementInitialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleBadgeClaimed

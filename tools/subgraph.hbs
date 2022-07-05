@@ -16,7 +16,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
+        - Token
       abis:
         - name: AlphaRandomCurvedLostWorldFactory
           file: ./abis/AlphaRandomCurvedLostWorldFactory.json
@@ -34,7 +34,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
+        - Token
       abis:
         - name: RandomFlatLostWorldFactory
           file: ./abis/RandomFlatLostWorldFactory.json
@@ -52,7 +52,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
+        - Token
       abis:
         - name: FlatSingleLostWorldFactory
           file: ./abis/FlatSingleLostWorldFactory.json
@@ -118,7 +118,6 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/achievements.ts
       entities:
-        - Token
         - Order
       abis:
         - name: LostAchievementFactoryClone
@@ -138,7 +137,6 @@ dataSources:
       file: ./src/mappings/achievements.ts
       entities:
         - Token
-        - Order
       abis:
         - name: LostAchievementChef
           file: ./abis/LostAchievementChef.json
@@ -160,9 +158,6 @@ templates:
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
-        - Variation
-        - Project
         - Token
         - TokenTransaction
       abis:
@@ -175,12 +170,8 @@ templates:
         - name: NameIssuerAdvancedVariationInterpreter
           file: ./abis/NameIssuerAdvancedVariationInterpreter.json
       eventHandlers:
-        - event: AlphaRandomCurvedLostWorldV2Initialized((string,string,bytes,bytes,bytes,bytes,string,address,address,uint16,address),(address,address,address,address,address,address,address,address),(uint16,bytes)[],(uint256,uint256)[],address,(uint256,uint256)[],address)
-          handler: handleAlphaRandomCurvedLostWorldV2Initialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleAlphaRandomCurvedLostWorldV2Transfer
-        - event: Context(string)
-          handler: handleContext
   - kind: ethereum/contract
     name: RandomFlatLostWorld
     network: {{network}}
@@ -192,9 +183,6 @@ templates:
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
-        - Variation
-        - Project
         - Token
         - TokenTransaction
       abis:
@@ -205,12 +193,8 @@ templates:
         - name: NameIssuerAdvancedVariationInterpreter
           file: ./abis/NameIssuerAdvancedVariationInterpreter.json
       eventHandlers:
-        - event: RandomFlatLostWorldInitialized((string,string,string,string,address,address,address,address,address,uint16),address,(uint16,string)[],uint256,address)
-          handler: handleRandomFlatLostWorldInitialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleRandomFlatLostWorldTransfer
-        - event: Context(string)
-          handler: handleContext
   - kind: ethereum/contract
     name: FlatSingleLostWorld
     network: {{network}}
@@ -222,9 +206,6 @@ templates:
       language: wasm/assemblyscript
       file: ./src/mappings/main.ts
       entities:
-        - LostWorld
-        - Variation
-        - Project
         - Token
         - TokenTransaction
       abis:
@@ -235,14 +216,8 @@ templates:
         - name: NameIssuerAdvancedVariationInterpreter
           file: ./abis/NameIssuerAdvancedVariationInterpreter.json
       eventHandlers:
-        - event: FlatSingleLostWorldInitialized((string,string,string,string,address,address,address,address,address,uint16),uint256,uint256)
-          handler: handleFlatSingleLostWorldInitialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleFlatSingleLostWorldTransfer
-        - event: Context(string)
-          handler: handleContext
-        - event: ModifiedImageURI(string)
-          handler: handleModifiedImageURI
   # ACHIEVEMENTS
   - kind: ethereum/contract
     name: LostAchievement
@@ -255,12 +230,10 @@ templates:
       language: wasm/assemblyscript
       file: ./src/mappings/achievements.ts
       entities:
-        - Achievement
+        - Badge
       abis:
         - name: LostAchievement
           file: ./abis/LostAchievement.json
       eventHandlers:
-        - event: LostAchievementInitialized(string,string,address,address,string,string,address)
-          handler: handleLostAchievementInitialized
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleBadgeClaimed
