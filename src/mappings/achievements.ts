@@ -11,21 +11,21 @@ import { Badge } from "../types/schema";
 // dataSources
 import {
     NewClone as NewCloneEvent,
-} from "../types/LostAchievementFactoryClone/LostAchievementFactoryClone";
+} from "../types/BetaLostAchievementFactoryClone/BetaLostAchievementFactoryClone";
 
 // templates
 import { 
-    LostAchievement as LostAchievementTemplate,
+    BetaLostAchievement as LostAchievementTemplate,
 } from "../types/templates";
 
 import {
-    LostAchievement as LostAchievementContract,
-} from "../types/templates/LostAchievement/LostAchievement"
+    BetaLostAchievement as LostAchievementContract,
+} from "../types/templates/BetaLostAchievement/BetaLostAchievement"
 
 
 import {
     Transfer as TransferEvent,
-} from "../types/templates/FlatSingleLostWorld/FlatSingleLostWorld";
+} from "../types/templates/BetaSimpleFlatLostWorld/BetaSimpleFlatLostWorld";
 
 
 export function handleNewAchievementClone (event: NewCloneEvent): void {

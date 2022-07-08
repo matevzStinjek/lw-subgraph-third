@@ -3,7 +3,7 @@ import { User, TokenTransaction } from "../types/schema";
 
 import {
     Transfer as TransferEvent,
-} from "../types/templates/FlatSingleLostWorld/FlatSingleLostWorld";
+} from "../types/templates/BetaSimpleFlatLostWorld/BetaSimpleFlatLostWorld";
 
 
 export function createUserIfNotExist (address: Address): string {

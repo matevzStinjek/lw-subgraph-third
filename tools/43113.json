@@ -2074,7 +2074,7 @@
                             "type": "address"
                         }
                     ],
-                    "name": "AlphaRandomCurvedLostWorldV2Initialized",
+                    "name": "AlphaRandomCurvedLostWorldInitialized",
                     "type": "event"
                 },
                 {
@@ -5431,7 +5431,7 @@
                             "type": "address"
                         }
                     ],
-                    "name": "AlphaRandomCurvedLostWorldV2Initialized",
+                    "name": "AlphaRandomCurvedLostWorldInitialized",
                     "type": "event"
                 },
                 {
@@ -9927,7 +9927,7 @@
             ],
             "blockNumber": 9078999
         },
-        "FlatSingleLostWorld": {
+        "BetaSimpleFlatLostWorld": {
             "address": "0x3Ccc62Bebe3Fa228C5e7834BE146b14a5d136B37",
             "abi": [
                 {
@@ -10034,7 +10034,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -10050,7 +10050,7 @@
                                 }
                             ],
                             "indexed": false,
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -10067,7 +10067,7 @@
                             "type": "uint256"
                         }
                     ],
-                    "name": "FlatSingleLostWorldInitialized",
+                    "name": "BetaSimpleFlatLostWorldInitialized",
                     "type": "event"
                 },
                 {
@@ -10424,7 +10424,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -10439,7 +10439,7 @@
                                     "type": "uint16"
                                 }
                             ],
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -10513,7 +10513,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         },
@@ -10840,7 +10840,7 @@
             ],
             "blockNumber": 10900059
         },
-        "FlatSingleLostWorldFactory": {
+        "BetaSimpleFlatLostWorldFactory": {
             "address": "0x8C214Dc7D5a0fb490D3e00336df175b0e54B658F",
             "abi": [
                 {
@@ -11223,7 +11223,7 @@
             ],
             "blockNumber": 10899990
         },
-        "FlatSingleLostWorldV1": {
+        "SimpleFlatLostWorldV1": {
             "address": "0x7909C6AC7f2D47EAB00CE7C80Fd07D7525741DFC",
             "abi": [
                 {
@@ -11330,7 +11330,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -11346,7 +11346,7 @@
                                 }
                             ],
                             "indexed": false,
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -11363,7 +11363,7 @@
                             "type": "uint256"
                         }
                     ],
-                    "name": "FlatSingleLostWorldInitialized",
+                    "name": "BetaSimpleFlatLostWorldInitialized",
                     "type": "event"
                 },
                 {
@@ -11694,7 +11694,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -11709,7 +11709,7 @@
                                     "type": "uint16"
                                 }
                             ],
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -11783,7 +11783,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         },
@@ -12097,7 +12097,7 @@
             ],
             "blockNumber": 10899990
         },
-        "FlatSingleLostWorldV2": {
+        "SimpleFlatLostWorldV2": {
             "address": "0xE61d59809a7331AD110aE28f4D524211c3F38022",
             "abi": [
                 {
@@ -12204,7 +12204,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -12220,7 +12220,7 @@
                                 }
                             ],
                             "indexed": false,
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -12237,7 +12237,7 @@
                             "type": "uint256"
                         }
                     ],
-                    "name": "FlatSingleLostWorldInitialized",
+                    "name": "BetaSimpleFlatLostWorldInitialized",
                     "type": "event"
                 },
                 {
@@ -12568,7 +12568,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -12583,7 +12583,7 @@
                                     "type": "uint16"
                                 }
                             ],
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -12657,7 +12657,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         },
@@ -12971,7 +12971,7 @@
             ],
             "blockNumber": 10900014
         },
-        "FlatSingleLostWorldV3": {
+        "SimpleFlatLostWorldV3": {
             "address": "0x7f143Bb64AE1bb955B49ecd103DbC411e92Ea714",
             "abi": [
                 {
@@ -13078,7 +13078,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -13094,7 +13094,7 @@
                                 }
                             ],
                             "indexed": false,
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -13111,7 +13111,7 @@
                             "type": "uint256"
                         }
                     ],
-                    "name": "FlatSingleLostWorldInitialized",
+                    "name": "BetaSimpleFlatLostWorldInitialized",
                     "type": "event"
                 },
                 {
@@ -13455,7 +13455,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -13470,7 +13470,7 @@
                                     "type": "uint16"
                                 }
                             ],
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -13544,7 +13544,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         },
@@ -13858,7 +13858,7 @@
             ],
             "blockNumber": 10900035
         },
-        "FlatSingleLostWorldV4": {
+        "SimpleFlatLostWorldV4": {
             "address": "0x3Ccc62Bebe3Fa228C5e7834BE146b14a5d136B37",
             "abi": [
                 {
@@ -13965,7 +13965,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -13981,7 +13981,7 @@
                                 }
                             ],
                             "indexed": false,
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -13998,7 +13998,7 @@
                             "type": "uint256"
                         }
                     ],
-                    "name": "FlatSingleLostWorldInitialized",
+                    "name": "BetaSimpleFlatLostWorldInitialized",
                     "type": "event"
                 },
                 {
@@ -14355,7 +14355,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -14370,7 +14370,7 @@
                                     "type": "uint16"
                                 }
                             ],
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -14444,7 +14444,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         },
@@ -16299,7 +16299,7 @@
             ],
             "blockNumber": 9078771
         },
-        "LostAchievement": {
+        "BetaLostAchievement": {
             "address": "0x0000000000000000000000000000000000000000",
             "abi": [
                 {
@@ -16382,7 +16382,7 @@
                         },
                         {
                             "indexed": false,
-                            "internalType": "contract ISignatureVerifier",
+                            "internalType": "contract IBetaSignatureVerifier",
                             "name": "signatureVerifier_",
                             "type": "address"
                         },
@@ -16525,7 +16525,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         }
@@ -16567,7 +16567,7 @@
                             "type": "string"
                         },
                         {
-                            "internalType": "contract ISignatureVerifier",
+                            "internalType": "contract IBetaSignatureVerifier",
                             "name": "signatureVerifier_",
                             "type": "address"
                         },
@@ -16886,10 +16886,10 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 10900180
+            "blockNumber": 11080605
         },
-        "LostAchievementChef": {
-            "address": "0xfd32302eE5Cfb3Cb9bC9C09a735146cDE0f23283",
+        "BetaLostAchievementChef": {
+            "address": "0xA6F1D989e49b227aD7fF79C538A012ddC4C770Df",
             "abi": [
                 {
                     "anonymous": false,
@@ -16952,7 +16952,7 @@
                             "type": "address"
                         }
                     ],
-                    "name": "LostAchievementChefInitialized",
+                    "name": "BetaLostAchievementChefInitialized",
                     "type": "event"
                 },
                 {
@@ -17311,10 +17311,10 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 10900173
+            "blockNumber": 11080599
         },
-        "LostAchievementFactoryClone": {
-            "address": "0x7c1888A2af6391004EBD98877BF22403b9017BFE",
+        "BetaLostAchievementFactoryClone": {
+            "address": "0xEB96999306580ea141Ba6CcACF12E691068df666",
             "abi": [
                 {
                     "anonymous": false,
@@ -17371,7 +17371,7 @@
                             "type": "address"
                         }
                     ],
-                    "name": "LostAchievementFactoryCloneInitialized",
+                    "name": "BetaLostAchievementFactoryCloneInitialized",
                     "type": "event"
                 },
                 {
@@ -17445,7 +17445,7 @@
                             "type": "string"
                         },
                         {
-                            "internalType": "contract ISignatureVerifier",
+                            "internalType": "contract IBetaSignatureVerifier",
                             "name": "signatureVerifier_",
                             "type": "address"
                         },
@@ -17573,7 +17573,7 @@
                     "type": "function"
                 }
             ],
-            "blockNumber": 10900180
+            "blockNumber": 11080605
         },
         "LostLayer": {
             "address": "0xF4d8B94600Fa66fE115E04d711EE61897de08736",
@@ -20980,7 +20980,7 @@
                 {
                     "inputs": [
                         {
-                            "internalType": "contract IAlphaCurvedLostWorldBase",
+                            "internalType": "contract IAlphaCurvedLostWorld",
                             "name": "lostWorld",
                             "type": "address"
                         }
@@ -21110,7 +21110,7 @@
                 {
                     "inputs": [
                         {
-                            "internalType": "contract IAlphaLostWorldBaseV1",
+                            "internalType": "contract IAlphaLostWorldV1",
                             "name": "lostWorld",
                             "type": "address"
                         }
@@ -21228,7 +21228,7 @@
                 {
                     "inputs": [
                         {
-                            "internalType": "contract IAlphaLostWorldBaseV1",
+                            "internalType": "contract IAlphaLostWorldV1",
                             "name": "lostWorld",
                             "type": "address"
                         }
@@ -23678,7 +23678,7 @@
             ],
             "blockNumber": 9079016
         },
-        "OwnerBasedVerifier": {
+        "BetaOwnerBasedVerifier": {
             "address": "0x6EA009B282789e1B4F09AD1B564A9a6b5cbD7e7B",
             "abi": [
                 {
@@ -23784,7 +23784,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         },
@@ -25162,7 +25162,7 @@
             ],
             "blockNumber": 9078992
         },
-        "RandomFlatLostWorld": {
+        "BetaRandomFlatLostWorld": {
             "address": "0x6370Ba02Cc01da1FFBCAf026082f433AC65f97F4",
             "abi": [
                 {
@@ -25282,7 +25282,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -25298,7 +25298,7 @@
                                 }
                             ],
                             "indexed": false,
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -25339,7 +25339,7 @@
                             "type": "address"
                         }
                     ],
-                    "name": "RandomFlatLostWorldInitialized",
+                    "name": "BetaRandomFlatLostWorldInitialized",
                     "type": "event"
                 },
                 {
@@ -25657,7 +25657,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -25672,7 +25672,7 @@
                                     "type": "uint16"
                                 }
                             ],
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -25768,7 +25768,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         },
@@ -26082,7 +26082,7 @@
             ],
             "blockNumber": 10900008
         },
-        "RandomFlatLostWorldFactory": {
+        "BetaRandomFlatLostWorldFactory": {
             "address": "0xAE5FEd0ea4F820aFa3171bD476A1B76aBfD1e834",
             "abi": [
                 {
@@ -26465,7 +26465,7 @@
             ],
             "blockNumber": 10899977
         },
-        "RandomFlatLostWorldV1": {
+        "BetaRandomFlatLostWorldV1": {
             "address": "0xB16c5b076b0ca943Ff05BF850A645D4f09609125",
             "abi": [
                 {
@@ -26585,7 +26585,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -26601,7 +26601,7 @@
                                 }
                             ],
                             "indexed": false,
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -26642,7 +26642,7 @@
                             "type": "address"
                         }
                     ],
-                    "name": "RandomFlatLostWorldInitialized",
+                    "name": "BetaRandomFlatLostWorldInitialized",
                     "type": "event"
                 },
                 {
@@ -26960,7 +26960,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -26975,7 +26975,7 @@
                                     "type": "uint16"
                                 }
                             ],
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -27071,7 +27071,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         },
@@ -27385,7 +27385,7 @@
             ],
             "blockNumber": 10899977
         },
-        "RandomFlatLostWorldV2": {
+        "BetaRandomFlatLostWorldV2": {
             "address": "0x6370Ba02Cc01da1FFBCAf026082f433AC65f97F4",
             "abi": [
                 {
@@ -27505,7 +27505,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -27521,7 +27521,7 @@
                                 }
                             ],
                             "indexed": false,
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -27562,7 +27562,7 @@
                             "type": "address"
                         }
                     ],
-                    "name": "RandomFlatLostWorldInitialized",
+                    "name": "BetaRandomFlatLostWorldInitialized",
                     "type": "event"
                 },
                 {
@@ -27880,7 +27880,7 @@
                                     "type": "address"
                                 },
                                 {
-                                    "internalType": "contract ISignatureVerifier",
+                                    "internalType": "contract IBetaSignatureVerifier",
                                     "name": "signatureVerifier_",
                                     "type": "address"
                                 },
@@ -27895,7 +27895,7 @@
                                     "type": "uint16"
                                 }
                             ],
-                            "internalType": "struct InitializationParams",
+                            "internalType": "struct BetaInitializationParams",
                             "name": "initializationParams_",
                             "type": "tuple"
                         },
@@ -27991,7 +27991,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         },
@@ -29319,7 +29319,7 @@
             ],
             "blockNumber": 9078969
         },
-        "SignerBasedVerifier": {
+        "BetaSignerBasedVerifier": {
             "address": "0xF243Eb9eD00920A31a9727a2EeCbCBDBd05bF54A",
             "abi": [
                 {
@@ -29425,7 +29425,7 @@
                                     "type": "bytes"
                                 }
                             ],
-                            "internalType": "struct VerificationParams",
+                            "internalType": "struct BetaVerificationParams",
                             "name": "verificationParams",
                             "type": "tuple"
                         },

@@ -12,7 +12,10 @@
     "last-3": "yarn build && yarn create-local && yarn deploy-local",
     "last-2": "yarn create-local && yarn deploy-local",
     "test": "graph test",
-    "deploy": "graph deploy --product hosted-service"
+    "deploy": "graph deploy --product hosted-service",
+    "deploy:avalanche": "yarn deploy matevzStinjek/lw-subgraph-avalanche",
+    "deploy:fuji": "yarn deploy matevzStinjek/lw-subgraph-fuji",
+    "deploy:third": "yarn deploy matevzStinjek/lw-subgraph-third"
   },
   "dependencies": {
     "as-base64": "0.2.0",

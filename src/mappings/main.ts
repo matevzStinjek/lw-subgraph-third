@@ -11,21 +11,21 @@ import { Token } from "../types/schema";
 // dataSources
 import {
     ProxyDeployed as RandomFlatLostWorlRegisteredEvent,
-} from "../types/RandomFlatLostWorldFactory/RandomFlatLostWorldFactory";
+} from "../types/BetaRandomFlatLostWorldFactory/BetaRandomFlatLostWorldFactory";
 
 import {
     ProxyDeployed as AlphaRandomCurvedLostWorldRegisteredEvent,
 } from "../types/AlphaRandomCurvedLostWorldFactory/AlphaRandomCurvedLostWorldFactory";
 
 import {
-    ProxyDeployed as FlatSingleLostWorldRegisteredEvent,
-} from "../types/FlatSingleLostWorldFactory/FlatSingleLostWorldFactory";
+    ProxyDeployed as BetaSimpleFlatLostWorldRegisteredEvent,
+} from "../types/BetaSimpleFlatLostWorldFactory/BetaSimpleFlatLostWorldFactory";
 
 // templates
 import { 
     AlphaRandomCurvedLostWorld as AlphaRandomCurvedLostWorldTemplate,
-    RandomFlatLostWorld as RandomFlatLostWorldTemplate,
-    FlatSingleLostWorld as FlatSingleLostWorldTemplate,
+    BetaRandomFlatLostWorld as BetaRandomFlatLostWorldTemplate,
+    BetaSimpleFlatLostWorld as BetaSimpleFlatLostWorldTemplate,
 } from "../types/templates";
 
 import {
@@ -33,13 +33,14 @@ import {
 } from "../types/templates/AlphaRandomCurvedLostWorld/AlphaRandomCurvedLostWorld";
 
 import {
-    RandomFlatLostWorld as RandomFlatLostWorldContract,
-} from "../types/templates/RandomFlatLostWorld/RandomFlatLostWorld";
+    BetaRandomFlatLostWorld as BetaRandomFlatLostWorldContract,
+} from "../types/templates/BetaRandomFlatLostWorld/BetaRandomFlatLostWorld";
 
 import {
     Transfer as TransferEvent,
-    FlatSingleLostWorld as FlatSingleLostWorldContract,
-} from "../types/templates/FlatSingleLostWorld/FlatSingleLostWorld";
+    BetaSimpleFlatLostWorld as BetaSimpleFlatLostWorldContract,
+} from "../types/templates/BetaSimpleFlatLostWorld/BetaSimpleFlatLostWorld";
+
 
 // register templates
 export function handleAlphaRandomCurvedLostWorldRegistered (event: AlphaRandomCurvedLostWorldRegisteredEvent): void {
@@ -47,29 +48,28 @@ export function handleAlphaRandomCurvedLostWorldRegistered (event: AlphaRandomCu
     if (event.params.proxyAddress.toHexString().toLowerCase() == "0x695f4015d80d6e1ceae875373fed8573483525bb") {
         return;
     }
-
     AlphaRandomCurvedLostWorldTemplate.create(event.params.proxyAddress);
 }
 
-export function handleRandomFlatLostWorldRegistered (event: RandomFlatLostWorlRegisteredEvent): void {
-    RandomFlatLostWorldTemplate.create(event.params.proxyAddress);
+export function handleBetaRandomFlatLostWorldRegistered (event: RandomFlatLostWorlRegisteredEvent): void {
+    BetaRandomFlatLostWorldTemplate.create(event.params.proxyAddress);
 }
 
-export function handleFlatSingleLostWorldRegistered (event: FlatSingleLostWorldRegisteredEvent): void {
-    FlatSingleLostWorldTemplate.create(event.params.proxyAddress);
+export function handleBetaSimpleFlatLostWorldRegistered (event: BetaSimpleFlatLostWorldRegisteredEvent): void {
+    BetaSimpleFlatLostWorldTemplate.create(event.params.proxyAddress);
 }
 
 // handle transfers
-export function handleAlphaRandomCurvedLostWorldV2Transfer (event: TransferEvent): void {
+export function handleAlphaRandomCurvedLostWorldTransfer (event: TransferEvent): void {
     handleTransfer(event, "AlphaRandomCurvedLostWorldContract");
 }
 
-export function handleRandomFlatLostWorldTransfer (event: TransferEvent): void {
-    handleTransfer(event, "RandomFlatLostWorldContract");
+export function handleBetaRandomFlatLostWorldTransfer (event: TransferEvent): void {
+    handleTransfer(event, "BetaRandomFlatLostWorldContract");
 }
 
-export function handleFlatSingleLostWorldTransfer (event: TransferEvent): void {
-    handleTransfer(event, "FlatSingleLostWorldContract");
+export function handleBetaSimpleFlatLostWorldTransfer (event: TransferEvent): void {
+    handleTransfer(event, "BetaSimpleFlatLostWorldContract");
 }
 
 function handleTransfer (event: TransferEvent, contractType: string): void {
@@ -88,11 +88,11 @@ function handleTransfer (event: TransferEvent, contractType: string): void {
         if (contractType == "AlphaRandomCurvedLostWorldContract") {
             let contract = AlphaRandomCurvedLostWorldContract.bind(event.address);  
             tokenURIString = contract.tokenURI(event.params.tokenId);
-        } else if (contractType == "RandomFlatLostWorldContract") {
-            let contract = RandomFlatLostWorldContract.bind(event.address);  
+        } else if (contractType == "BetaRandomFlatLostWorldContract") {
+            let contract = BetaRandomFlatLostWorldContract.bind(event.address);  
             tokenURIString = contract.tokenURI(event.params.tokenId);
-        } else if (contractType == "FlatSingleLostWorldContract") {
-            let contract = FlatSingleLostWorldContract.bind(event.address);  
+        } else if (contractType == "BetaSimpleFlatLostWorldContract") {
+            let contract = BetaSimpleFlatLostWorldContract.bind(event.address);  
             tokenURIString = contract.tokenURI(event.params.tokenId);
         }
         if (tokenURIString.startsWith("data:application/json;base64,")) {
@@ -101,6 +101,7 @@ function handleTransfer (event: TransferEvent, contractType: string): void {
         } else {
             tokenURIString = tokenURIString.slice("data:application/json,".length);
         }
+        tokenURIString = tokenURIString.split('undefined').join('""');
         let tokenURIBytes = Bytes.fromUTF8(tokenURIString) as Bytes;
         let tokenURI = json.fromBytes(tokenURIBytes).toObject();
     

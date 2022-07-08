@@ -26,11 +26,11 @@ dataSources:
         - event: ProxyDeployed(address,bytes)
           handler: handleAlphaRandomCurvedLostWorldRegistered
   - kind: ethereum/contract
-    name: RandomFlatLostWorldFactory
+    name: BetaRandomFlatLostWorldFactory
     network: fuji
     source:
       address: '0xAE5FEd0ea4F820aFa3171bD476A1B76aBfD1e834'
-      abi: RandomFlatLostWorldFactory
+      abi: BetaRandomFlatLostWorldFactory
       startBlock: 10899977
     mapping:
       kind: ethereum/events
@@ -40,17 +40,17 @@ dataSources:
       entities:
         - Token
       abis:
-        - name: RandomFlatLostWorldFactory
-          file: ./abis/RandomFlatLostWorldFactory.json
+        - name: BetaRandomFlatLostWorldFactory
+          file: ./abis/BetaRandomFlatLostWorldFactory.json
       eventHandlers:
         - event: ProxyDeployed(address)
-          handler: handleRandomFlatLostWorldRegistered
+          handler: handleBetaRandomFlatLostWorldRegistered
   - kind: ethereum/contract
-    name: FlatSingleLostWorldFactory
+    name: BetaSimpleFlatLostWorldFactory
     network: fuji
     source:
       address: '0x8C214Dc7D5a0fb490D3e00336df175b0e54B658F'
-      abi: FlatSingleLostWorldFactory
+      abi: BetaSimpleFlatLostWorldFactory
       startBlock: 10899990
     mapping:
       kind: ethereum/events
@@ -60,11 +60,11 @@ dataSources:
       entities:
         - Token
       abis:
-        - name: FlatSingleLostWorldFactory
-          file: ./abis/FlatSingleLostWorldFactory.json
+        - name: BetaSimpleFlatLostWorldFactory
+          file: ./abis/BetaSimpleFlatLostWorldFactory.json
       eventHandlers:
         - event: ProxyDeployed(address)
-          handler: handleFlatSingleLostWorldRegistered
+          handler: handleBetaSimpleFlatLostWorldRegistered
   # MARKETPLACES
   - kind: ethereum/contract
     name: AlphaLostWorldsMarketplaceV1
@@ -118,12 +118,12 @@ dataSources:
           handler: handleLostWorldsMarketplaceOrderRemoved
   # ACHIEVEMENTS
   - kind: ethereum/contract
-    name: LostAchievementFactoryClone
+    name: BetaLostAchievementFactoryClone
     network: fuji
     source:
-      address: '0x7c1888A2af6391004EBD98877BF22403b9017BFE'
-      abi: LostAchievementFactoryClone
-      startBlock: 10900180
+      address: '0xEB96999306580ea141Ba6CcACF12E691068df666'
+      abi: BetaLostAchievementFactoryClone
+      startBlock: 11080605
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -132,32 +132,11 @@ dataSources:
       entities:
         - Order
       abis:
-        - name: LostAchievementFactoryClone
-          file: ./abis/LostAchievementFactoryClone.json
+        - name: BetaLostAchievementFactoryClone
+          file: ./abis/BetaLostAchievementFactoryClone.json
       eventHandlers:
         - event: NewClone(address)
           handler: handleNewAchievementClone
-  - kind: ethereum/contract
-    name: LostAchievementChef
-    network: fuji
-    source:
-      address: '0xfd32302eE5Cfb3Cb9bC9C09a735146cDE0f23283'
-      abi: LostAchievementChef
-      startBlock: 10900173
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/achievements.ts
-      entities:
-        - Token
-      abis:
-        - name: LostAchievementChef
-          file: ./abis/LostAchievementChef.json
-      eventHandlers:
-        - event: RegisteredStakeRewarder(address,(uint256,uint256))
-          handler: handleRegisteredStakeRewarder
-
 
 templates:
   # LOST WORLDS
@@ -177,20 +156,14 @@ templates:
       abis:
         - name: AlphaRandomCurvedLostWorld
           file: ./abis/AlphaRandomCurvedLostWorld.json
-        - name: ArtistLocationMetadataInterpreter
-          file: ./abis/ArtistLocationMetadataInterpreter.json
-        - name: ImageImageLinkNameImageInformationInterpreter
-          file: ./abis/ImageImageLinkNameImageInformationInterpreter.json
-        - name: NameIssuerAdvancedVariationInterpreter
-          file: ./abis/NameIssuerAdvancedVariationInterpreter.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleAlphaRandomCurvedLostWorldV2Transfer
+          handler: handleAlphaRandomCurvedLostWorldTransfer
   - kind: ethereum/contract
-    name: RandomFlatLostWorld
+    name: BetaRandomFlatLostWorld
     network: fuji
     source:
-      abi: RandomFlatLostWorld
+      abi: BetaRandomFlatLostWorld
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -200,20 +173,16 @@ templates:
         - Token
         - TokenTransaction
       abis:
-        - name: RandomFlatLostWorld
-          file: ./abis/RandomFlatLostWorld.json
-        - name: ArtistLocationMetadataInterpreter
-          file: ./abis/ArtistLocationMetadataInterpreter.json
-        - name: NameIssuerAdvancedVariationInterpreter
-          file: ./abis/NameIssuerAdvancedVariationInterpreter.json
+        - name: BetaRandomFlatLostWorld
+          file: ./abis/BetaRandomFlatLostWorld.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleRandomFlatLostWorldTransfer
+          handler: handleBetaRandomFlatLostWorldTransfer
   - kind: ethereum/contract
-    name: FlatSingleLostWorld
+    name: BetaSimpleFlatLostWorld
     network: fuji
     source:
-      abi: FlatSingleLostWorld
+      abi: BetaSimpleFlatLostWorld
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -223,21 +192,17 @@ templates:
         - Token
         - TokenTransaction
       abis:
-        - name: FlatSingleLostWorld
-          file: ./abis/FlatSingleLostWorld.json
-        - name: ArtistLocationMetadataInterpreter
-          file: ./abis/ArtistLocationMetadataInterpreter.json
-        - name: NameIssuerAdvancedVariationInterpreter
-          file: ./abis/NameIssuerAdvancedVariationInterpreter.json
+        - name: BetaSimpleFlatLostWorld
+          file: ./abis/BetaSimpleFlatLostWorld.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleFlatSingleLostWorldTransfer
+          handler: handleBetaSimpleFlatLostWorldTransfer
   # ACHIEVEMENTS
   - kind: ethereum/contract
-    name: LostAchievement
+    name: BetaLostAchievement
     network: fuji
     source:
-      abi: LostAchievement
+      abi: BetaLostAchievement
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -246,8 +211,8 @@ templates:
       entities:
         - Badge
       abis:
-        - name: LostAchievement
-          file: ./abis/LostAchievement.json
+        - name: BetaLostAchievement
+          file: ./abis/BetaLostAchievement.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleBadgeClaimed
