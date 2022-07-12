@@ -25,7 +25,7 @@ function handleOrderAdded (event: OrderAddedEvent, marketplace: string, idPrefix
 
     let order = new Order(id);
     order.orderId = event.params.orderId;
-    order.token = lostWorld + "-" + event.params.tokenId.toString();
+    order.token = lostWorld + "::" + event.params.tokenId.toString();
     order.marketplace = marketplace;
     order.price = event.params.price;
     order.seller = createUserIfNotExist(event.params.seller);
