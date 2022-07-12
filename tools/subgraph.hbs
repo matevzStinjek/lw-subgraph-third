@@ -59,6 +59,42 @@ dataSources:
       eventHandlers:
         - event: ProxyDeployed(address)
           handler: handleBetaSimpleFlatLostWorldRegistered
+  - kind: ethereum/contract
+    name: GammaRandomFlatLostWorldFactory
+    network: {{network}}
+    source:
+      {{{sourceGammaRandomFlatLostWorldFactory}}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/main.ts
+      entities:
+        - Token
+      abis:
+        - name: GammaRandomFlatLostWorldFactory
+          file: ./abis/GammaRandomFlatLostWorldFactory.json
+      eventHandlers:
+        - event: ProxyDeployed(address)
+          handler: handleGammaRandomFlatLostWorldRegistered
+  - kind: ethereum/contract
+    name: GammaSimpleFlatLostWorldFactory
+    network: {{network}}
+    source:
+      {{{sourceGammaSimpleFlatLostWorldFactory}}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/main.ts
+      entities:
+        - Token
+      abis:
+        - name: GammaSimpleFlatLostWorldFactory
+          file: ./abis/GammaSimpleFlatLostWorldFactory.json
+      eventHandlers:
+        - event: ProxyDeployed(address)
+          handler: handleGammaSimpleFlatLostWorldRegistered
   # MARKETPLACES
   - kind: ethereum/contract
     name: AlphaLostWorldsMarketplaceV1
@@ -124,7 +160,25 @@ dataSources:
           file: ./abis/BetaLostAchievementFactoryClone.json
       eventHandlers:
         - event: NewClone(address)
-          handler: handleNewAchievementClone
+          handler: handleNewBetaAchievementRegistered
+  - kind: ethereum/contract
+    name: GammaLostAchievementFactoryClone
+    network: {{network}}
+    source:
+      {{{sourceGammaLostAchievementFactoryClone}}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/achievements.ts
+      entities:
+        - Order
+      abis:
+        - name: GammaLostAchievementFactoryClone
+          file: ./abis/GammaLostAchievementFactoryClone.json
+      eventHandlers:
+        - event: NewClone(address)
+          handler: handleNewGammaAchievementRegistered
 
 templates:
   # LOST WORLDS
@@ -146,7 +200,7 @@ templates:
           file: ./abis/AlphaRandomCurvedLostWorld.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleAlphaRandomCurvedLostWorldTransfer
+          handler: handleTransfer
   - kind: ethereum/contract
     name: BetaRandomFlatLostWorld
     network: {{network}}
@@ -165,7 +219,7 @@ templates:
           file: ./abis/BetaRandomFlatLostWorld.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleBetaRandomFlatLostWorldTransfer
+          handler: handleTransfer
   - kind: ethereum/contract
     name: BetaSimpleFlatLostWorld
     network: {{network}}
@@ -184,7 +238,45 @@ templates:
           file: ./abis/BetaSimpleFlatLostWorld.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleBetaSimpleFlatLostWorldTransfer
+          handler: handleTransfer
+  - kind: ethereum/contract
+    name: GammaRandomFlatLostWorld
+    network: {{network}}
+    source:
+      abi: GammaRandomFlatLostWorld
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/main.ts
+      entities:
+        - Token
+        - TokenTransaction
+      abis:
+        - name: GammaRandomFlatLostWorld
+          file: ./abis/GammaRandomFlatLostWorld.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+  - kind: ethereum/contract
+    name: GammaSimpleFlatLostWorld
+    network: {{network}}
+    source:
+      abi: GammaSimpleFlatLostWorld
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/main.ts
+      entities:
+        - Token
+        - TokenTransaction
+      abis:
+        - name: GammaSimpleFlatLostWorld
+          file: ./abis/GammaSimpleFlatLostWorld.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
   # ACHIEVEMENTS
   - kind: ethereum/contract
     name: BetaLostAchievement
@@ -201,6 +293,24 @@ templates:
       abis:
         - name: BetaLostAchievement
           file: ./abis/BetaLostAchievement.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleBadgeClaimed
+  - kind: ethereum/contract
+    name: GammaLostAchievement
+    network: {{network}}
+    source:
+      abi: GammaLostAchievement
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/achievements.ts
+      entities:
+        - Badge
+      abis:
+        - name: GammaLostAchievement
+          file: ./abis/GammaLostAchievement.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleBadgeClaimed

@@ -24,7 +24,7 @@ function handleOrderAdded (event: OrderAddedEvent, marketplace: string, idPrefix
     let lostWorld = event.params.token.toHexString().toLowerCase();
 
     let order = new Order(id);
-    order.orderId = event.params.orderId;
+    order.orderId = event.params.orderId.toI32();
     order.token = lostWorld + "::" + event.params.tokenId.toString();
     order.marketplace = marketplace;
     order.price = event.params.price;

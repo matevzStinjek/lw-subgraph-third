@@ -1,7 +1,3 @@
-// library
-import { ethereum, json, log, Bytes } from "@graphprotocol/graph-ts";
-import { decode } from "as-base64";
-
 // common
 import { createUserIfNotExist, createTokenTransaction } from "./common";
 
@@ -15,43 +11,30 @@ import {
 
 // templates
 import { 
-    BetaLostAchievement as LostAchievementTemplate,
+    BetaLostAchievement as BetaLostAchievementTemplate,
+    GammaLostAchievement as GammaLostAchievementTemplate,
 } from "../types/templates";
-
-import {
-    BetaLostAchievement as LostAchievementContract,
-} from "../types/templates/BetaLostAchievement/BetaLostAchievement"
-
 
 import {
     Transfer as TransferEvent,
 } from "../types/templates/BetaSimpleFlatLostWorld/BetaSimpleFlatLostWorld";
 
 
-export function handleNewAchievementClone (event: NewCloneEvent): void {
-    LostAchievementTemplate.create(event.params.clone);
+export function handleNewBetaAchievementRegistered (event: NewCloneEvent): void {
+    BetaLostAchievementTemplate.create(event.params.clone);
+}
+
+export function handleNewGammaAchievementRegistered (event: NewCloneEvent): void {
+    GammaLostAchievementTemplate.create(event.params.clone);
 }
 
 export function handleBadgeClaimed (event: TransferEvent): void {
     let id = event.address.toHexString().toLowerCase() + "::" + event.params.tokenId.toString();
     let badge = new Badge(id);
-
     badge.owner = createUserIfNotExist(event.params.to);
-    badge.tokenID = event.params.tokenId;
+    badge.tokenID = event.params.tokenId.toI32();
     badge.achievement = event.address;
-
-    let contract = LostAchievementContract.bind(event.address);
-    let tokenURIString = contract.tokenURI(event.params.tokenId);
-    tokenURIString = tokenURIString.slice("data:application/json;base64,".length);
-    tokenURIString = Bytes.fromUint8Array(decode(tokenURIString)).toString();
-
-    let tokenURIBytes = Bytes.fromUTF8(tokenURIString) as Bytes;
-    let tokenURI = json.fromBytes(tokenURIBytes).toObject();
-
-    let achievedAt = tokenURI.get("achievedAt");
-    if (achievedAt) {
-        badge.achievedAt = achievedAt.toBigInt().toI32();
-    }
+    badge.achievedAt = event.block.timestamp.toI32();
     badge.save();
 
     createTokenTransaction(id, event);

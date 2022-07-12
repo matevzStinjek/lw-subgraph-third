@@ -1,13 +1,9 @@
 type Token @entity {
     id:               ID!
-    tokenID:          BigInt!
+    tokenID:          Int!
     lostWorld:        Bytes!
     minter:           User!
     createdTimestamp: Int!
-
-    # tokenURI
-    name:  String!
-    image: String!
 
     # mutables
     owner:            User!
@@ -30,10 +26,9 @@ type TokenTransaction @entity {
 
 type Order @entity {
     id:          ID! # prefix + orderId
-    orderId:     BigInt!
+    orderId:     Int!
     marketplace: String!
-
-    token:     Token!
+    token:       Token!
 
     # variables
     price:  BigInt!
@@ -51,7 +46,7 @@ type Order @entity {
 
 type Badge @entity {
     id:          ID!
-    tokenID:     BigInt!
+    tokenID:     Int!
     achievement: Bytes!
     owner:       User!
     achievedAt:  Int!
