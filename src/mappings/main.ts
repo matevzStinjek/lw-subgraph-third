@@ -1,3 +1,5 @@
+import { log } from "@graphprotocol/graph-ts"
+
 // common
 import { createUserIfNotExist, createTokenTransaction } from "./common";
 

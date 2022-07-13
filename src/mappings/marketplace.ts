@@ -8,7 +8,7 @@ import {
     OrdedAdded as OrderAddedEvent,
     OrderExecuted as OrderExecutedEvent,
     OrderRemoved as OrderRemovedEvent,
-} from "../types/AlphaLostWorldsMarketplaceV1/AlphaLostWorldsMarketplaceV1";
+} from "../types/LostWorldsMarketplace/LostWorldsMarketplace";
 
 
 export function handleAlphaLostWorldsMarketplaceV1OrderAdded (event: OrderAddedEvent): void {

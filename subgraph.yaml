@@ -9,9 +9,9 @@ dataSources:
     name: AlphaRandomCurvedLostWorldFactory
     network: fuji
     source:
-      address: '0x187B745ACA9E73054220f1E44Db140DAd558D9A4'
+      address: '0xdB2C5f2Fc62807659594E6B0EBBE8863DdB288E4'
       abi: AlphaRandomCurvedLostWorldFactory
-      startBlock: 10899027
+      startBlock: 11537570
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -29,9 +29,9 @@ dataSources:
     name: BetaRandomFlatLostWorldFactory
     network: fuji
     source:
-      address: '0xAE5FEd0ea4F820aFa3171bD476A1B76aBfD1e834'
+      address: '0x38370fFe7Ed75CBFeA9Ddb31b70F159B4e06AFDb'
       abi: BetaRandomFlatLostWorldFactory
-      startBlock: 10899977
+      startBlock: 11537570
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -49,9 +49,9 @@ dataSources:
     name: BetaSimpleFlatLostWorldFactory
     network: fuji
     source:
-      address: '0x8C214Dc7D5a0fb490D3e00336df175b0e54B658F'
+      address: '0xba37cf86e6B43F72231081386492BC790a4AbDa0'
       abi: BetaSimpleFlatLostWorldFactory
-      startBlock: 10899990
+      startBlock: 11537570
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -71,7 +71,7 @@ dataSources:
     source:
       address: '0xD5F01fA4aa0175E200158C09C14B55581D5e7D2a'
       abi: GammaRandomFlatLostWorldFactory
-      startBlock: 11533409
+      startBlock: 11537570
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -91,7 +91,7 @@ dataSources:
     source:
       address: '0x54Ff1Dd838d2eB5620DfEDC805555bDC76e6B2d9'
       abi: GammaSimpleFlatLostWorldFactory
-      startBlock: 11533422
+      startBlock: 11537570
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -110,9 +110,9 @@ dataSources:
     name: AlphaLostWorldsMarketplaceV1
     network: fuji
     source:
-      address: '0x2485baC1B3130017A559c17fFd8873d6530D311b'
+      address: '0xe2a80c3258Ec9dcAaCe480fb89B24e39644eb1f0'
       abi: AlphaLostWorldsMarketplaceV1
-      startBlock: 10899001
+      startBlock: 11537570
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -135,9 +135,9 @@ dataSources:
     name: LostWorldsMarketplace
     network: fuji
     source:
-      address: '0xFa780e207bB34C2c70F18Ec1e4CA192DcEAAf3ea'
+      address: '0x162681827f41e389EE27da6b0f32310d6123d747'
       abi: LostWorldsMarketplace
-      startBlock: 10899963
+      startBlock: 11537570
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -161,9 +161,9 @@ dataSources:
     name: BetaLostAchievementFactoryClone
     network: fuji
     source:
-      address: '0xEB96999306580ea141Ba6CcACF12E691068df666'
+      address: '0x6Dca3BF381Be60F034680b73c47826779d8f0481'
       abi: BetaLostAchievementFactoryClone
-      startBlock: 11080605
+      startBlock: 11537570
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -183,7 +183,7 @@ dataSources:
     source:
       address: '0xE4ef4bFB3b0C0cadc307dFFfAF3AEaad0b41302d'
       abi: GammaLostAchievementFactoryClone
-      startBlock: 11533225
+      startBlock: 11537570
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
