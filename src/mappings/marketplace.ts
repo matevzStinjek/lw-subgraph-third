@@ -38,6 +38,7 @@ function handleOrderAdded (event: OrderAddedEvent, marketplace: string, idPrefix
     if (token) {
         token.hasActiveOrder = true;
         token.activeOrder = order.id;
+        order.seller = createUserIfNotExist(event.params.seller);
         token.updatedTimestamp = event.block.timestamp.toI32();
         token.save();
     }
@@ -69,6 +70,7 @@ function handleOrderExecuted (event: OrderExecutedEvent, idPrefix: string): void
     if (token) {
         token.hasActiveOrder = false;
         token.activeOrder = null;
+        token.seller = null;
         token.updatedTimestamp = event.block.timestamp.toI32();
         token.save();
     }
@@ -97,6 +99,7 @@ function handleOrderRemoved (event: OrderRemovedEvent, idPrefix: string): void {
     if (token) {
         token.hasActiveOrder = false;
         token.activeOrder = null;
+        token.seller = null;
         token.updatedTimestamp = event.block.timestamp.toI32();
         token.save();
     }

@@ -9,6 +9,7 @@ type Token @entity {
     owner:            User!
     activeOrder:      Order
     hasActiveOrder:   Boolean!
+    seller:           User
     updatedTimestamp: Int!
 
     transactions: [TokenTransaction!]! @derivedFrom(field: "token")
